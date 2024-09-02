@@ -1,5 +1,6 @@
 package main.java.utils;
 
+import main.java.entities.Cliente;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 public class HelperMySQL {
     private Connection conn = null;
 
-    public HelperMySQL() {//Constructor
+    public HelperMySQL() {
         String driver = "com.mysql.cj.jdbc.Driver";
         String uri = "jdbc:mysql://localhost:3306/mydb";
 
@@ -45,6 +46,7 @@ public class HelperMySQL {
             }
         }
     }
+
     public void dropTables() throws SQLException {
         String dropPersona = "DROP TABLE IF EXISTS Persona";
         this.conn.prepareStatement(dropPersona).execute();
@@ -78,7 +80,9 @@ public class HelperMySQL {
                                         "idFactura int,"+
                                         "idProducto int,"+
                                         "cantidad int," +
-                                        "PRIMARY KEY (idFactura, idProducto))";
+                                        "PRIMARY KEY (idFactura, idProducto)," +
+                                        "FOREIGN KEY (idFactura) REFERENCES factura(idFactura)," +
+                                        "FOREIGN KEY(idProducto) REFERENCES producto(idProducto))";
         this.conn.prepareStatement(tablaFacturaProducto).execute();
 
         this.conn.commit();
@@ -94,54 +98,35 @@ public class HelperMySQL {
         return records;
     }
 
-    /*public void populateDB() throws Exception {
-        try {
-            System.out.println("Populating DB...");
-            for(CSVRecord row : getData("direcciones.csv")) {
-                if(row.size() >= 4) { // Verificar que hay al menos 4 campos en el CSVRecord
-                    String idString = row.get(0);
-                    String numeroString = row.get(3);
-                    if(!idString.isEmpty() && !numeroString.isEmpty()) {
-                        try {
-                            int id = Integer.parseInt(idString);
-                            int numero = Integer.parseInt(numeroString);
-                            Direccion direccion = new Direccion(id, row.get(1), row.get(2), numero);
-                            insertDireccion(direccion, conn);
-                        } catch (NumberFormatException e) {
-                            System.err.println("Error de formato en datos de dirección: " + e.getMessage());
-                        }
+    public void populateDB() throws Exception {
+        System.out.println("Populating DB...");
+        for(CSVRecord row : getData("clientes.csv")) {
+            if(row.size() >= 3) { // Verificar que hay al menos 4 campos en el CSVRecord
+                String idString = row.get(0);
+                if(!idString.isEmpty()) {
+                    try {
+                        int id = Integer.parseInt(idString);
+                        Cliente cliente = new Cliente(id, row.get(1), row.get(2));
+                        insertCliente(cliente);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error de formato en datos de dirección: " + e.getMessage());
                     }
                 }
             }
-            System.out.println("Direcciones insertadas");
-
-            for (CSVRecord row : getData("personas.csv")) {
-                if (row.size() >= 4) { // Verificar que hay al menos 4 campos en el CSVRecord
-                    String idString = row.get(0);
-                    String nombre = row.get(1);
-                    String edadString = row.get(2);
-                    String idDireccionString = row.get(3);
-
-                    if (!idString.isEmpty() && !nombre.isEmpty() && !edadString.isEmpty() && !idDireccionString.isEmpty()) {
-                        try {
-                            int id = Integer.parseInt(idString);
-                            int edad = Integer.parseInt(edadString);
-                            int idDireccion = Integer.parseInt(idDireccionString);
-
-                            Persona persona = new Persona(id, nombre, edad, idDireccion);
-                            insertPersona(persona, conn);
-                        } catch (NumberFormatException e) {
-                            System.err.println("Error de formato en datos de persona: " + e.getMessage());
-                        }
-                    }
-                }
-            }
-
-            System.out.println("Personas insertadas");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+        System.out.println("clientes insertados");
+
+    }
+
+    private void insertCliente(Cliente cliente) throws SQLException {
+        String insert = "INSERT INTO cliente (idCliente, nombre, email) VALUES (?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(insert);
+        ps.setInt(1, cliente.getId());
+        ps.setString(2, cliente.getNombre());
+        ps.setString(3, cliente.getEmail());
+        ps.executeUpdate();
+        ps.close();
+        conn.commit();
     }
 
 
@@ -154,7 +139,7 @@ public class HelperMySQL {
                 e.printStackTrace();
             }
         }
-    }*/
+    }
 }
 
 

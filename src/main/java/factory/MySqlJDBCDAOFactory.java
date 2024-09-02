@@ -21,6 +21,11 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
     public MySqlJDBCDAOFactory() throws SQLException {
         helper = new HelperMySQL();
         helper.createTables();
+        /*try {
+            helper.populateDB();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }*/
     }
 
     public static MySqlJDBCDAOFactory getInstance() throws SQLException {
