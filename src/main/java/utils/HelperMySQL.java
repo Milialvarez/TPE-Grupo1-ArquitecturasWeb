@@ -30,7 +30,7 @@ public class HelperMySQL {
         }
 
         try {
-            conn = DriverManager.getConnection(uri, "root", "");
+            conn = DriverManager.getConnection(uri, "root", "root");
             conn.setAutoCommit(false);
         } catch (Exception e) {
             e.printStackTrace();
