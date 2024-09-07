@@ -100,6 +100,15 @@ public class HelperMySQL {
 
     public void populateDB() throws Exception {
         System.out.println("Populating DB...");
+        this.loadClients();
+        this.loadProducts();
+    }
+
+    private void loadProducts(){
+
+    }
+
+    private void loadClients() throws IOException {
         for(CSVRecord row : getData("clientes.csv")) {
             if(row.size() >= 3) { // Verificar que hay al menos 4 campos en el CSVRecord
                 String idString = row.get(0);
@@ -108,14 +117,13 @@ public class HelperMySQL {
                         int id = Integer.parseInt(idString);
                         Cliente cliente = new Cliente(id, row.get(1), row.get(2));
                         insertCliente(cliente);
-                    } catch (NumberFormatException e) {
+                    } catch (NumberFormatException | SQLException e) {
                         System.err.println("Error de formato en datos de dirección: " + e.getMessage());
                     }
                 }
             }
         }
         System.out.println("clientes insertados");
-
     }
 
     private void insertCliente(Cliente cliente) throws SQLException {

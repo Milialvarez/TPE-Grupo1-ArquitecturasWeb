@@ -19,21 +19,24 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
     private HelperMySQL helper;
 
     public MySqlJDBCDAOFactory() throws SQLException {
-        helper = new HelperMySQL();
-        helper.createTables();
-        /*try {
-            helper.populateDB();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
+        this.setSQLHelper();
     }
 
-    public static MySqlJDBCDAOFactory getInstance() throws SQLException {
-        if(instancia == null){
-            return new MySqlJDBCDAOFactory();
-        }
-        return instancia;
+    @Override
+    public HelperMySQL getSQLHelper(){
+        return this.helper;
     }
+
+    private void setSQLHelper(){
+        this.helper = new HelperMySQL();
+    }
+
+//    public static MySqlJDBCDAOFactory getInstance() throws SQLException {
+//        if(instancia == null){
+//            return new MySqlJDBCDAOFactory();
+//        }
+//        return instancia;
+//    }
 
 
     public static Connection getConnection() throws SQLException {
