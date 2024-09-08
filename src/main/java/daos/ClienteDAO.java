@@ -1,4 +1,4 @@
-package daos;
+package main.java.daos;
 
 import main.java.entities.Cliente;
 

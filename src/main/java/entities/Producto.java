@@ -1,11 +1,11 @@
-package entities;
+package main.java.entities;
 
 public class Producto {
     private int idProducto;
     private String nombre;
-    private Double valor;
+    private float valor;
 
-    public Producto(int idProducto, String nombre, Double valor) {
+    public Producto(int idProducto, String nombre, float valor) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.valor = valor;
@@ -17,13 +17,13 @@ public class Producto {
     public String getNombre() {
         return nombre;
     }
-    public Double getValor() {
+    public float getValor() {
         return valor;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void setValor(Double valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 }

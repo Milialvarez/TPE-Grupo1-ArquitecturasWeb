@@ -1,11 +1,11 @@
 package main.java.factory;
 
-import daos.ClienteDAO;
+import main.java.daos.ClienteDAO;
 import daos.FacturaDAO;
 import daos.FacturaProductoDAO;
-import daos.ProductoDAO;
+import main.java.daos.ProductoDAO;
 import main.java.entities.Cliente;
-import main.java.factory.DAOFactory;
+import main.java.entities.Producto;
 import main.java.utils.HelperMySQL;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -14,9 +14,6 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySqlJDBCDAOFactory extends DAOFactory {
@@ -61,8 +58,22 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
         this.loadProducts();
     }
 
-    private void loadProducts(){
-
+    private void loadProducts() throws IOException {
+        for(CSVRecord row : getData("productos.csv")) {
+            if(row.size() >= 2) { // Verificar que hay al menos 4 campos en el CSVRecord
+                String idString = row.get(0);
+                if(!idString.isEmpty()) {
+                    try {
+                        int id = Integer.parseInt(idString);
+                        Producto producto = new Producto(id, row.get(1), Float.parseFloat(row.get(2)));
+                        getProductoDAO().addProducto(producto);
+                    } catch (NumberFormatException | SQLException e) {
+                        System.err.println("Error de formato en datos de dirección: " + e.getMessage());
+                    }
+                }
+            }
+        }
+        System.out.println("productos insertados");
     }
 
     private void loadClients() throws IOException {
