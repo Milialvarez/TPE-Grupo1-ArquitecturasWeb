@@ -1,8 +1,10 @@
 package main.java.factory;
 
+import main.java.entities.Factura;
+import main.java.entities.FacturaProducto;
 import main.java.daos.ClienteDAO;
-import daos.FacturaDAO;
-import daos.FacturaProductoDAO;
+import main.java.daos.FacturaProductoDAO;
+import main.java.daos.FacturaDAO;
 import main.java.daos.ProductoDAO;
 import main.java.entities.Cliente;
 import main.java.entities.Producto;
@@ -56,17 +58,59 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
         System.out.println("Populating DB...");
         this.loadClients();
         this.loadProducts();
+        this.loadBills();
+        this.loadBillProducts();
+    }
+
+    private void loadBills() throws IOException {
+        for(CSVRecord row : getData("facturas.csv")) {
+            if(row.size() >= 1) {
+                String idFactura = row.get(0);
+                String idCliente = row.get(1);
+                if(!idFactura.isEmpty() && !idCliente.isEmpty()) {
+                    try {
+                        int idF = Integer.parseInt(idFactura);
+                        int idC = Integer.parseInt(idCliente);
+                        Factura factura = new Factura(idF, idC);
+                        this.getFacturaDAO().addFactura(factura);
+                    } catch (NumberFormatException | SQLException e) {
+                        System.err.println("Error de formato en datos de dirección: " + e.getMessage());
+                    }
+                }
+            }
+        }
+        System.out.println("facturas insertadas");
+    }
+
+    private void loadBillProducts() throws IOException{
+        for(CSVRecord row : getData("facturas-productos.csv")) {
+            if(row.size() >= 2) {
+                String idFactura = row.get(0);
+                String idProducto = row.get(1);
+                if(!idFactura.isEmpty() && !idProducto.isEmpty()) {
+                    try {
+                        int idF = Integer.parseInt(idFactura);
+                        int idP = Integer.parseInt(idProducto);
+                        FacturaProducto facturaProducto = new FacturaProducto(idF, idP, Integer.parseInt(row.get(2)));
+                        this.getFacturaProductoDAO().addFacturaProducto(facturaProducto);
+                    } catch (NumberFormatException | SQLException e) {
+                        System.err.println("Error de formato en datos de dirección: " + e.getMessage());
+                    }
+                }
+            }
+        }
+        System.out.println("facturas-productos insertados");
     }
 
     private void loadProducts() throws IOException {
         for(CSVRecord row : getData("productos.csv")) {
-            if(row.size() >= 2) { // Verificar que hay al menos 4 campos en el CSVRecord
+            if(row.size() >= 2) {
                 String idString = row.get(0);
                 if(!idString.isEmpty()) {
                     try {
                         int id = Integer.parseInt(idString);
                         Producto producto = new Producto(id, row.get(1), Float.parseFloat(row.get(2)));
-                        getProductoDAO().addProducto(producto);
+                        this.getProductoDAO().addProducto(producto);
                     } catch (NumberFormatException | SQLException e) {
                         System.err.println("Error de formato en datos de dirección: " + e.getMessage());
                     }
@@ -84,7 +128,7 @@ public class MySqlJDBCDAOFactory extends DAOFactory {
                     try {
                         int id = Integer.parseInt(idString);
                         Cliente cliente = new Cliente(id, row.get(1), row.get(2));
-                        getClienteDAO().addCliente(cliente);
+                        this.getClienteDAO().addCliente(cliente);
                     } catch (NumberFormatException | SQLException e) {
                         System.err.println("Error de formato en datos de dirección: " + e.getMessage());
                     }

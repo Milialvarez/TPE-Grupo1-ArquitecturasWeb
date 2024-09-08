@@ -1,4 +1,4 @@
-package entities;
+package main.java.entities;
 
 public class FacturaProducto {
     private int idFactura;

@@ -1,8 +1,8 @@
 package main.java.factory;
 
 import main.java.daos.ClienteDAO;
-import daos.FacturaDAO;
-import daos.FacturaProductoDAO;
+import main.java.daos.FacturaDAO;
+import main.java.daos.FacturaProductoDAO;
 import main.java.daos.ProductoDAO;
 import main.java.utils.HelperMySQL;
 
