@@ -16,8 +16,7 @@ public abstract class DAOFactory {
     public abstract FacturaDAO getFacturaDAO() throws SQLException;
     public abstract FacturaProductoDAO getFacturaProductoDAO() throws SQLException;
     public abstract ProductoDAO getProductoDAO() throws SQLException;
-    public abstract HelperMySQL getSQLHelper() throws  SQLException;
-
+    public abstract void populateDB() throws Exception;
 
     public static DAOFactory getDAOFactoryOnlyInstance(int whichFactory) throws SQLException {
         switch (whichFactory) {

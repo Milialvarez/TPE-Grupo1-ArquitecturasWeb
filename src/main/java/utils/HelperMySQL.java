@@ -14,13 +14,21 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class HelperMySQL {
-    private Connection conn = null;
+public class HelperMySQL { //esta clase solo deberia tener la responsabilidad de establecer la conexion a la db
+    //y crear el esquema de tablas como mucho, el resto de responsabilidades es para MySqlDAOFactory
+    private static Connection conn = null;
+    private static String driver = "com.mysql.cj.jdbc.Driver";
+    private static String uri = "jdbc:mysql://localhost:3306/mydb";
 
-    public HelperMySQL() {
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String uri = "jdbc:mysql://localhost:3306/mydb";
+    public HelperMySQL() { //la conexion no deberia poder ser instanciada desde fuera tantas veces como se quiera
+    }
 
+    public static Connection getConnection(){
+        if (conn == null) conn = initConn();
+        return conn;
+    }
+
+    private static Connection initConn(){
         try {
             Class.forName(driver).getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -32,12 +40,15 @@ public class HelperMySQL {
         try {
             conn = DriverManager.getConnection(uri, "root", "root");
             conn.setAutoCommit(false);
+            return conn;
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
+            return null;
         }
     }
 
-    public void closeConnection() {
+    public static void closeConnection() {
         if (conn != null){
             try {
                 conn.close();
@@ -49,32 +60,32 @@ public class HelperMySQL {
 
     public void dropTables() throws SQLException {
         String dropPersona = "DROP TABLE IF EXISTS Persona";
-        this.conn.prepareStatement(dropPersona).execute();
-        this.conn.commit();
+        conn.prepareStatement(dropPersona).execute();
+        conn.commit();
 
         String dropDireccion = "DROP TABLE IF EXISTS Direccion";
-        this.conn.prepareStatement(dropDireccion).execute();
-        this.conn.commit();
+        conn.prepareStatement(dropDireccion).execute();
+        conn.commit();
     }
 
-    public void createTables() throws SQLException {
+    public static void createTables() throws SQLException {
         String tablaCliente = "CREATE TABLE IF NOT EXISTS cliente (" +
                                 "idCliente int PRIMARY KEY, " +
                                 "nombre Varchar(500)," +
                                 "email Varchar(150))";
-        this.conn.prepareStatement(tablaCliente).execute();
+        conn.prepareStatement(tablaCliente).execute();
 
         String tablaFactura = "CREATE TABLE IF NOT EXISTS factura("+
                                 "idFactura int PRIMARY KEY,"+
                                 "idCliente int)";
-        this.conn.prepareStatement(tablaFactura).execute();
+        conn.prepareStatement(tablaFactura).execute();
 
         String tablaProducto = "CREATE TABLE IF NOT EXISTS producto(" +
                 "idProducto int PRIMARY KEY," +
                 "nombre Varchar(45)," +
                 "valor Float)";
 
-        this.conn.prepareStatement(tablaProducto).execute();
+        conn.prepareStatement(tablaProducto).execute();
 
         String tablaFacturaProducto = "CREATE TABLE IF NOT EXISTS facturaProducto("+
                                         "idFactura int,"+
@@ -83,60 +94,10 @@ public class HelperMySQL {
                                         "PRIMARY KEY (idFactura, idProducto)," +
                                         "FOREIGN KEY (idFactura) REFERENCES factura(idFactura)," +
                                         "FOREIGN KEY(idProducto) REFERENCES producto(idProducto))";
-        this.conn.prepareStatement(tablaFacturaProducto).execute();
+        conn.prepareStatement(tablaFacturaProducto).execute();
 
-        this.conn.commit();
-    }
-
-    private Iterable<CSVRecord> getData(String archivo) throws IOException {
-        String path = "src\\main\\resources\\" + archivo;
-        Reader in = new FileReader(path);
-        String[] header = {};  // Puedes configurar tu encabezado personalizado aquí si es necesario
-        CSVParser csvParser = CSVFormat.EXCEL.withHeader(header).parse(in);
-
-        Iterable<CSVRecord> records = csvParser.getRecords();
-        return records;
-    }
-
-    public void populateDB() throws Exception {
-        System.out.println("Populating DB...");
-        this.loadClients();
-        this.loadProducts();
-    }
-
-    private void loadProducts(){
-
-    }
-
-    private void loadClients() throws IOException {
-        for(CSVRecord row : getData("clientes.csv")) {
-            if(row.size() >= 3) { // Verificar que hay al menos 4 campos en el CSVRecord
-                String idString = row.get(0);
-                if(!idString.isEmpty()) {
-                    try {
-                        int id = Integer.parseInt(idString);
-                        Cliente cliente = new Cliente(id, row.get(1), row.get(2));
-                        insertCliente(cliente);
-                    } catch (NumberFormatException | SQLException e) {
-                        System.err.println("Error de formato en datos de dirección: " + e.getMessage());
-                    }
-                }
-            }
-        }
-        System.out.println("clientes insertados");
-    }
-
-    private void insertCliente(Cliente cliente) throws SQLException {
-        String insert = "INSERT INTO cliente (idCliente, nombre, email) VALUES (?,?,?)";
-        PreparedStatement ps = conn.prepareStatement(insert);
-        ps.setInt(1, cliente.getId());
-        ps.setString(2, cliente.getNombre());
-        ps.setString(3, cliente.getEmail());
-        ps.executeUpdate();
-        ps.close();
         conn.commit();
     }
-
 
     private void closePsAndCommit(Connection conn, PreparedStatement ps) {
         if (conn != null){
