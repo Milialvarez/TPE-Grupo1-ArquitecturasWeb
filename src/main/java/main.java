@@ -1,6 +1,8 @@
 package main.java;
 
+import main.java.entities.Producto;
 import main.java.factory.DAOFactory;
+import main.java.services.ProductoService;
 import main.java.utils.HelperMySQL;
 
 import java.sql.Connection;
@@ -11,16 +13,25 @@ public class main {
         DAOFactory dao = DAOFactory.getDAOFactoryOnlyInstance(1);
         assert dao != null;
         //ej 1
+        System.out.println("Consigna 1: ");
         Connection c = HelperMySQL.getConnection();
         if (c != null) HelperMySQL.createTables();
 
         //ej 2
+        System.out.println("Consigna 2: ");
         try {
             dao.populateDB();
-           // h.populateDB();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        //ej 3
+        System.out.println("Consigna 3: ");
+        ProductoService servicioProducto = new ProductoService(dao.getProductoDAO());
+        Producto productoMayorRecaudacion = servicioProducto.getProductoMayorRecaudacion();
+
+        System.out.println("El producto de mayor recaudacion es: " + productoMayorRecaudacion.getNombre()
+                + " con ID de producto: " + productoMayorRecaudacion.getIdProducto());
 
     }
 }

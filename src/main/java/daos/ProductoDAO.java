@@ -4,6 +4,7 @@ import main.java.entities.Producto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProductoDAO {
@@ -22,5 +23,26 @@ public class ProductoDAO {
         ps.executeUpdate();
         ps.close();
         conn.commit();
+    }
+
+    public Producto getHighestIncomeProduct() {
+          String select = "SELECT p.idProducto,p.nombre, p.valor FROM mydb.producto p " +
+				"LEFT JOIN mydb.facturaProducto fp ON p.idProducto = fp.idProducto " +
+				"GROUP BY(p.idProducto) ORDER BY SUM(fp.cantidad)*p.valor desc LIMIT 1";
+		try {
+			PreparedStatement ps = conn.prepareStatement(select);
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()){
+				Producto prod = new Producto(rs.getInt(1),rs.getString(2),rs.getInt(3));
+				return prod;
+			}
+			ps.close();
+//		conn.commit();
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return null;
     }
 }
