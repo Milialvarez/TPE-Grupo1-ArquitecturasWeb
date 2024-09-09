@@ -38,7 +38,7 @@ public class HelperMySQL { //esta clase solo deberia tener la responsabilidad de
         }
 
         try {
-            conn = DriverManager.getConnection(uri, "root", "root");
+            conn = DriverManager.getConnection(uri, "root", "");
             conn.setAutoCommit(false);
             return conn;
         } catch (Exception e) {

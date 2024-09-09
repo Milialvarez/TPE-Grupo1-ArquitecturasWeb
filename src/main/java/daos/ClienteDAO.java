@@ -26,10 +26,10 @@ public class ClienteDAO {
         conn.commit();
     }
     public ArrayList<Cliente> mostFacturedClients(){
-        String select = "SELECT * from mydb.cliente c "+
-                "LEFT JOIN mydb.factura f on c.idCliente = f.idCliente "+
-                "GROUP BY c.idCliente" +
-                "ORDER BY COUNT(f.idCliente) desc";
+        String select =  "SELECT * FROM mydb.cliente c "+
+                        "LEFT JOIN mydb.factura f on c.idCliente = f.idCliente "+
+                        "GROUP BY c.idCliente " +
+                        "ORDER BY COUNT(f.idCliente) desc";
         try {
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
@@ -40,7 +40,7 @@ public class ClienteDAO {
                 result.add(client);
             }
             ps.close();
-            //		conn.commit();
+            conn.commit();
             return result;
         } catch(SQLException e) {
             e.printStackTrace();
@@ -48,5 +48,6 @@ public class ClienteDAO {
         }
         return null;
     }
+
 
 }

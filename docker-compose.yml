@@ -5,6 +5,8 @@ services:
     image: mysql:latest
     restart: always
     environment:
+
+      # hacer contraseña vacía
       MYSQL_ROOT_PASSWORD: root  # Contraseña para el usuario root
       MYSQL_DATABASE: mydb        # Crea la base de datos 'mydb' al iniciar
     ports:

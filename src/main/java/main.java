@@ -39,8 +39,9 @@ public class main {
         // ejercicio 4 //
           ListadoClientesService servicioDos = new ListadoClientesService(dao.getClienteDAO());
           ArrayList<Cliente> result = servicioDos.mostFacturedClientsList();
+          System.out.println("Consigna 4: ");
           for(Cliente cliente: result) {
-         System.out.print("Nombre cliente: " + cliente.getNombre() + " con el id: " + cliente.getId());
+         System.out.println("Nombre cliente: " + cliente.getNombre() + " con el id: " + cliente.getId());
         }
     }
 }
