@@ -1,12 +1,15 @@
 package main.java;
 
+import main.java.entities.Cliente;
 import main.java.entities.Producto;
 import main.java.factory.DAOFactory;
+import main.java.services.ListadoClientesService;
 import main.java.services.ProductoService;
 import main.java.utils.HelperMySQL;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class main {
     public static void main(String[] args) throws SQLException {
@@ -33,5 +36,11 @@ public class main {
         System.out.println("El producto de mayor recaudacion es: " + productoMayorRecaudacion.getNombre()
                 + " con ID de producto: " + productoMayorRecaudacion.getIdProducto());
 
+        // ejercicio 4 //
+          ListadoClientesService servicioDos = new ListadoClientesService(dao.getClienteDAO());
+          ArrayList<Cliente> result = servicioDos.mostFacturedClientsList();
+          for(Cliente cliente: result) {
+         System.out.print("Nombre cliente: " + cliente.getNombre() + " con el id: " + cliente.getId());
+        }
     }
 }
