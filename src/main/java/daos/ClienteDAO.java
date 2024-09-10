@@ -26,10 +26,13 @@ public class ClienteDAO {
         conn.commit();
     }
     public ArrayList<Cliente> mostFacturedClients(){
-        String select =  "SELECT * FROM mydb.cliente c "+
-                        "LEFT JOIN mydb.factura f on c.idCliente = f.idCliente "+
-                        "GROUP BY c.idCliente " +
-                        "ORDER BY COUNT(f.idCliente) desc";
+        String select =  "SELECT c.idCliente, c.nombre, c.email, SUM(fp.cantidad*p.valor) AS totalFacturado "+
+                        "FROM mydb.cliente c "+
+                        "JOIN mydb.factura f USING (idCliente) "+
+                        "JOIN mydb.facturaProducto fp USING (idFactura) "+
+                        "JOIN mydb.producto p USING (idProducto) "+
+                        "GROUP BY c.idCliente, c.nombre, c.email "+
+                        "ORDER BY totalFacturado DESC";
         try {
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
