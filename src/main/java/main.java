@@ -17,6 +17,7 @@ public class main {
         assert dao != null;
         //ej 1
         System.out.println("Consigna 1: ");
+        System.out.println("Estableciendo conexion MYSQL ");
         Connection c = HelperMySQL.getConnection();
         if (c != null) HelperMySQL.createTables();
 
@@ -36,7 +37,7 @@ public class main {
         System.out.println("El producto de mayor recaudacion es: " + productoMayorRecaudacion.getNombre()
                 + " con ID de producto: " + productoMayorRecaudacion.getIdProducto());
 
-        // ejercicio 4 //
+        // ej 4 //
           ListadoClientesService servicioDos = new ListadoClientesService(dao.getClienteDAO());
           ArrayList<Cliente> result = servicioDos.mostFacturedClientsList();
           System.out.println("Consigna 4: ");
