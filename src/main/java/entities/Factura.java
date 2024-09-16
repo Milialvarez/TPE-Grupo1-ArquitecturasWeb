@@ -17,4 +17,11 @@ public class Factura {
         return idCliente;
     }
 
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "idFactura=" + idFactura +
+                ", idCliente=" + idCliente +
+                '}';
+    }
 }
