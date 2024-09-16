@@ -1,5 +1,7 @@
 package main.java;
 
+import main.java.daos.ClienteDAO;
+import main.java.daos.FacturaDAO;
 import main.java.entities.Cliente;
 import main.java.entities.Producto;
 import main.java.factory.DAOFactory;
@@ -22,27 +24,29 @@ public class main {
         if (c != null) HelperMySQL.createTables();
 
         //ej 2
-        System.out.println("Consigna 2: ");
-        try {
-            dao.populateDB();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+//        System.out.println("Consigna 2: ");
+//        try {
+//            dao.populateDB();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        //ej 3
+//        System.out.println("Consigna 3: ");
+//        ProductoService servicioProducto = new ProductoService(dao.getProductoDAO());
+//        Producto productoMayorRecaudacion = servicioProducto.getProductoMayorRecaudacion();
+//
+//        System.out.println("El producto de mayor recaudacion es: " + productoMayorRecaudacion.getNombre()
+//                + " con ID de producto: " + productoMayorRecaudacion.getIdProducto());
+//
+//        // ej 4 //
+//          ListadoClientesService servicioDos = new ListadoClientesService(dao.getClienteDAO());
+//          ArrayList<Cliente> result = servicioDos.mostFacturedClientsList();
+//          System.out.println("Consigna 4: ");
+//          for(Cliente cliente: result) {
+//         System.out.println("Nombre cliente: " + cliente.getNombre() + " con el id: " + cliente.getId());
+
+         FacturaDAO fDao = dao.getFacturaDAO();
         }
-
-        //ej 3
-        System.out.println("Consigna 3: ");
-        ProductoService servicioProducto = new ProductoService(dao.getProductoDAO());
-        Producto productoMayorRecaudacion = servicioProducto.getProductoMayorRecaudacion();
-
-        System.out.println("El producto de mayor recaudacion es: " + productoMayorRecaudacion.getNombre()
-                + " con ID de producto: " + productoMayorRecaudacion.getIdProducto());
-
-        // ej 4 //
-          ListadoClientesService servicioDos = new ListadoClientesService(dao.getClienteDAO());
-          ArrayList<Cliente> result = servicioDos.mostFacturedClientsList();
-          System.out.println("Consigna 4: ");
-          for(Cliente cliente: result) {
-         System.out.println("Nombre cliente: " + cliente.getNombre() + " con el id: " + cliente.getId());
-        }
-    }
+//    }
 }

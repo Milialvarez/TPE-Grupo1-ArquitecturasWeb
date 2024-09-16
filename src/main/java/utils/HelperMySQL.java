@@ -58,16 +58,6 @@ public class HelperMySQL { //esta clase solo deberia tener la responsabilidad de
         }
     }
 
-    public void dropTables() throws SQLException {
-        String dropPersona = "DROP TABLE IF EXISTS Persona";
-        conn.prepareStatement(dropPersona).execute();
-        conn.commit();
-
-        String dropDireccion = "DROP TABLE IF EXISTS Direccion";
-        conn.prepareStatement(dropDireccion).execute();
-        conn.commit();
-    }
-
     public static void createTables() throws SQLException {
         String tablaCliente = "CREATE TABLE IF NOT EXISTS cliente (" +
                                 "idCliente int PRIMARY KEY, " +
@@ -110,5 +100,3 @@ public class HelperMySQL { //esta clase solo deberia tener la responsabilidad de
         }
     }
 }
-
-
