@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public abstract class DAOFactory {
     public static final int MYSQL_JDBC = 1;
-    private static MySqlJDBCDAOFactory mySQLDAOFactory;
 
     public abstract ClienteDAO getClienteDAO() throws SQLException;
     public abstract FacturaDAO getFacturaDAO() throws SQLException;
@@ -21,10 +20,7 @@ public abstract class DAOFactory {
     public static DAOFactory getDAOFactoryOnlyInstance(int whichFactory) throws SQLException {
         switch (whichFactory) {
             case MYSQL_JDBC : {
-                if (mySQLDAOFactory == null) {
-                    mySQLDAOFactory = new MySqlJDBCDAOFactory();
-                    return mySQLDAOFactory;
-                }
+                return MySqlJDBCDAOFactory.getInstance();
             }
             default: return null;
         }

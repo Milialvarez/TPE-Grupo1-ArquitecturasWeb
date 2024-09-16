@@ -25,6 +25,7 @@ public class ClienteDAO {
         ps.close();
         conn.commit();
     }
+
     public ArrayList<Cliente> mostFacturedClients(){
         String select =  "SELECT c.idCliente, c.nombre, c.email, SUM(fp.cantidad*p.valor) AS totalFacturado "+
                         "FROM mydb.cliente c "+
@@ -51,6 +52,4 @@ public class ClienteDAO {
         }
         return null;
     }
-
-
 }

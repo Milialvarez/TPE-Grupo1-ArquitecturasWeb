@@ -19,9 +19,18 @@ import java.io.Reader;
 import java.sql.SQLException;
 
 public class MySqlJDBCDAOFactory extends DAOFactory {
+    private static MySqlJDBCDAOFactory instance;
 
     public MySqlJDBCDAOFactory() throws SQLException {
 
+    }
+
+    public static MySqlJDBCDAOFactory getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new MySqlJDBCDAOFactory();
+        }
+
+        return instance;
     }
 
     @Override
