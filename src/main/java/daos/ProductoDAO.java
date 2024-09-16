@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProductoDAO {
     private Connection conn;
@@ -23,6 +24,53 @@ public class ProductoDAO {
         ps.executeUpdate();
         ps.close();
         conn.commit();
+    }
+
+    public void deleteProducto(int idProducto) throws SQLException {
+        String delete = "DELETE FROM producto WHERE idProducto = ?";
+        PreparedStatement ps = conn.prepareStatement(delete);
+        ps.setInt(1, idProducto);
+        ps.executeUpdate();
+        ps.close();
+        conn.commit();
+    }
+
+    public void updateProducto(Producto producto) throws SQLException {
+        String update = "UPDATE producto SET nombre = ?, valor = ? WHERE idProducto = ?";
+        PreparedStatement ps = conn.prepareStatement(update);
+        ps.setString(1, producto.getNombre());
+        ps.setFloat(2, producto.getValor());
+        ps.setInt(3, producto.getIdProducto());
+        ps.executeUpdate();
+        ps.close();
+        conn.commit();
+    }
+
+    public ArrayList<Producto> getProductos() throws SQLException {
+        ArrayList<Producto> productos = new ArrayList<>();
+        String select = "SELECT * FROM producto ORDER BY idProducto";
+        PreparedStatement ps = conn.prepareStatement(select);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            productos.add(new Producto(rs.getInt("idProducto"), rs.getString("nombre"), rs.getFloat("valor")));
+        }
+
+        rs.close();
+        ps.close();
+        return productos;
+    }
+
+    public Producto getProducto(int idProducto) throws SQLException {
+        String select = "SELECT * FROM producto WHERE idProducto = ?";
+        PreparedStatement ps = conn.prepareStatement(select);
+        ps.setInt(1, idProducto);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        Producto producto = new Producto(rs.getInt("idProducto"), rs.getString("nombre"), rs.getFloat("valor"));
+        rs.close();
+        ps.close();
+        return producto;
     }
 
     public Producto getHighestIncomeProduct() {
