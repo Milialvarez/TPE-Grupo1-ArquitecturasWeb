@@ -2,7 +2,12 @@ package main.java;
 
 import main.java.daos.ClienteDAO;
 import main.java.daos.FacturaDAO;
+import main.java.daos.FacturaProductoDAO;
+import main.java.daos.ProductoDAO;
+import main.java.dtos.ClienteDTO;
 import main.java.entities.Cliente;
+import main.java.entities.Factura;
+import main.java.entities.FacturaProducto;
 import main.java.entities.Producto;
 import main.java.factory.DAOFactory;
 import main.java.services.ListadoClientesService;
@@ -41,11 +46,10 @@ public class main {
 
         // ej 4
         ListadoClientesService servicioDos = new ListadoClientesService(dao.getClienteDAO());
-        ArrayList<Cliente> result = servicioDos.mostFacturedClientsList();
+        ArrayList<ClienteDTO> result = servicioDos.mostFacturedClientsList();
         System.out.println("Consigna 4: ");
-        
-        for(Cliente cliente: result) {
-            System.out.println("Nombre cliente: " + cliente.getNombre() + " con el id: " + cliente.getId());
+        for (ClienteDTO cliente : result) {
+            System.out.println("Nombre cliente: " + cliente.getNombre() + " con el id: " + cliente.getIdCliente() + " facturó: " + cliente.getTotalFacturado());
         }
     }
 }

@@ -1,5 +1,6 @@
 package main.java.daos;
 
+import main.java.dtos.ClienteDTO;
 import main.java.entities.Cliente;
 
 import java.sql.Connection;
@@ -73,21 +74,21 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public ArrayList<Cliente> mostFacturedClients(){
+    public ArrayList<ClienteDTO> mostFacturedClients(){
         String select =  "SELECT c.idCliente, c.nombre, c.email, SUM(fp.cantidad*p.valor) AS totalFacturado "+
-                        "FROM mydb.cliente c "+
-                        "JOIN mydb.factura f USING (idCliente) "+
-                        "JOIN mydb.facturaProducto fp USING (idFactura) "+
-                        "JOIN mydb.producto p USING (idProducto) "+
-                        "GROUP BY c.idCliente, c.nombre, c.email "+
-                        "ORDER BY totalFacturado DESC";
+                "FROM mydb.cliente c "+
+                "JOIN mydb.factura f USING (idCliente) "+
+                "JOIN mydb.facturaProducto fp USING (idFactura) "+
+                "JOIN mydb.producto p USING (idProducto) "+
+                "GROUP BY c.idCliente, c.nombre, c.email "+
+                "ORDER BY totalFacturado DESC";
         try {
             PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
-            ArrayList<Cliente> result = new ArrayList<>();
+            ArrayList<ClienteDTO> result = new ArrayList<>();
 
             while(rs.next()){
-                Cliente client = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3));
+                ClienteDTO client = new ClienteDTO(rs.getInt(1), rs.getString(2), rs.getInt("totalFacturado"));
                 result.add(client);
             }
             ps.close();

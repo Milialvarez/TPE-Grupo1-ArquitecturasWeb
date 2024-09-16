@@ -1,6 +1,7 @@
 package main.java.services;
 
 import main.java.daos.ClienteDAO;
+import main.java.dtos.ClienteDTO;
 import main.java.entities.Cliente;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class ListadoClientesService {
 
     public ListadoClientesService(ClienteDAO clienteDAO) { this.clienteDAO = clienteDAO; }
 
-    public ArrayList<Cliente> mostFacturedClientsList(){
+    public ArrayList<ClienteDTO> mostFacturedClientsList(){
         return clienteDAO.mostFacturedClients();
     }
 }
