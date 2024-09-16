@@ -67,13 +67,14 @@ public class HelperMySQL { //esta clase solo deberia tener la responsabilidad de
 
         String tablaFactura = "CREATE TABLE IF NOT EXISTS factura("+
                                 "idFactura int PRIMARY KEY,"+
-                                "idCliente int)";
+                                "idCliente int," +
+                                "FOREIGN KEY (idCliente) REFERENCES cliente(idCliente))";
         conn.prepareStatement(tablaFactura).execute();
 
         String tablaProducto = "CREATE TABLE IF NOT EXISTS producto(" +
-                "idProducto int PRIMARY KEY," +
-                "nombre Varchar(45)," +
-                "valor Float)";
+                                "idProducto int PRIMARY KEY," +
+                                "nombre Varchar(45)," +
+                                "valor Float)";
 
         conn.prepareStatement(tablaProducto).execute();
 
