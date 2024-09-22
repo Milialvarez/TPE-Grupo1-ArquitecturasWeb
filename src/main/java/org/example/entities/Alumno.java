@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int alumno_id;
     @Column
     private String nombre;
     @Column
@@ -24,6 +24,6 @@ public class Alumno {
     private String ciudad;
     @Column
     private int nro_libreta;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private ArrayList<Carrera> carreras;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private ArrayList<Alumno_Carrera> carreras;
 }

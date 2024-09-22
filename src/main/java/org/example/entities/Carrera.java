@@ -7,11 +7,11 @@ import java.util.ArrayList;
 public class Carrera {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int carrera_id;
     @Column
     private String nombre;
     @Column
     private int anios;
-    @ManyToMany(mappedBy = "carreras", fetch = FetchType.LAZY)
-    private ArrayList<Alumno> alumnos;
+    @OneToMany(fetch = FetchType.LAZY)
+    private ArrayList<Alumno_Carrera> alumnos;
 }

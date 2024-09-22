@@ -1,17 +1,25 @@
-package org.example;
+package main.java.org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import main.java.org.example.entities.Alumno;
+import main.java.org.example.entities.Alumno_Carrera;
+import main.java.org.example.entities.Carrera;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        EntityManagerFactory enf = Persistence.createEntityManagerFactory("Example");
+        EntityManager em = enf.createEntityManager();
+        em.getTransaction().begin();
+        Alumno facu = new Alumno();
+        Carrera TUDAI = new Carrera();
+        Alumno_Carrera fT = new Alumno_Carrera();
+        em.persist(facu);
+        em.persist(TUDAI);
+        em.persist(fT);
+        em.getTransaction().commit();
+        em.close();
     }
 }
