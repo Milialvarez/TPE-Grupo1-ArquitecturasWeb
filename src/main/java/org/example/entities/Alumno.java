@@ -1,15 +1,15 @@
 package main.java.org.example.entities;
 
-import main.java.org.example.entities.Carrera;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int alumno_id;
+    private Long alumno_id;
     @Column
     private String nombre;
     @Column
@@ -24,6 +24,21 @@ public class Alumno {
     private String ciudad;
     @Column
     private int nro_libreta;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private ArrayList<Alumno_Carrera> carreras;
+    @OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY)
+    private List<Alumno_Carrera> carreras;
+
+    public Alumno(String nombre, String apellido, int edad, String genero, int dni, String ciudad, int nro_libreta) {
+        super();
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.genero = genero;
+        this.dni = dni;
+        this.ciudad = ciudad;
+        this.nro_libreta = nro_libreta;
+        carreras = new ArrayList<>();
+    }
+
+    public Alumno() {
+    }
 }

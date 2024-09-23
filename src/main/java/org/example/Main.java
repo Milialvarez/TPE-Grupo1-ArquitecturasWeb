@@ -13,11 +13,11 @@ public class Main {
         EntityManagerFactory enf = Persistence.createEntityManagerFactory("Example");
         EntityManager em = enf.createEntityManager();
         em.getTransaction().begin();
-        Alumno facu = new Alumno();
-        Carrera TUDAI = new Carrera();
-        Alumno_Carrera fT = new Alumno_Carrera();
+        Alumno facu = new Alumno("Facundo", "Bravo", 19, "Masculino", 46814650,"Tandil", 45363377);
         em.persist(facu);
+        Carrera TUDAI = new Carrera("TUDAI", 2);
         em.persist(TUDAI);
+        Alumno_Carrera fT = new Alumno_Carrera(facu, TUDAI, 2, false);
         em.persist(fT);
         em.getTransaction().commit();
         em.close();
