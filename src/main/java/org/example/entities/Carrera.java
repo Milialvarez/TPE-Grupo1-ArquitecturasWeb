@@ -1,12 +1,15 @@
 package main.java.org.example.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Carrera {
+public class Carrera implements Serializable {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long carrera_id;
