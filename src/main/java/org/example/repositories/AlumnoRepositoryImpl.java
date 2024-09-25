@@ -4,13 +4,17 @@ import main.java.org.example.criterios.Criterio;
 import main.java.org.example.entities.Alumno;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlumnoRepositoryImpl implements AlumnoRepository {
     private EntityManager em;
 
     public AlumnoRepositoryImpl(EntityManager em) {
         this.em = em;
+        em.getTransaction().begin();
     }
 
     @Override
@@ -19,9 +23,22 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
     }
 
     @Override
-    public Alumno getAlumnos(Criterio seleccion) {
-
-        return null;
+    public List<Alumno> getAlumnos(String criterio, Boolean ascendente) {
+        List<String> posiblesCriterios = new ArrayList<>();
+        posiblesCriterios.add("nombre");
+        posiblesCriterios.add("genero");
+        posiblesCriterios.add("nro_libreta");
+        posiblesCriterios.add("apellido");
+        if(!posiblesCriterios.contains(criterio)) { throw new IllegalArgumentException("criterio invalido: "+criterio); }
+        String orden;
+        if(ascendente) {
+            orden = "ASC";
+        } else{
+            orden = "DESC";
+        }
+        String select = "SELECT a FROM Alumno a ORDER BY "+ criterio +" "+orden;
+        List<Alumno> lista = em.createQuery(select, Alumno.class).getResultList();
+        return lista;
     }
 
     @Override
@@ -65,5 +82,25 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
         q.executeUpdate();
 
         return this.getAlumnoById(id);
+    }
+
+    @Override
+    public Alumno getAlumnoByNroLibreta(int nroLibreta) {
+        String select = "SELECT a FROM Alumno a WHERE a.nro_libreta = ?1";
+        Query query = em.createQuery(select);
+        query.setParameter(1, nroLibreta);
+        try{
+            return (Alumno) query.getSingleResult();
+        }catch(NoResultException e){
+            throw new IllegalArgumentException("Número de libreta no encontrada");
+        }
+
+    }
+
+    @Override
+    public List<Alumno> getAlumnosByGenero(String genero) {
+        String select = "SELECT a FROM Alumno a WHERE a.genero like ?1";
+        List<Alumno> alumnos = em.createQuery(select).setParameter(1, genero).getResultList();
+        return alumnos;
     }
 }

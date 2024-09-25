@@ -8,12 +8,13 @@ import main.java.org.example.repositories.AlumnoRepositoryImpl;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         EntityManagerFactory enf = Persistence.createEntityManagerFactory("Example");
         EntityManager em = enf.createEntityManager();
-        em.getTransaction().begin();
 //        Alumno facu = new Alumno("Facundo", "Bravo", 19, "Masculino", 46814650,"Tandil", 45363377);
 //        em.persist(facu);
 //        Carrera TUDAI = new Carrera("TUDAI", 2);
@@ -38,11 +39,18 @@ public class Main {
         //System.out.print(alumno.getAlumnoById(new Long("9")));
         //alumno.saveAlumno(Manuel);
 
-        System.out.print(alumno.updateAlumno(prueba, new Long("13")));
+        //System.out.print(alumno.updateAlumno(prueba, new Long("13")));
+
+//        List<Alumno> alumnos = alumno.getAlumnos("nombre", false);
+//        for (Alumno a : alumnos) {
+//            System.out.println(a);
+//        }
+
+        //System.out.print(alumno.getAlumnoByNroLibreta(1));
+        System.out.println(alumno.getAlumnosByGenero("femenino"));
 
 //        em.persist(Mili);
 //        em.persist(mT);
-        em.getTransaction().commit();
         em.close();
     }
 }
