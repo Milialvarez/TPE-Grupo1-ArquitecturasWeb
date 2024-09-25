@@ -9,7 +9,6 @@
 		<class>main.java.org.example.entities.Alumno</class>
 		<class>main.java.org.example.entities.Carrera</class>
 		<class>main.java.org.example.entities.Alumno_Carrera</class>
-		<class>main.java.org.example.entities.Alumno_Carrera_PK</class>
 
 
 		<properties>

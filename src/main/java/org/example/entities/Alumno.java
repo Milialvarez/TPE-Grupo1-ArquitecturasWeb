@@ -1,11 +1,14 @@
 package main.java.org.example.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Alumno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,4 +44,18 @@ public class Alumno implements Serializable {
 
     public Alumno() {
     }
+
+    public Long getAlumno_id() {
+        return alumno_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno{" +
+                "alumno_id=" + alumno_id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                '}';
+    }
+
 }
