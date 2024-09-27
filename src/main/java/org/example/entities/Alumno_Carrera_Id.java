@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -13,16 +14,16 @@ public class Alumno_Carrera_Id implements java.io.Serializable {
     private static final long serialVersionUID = 3255599046800011076L;
 
     @Column
-    private Long alumno_id;
+    private int alumno_id;
 
     @Column
-    private Long carrera_id;
+    private int carrera_id;
 
     public Alumno_Carrera_Id() {
 
     }
 
-    public Alumno_Carrera_Id(Long a_id, Long c_id) {
+    public Alumno_Carrera_Id(int a_id, int c_id) {
         alumno_id = a_id;
         carrera_id = c_id;
     }
@@ -36,5 +37,8 @@ public class Alumno_Carrera_Id implements java.io.Serializable {
         return alumno_id == that.alumno_id && carrera_id == that.carrera_id;
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(alumno_id, carrera_id);
+    }
 }

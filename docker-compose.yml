@@ -8,7 +8,7 @@ services:
 
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
       #MYSQL_ROOT_PASSWORD:  # Contraseña para el usuario root
-      MYSQL_DATABASE: mydb        # Crea la base de datos 'mydb' al iniciar
+      MYSQL_DATABASE: integrador2        # Crea la base de datos 'integrador2' al iniciar
     ports:
       - "3306:3306"               # Mapear puerto 3306 del contenedor al host
 

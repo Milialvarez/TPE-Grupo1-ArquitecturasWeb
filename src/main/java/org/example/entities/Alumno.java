@@ -12,7 +12,7 @@ import java.util.List;
 public class Alumno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long alumno_id;
+    private int alumno_id;
     @Column
     private String nombre;
     @Column
@@ -45,16 +45,18 @@ public class Alumno implements Serializable {
     public Alumno() {
     }
 
-    public Long getAlumno_id() {
-        return alumno_id;
+    public int getAlumno_id() {
+        return this.alumno_id;
     }
 
     @Override
     public String toString() {
         return "Alumno{" +
-                "alumno_id=" + alumno_id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
+                "alumno_id: " + this.alumno_id +
+                ", nombre: '" + this.nombre + '\'' +
+                ", apellido: '" + this.apellido + '\'' +
+                ", edad: '" + this.edad + '\'' +
+                ", edad: '" + this.nro_libreta + '\'' +
                 '}';
     }
 

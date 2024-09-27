@@ -9,10 +9,9 @@ import java.util.List;
 
 @Entity
 public class Carrera implements Serializable {
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long carrera_id;
+    private int carrera_id;
     @Column
     private String nombre;
     @Column
@@ -27,6 +26,13 @@ public class Carrera implements Serializable {
         this.alumnos = new ArrayList<>();
     }
 
-    public Carrera() {
+    public Carrera(String nombre) {
+        super();
+        this.nombre = nombre;
+        this.anios = 5; //duracion por defecto
+        this.alumnos = new ArrayList<>();
     }
+
+
+    public int getCarrera_id(){ return this.carrera_id; }
 }

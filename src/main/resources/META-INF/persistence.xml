@@ -21,7 +21,7 @@
                     descomentar para que funcione el ejercicio 5 -->
 
                     <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-                    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
+                    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/integrador2"/>
                     <property name="javax.persistence.jdbc.user" value="root" />
 
 			<!-- Propiedad para la generacion automatica del esquema de base de datos -->

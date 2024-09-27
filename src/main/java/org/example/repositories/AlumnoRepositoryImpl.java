@@ -1,9 +1,9 @@
 package main.java.org.example.repositories;
 
-import main.java.org.example.criterios.Criterio;
 import main.java.org.example.entities.Alumno;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
@@ -41,15 +41,32 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
         return lista;
     }
 
-    @Override
-    public Alumno saveAlumno(Alumno a) {
-        if (a.getAlumno_id() == null) {
-            em.persist(a);
-        } else {
-            a = em.merge(a);
+//    @Override
+//    public Alumno saveAlumno(Alumno a) {
+//        if (a.getAlumno_id() == null) {
+//            em.persist(a);
+//        } else {
+//            a = em.merge(a);
+//        }
+//        return a;
+//    }
+
+    public void crearAlumno(Alumno a) {
+        EntityTransaction transaction = em.getTransaction();  // Obtén la transacción
+        try {
+            if (!transaction.isActive()) {                    // Verifica si ya está activa
+                transaction.begin();                          // Inicia la transacción solo si no está activa
+            }
+            em.persist(a);                                    // Persiste el alumno
+            transaction.commit();                             // Confirma la transacción
+        } catch (Exception e) {
+            if (transaction.isActive()) {                     // Si hay un error, realiza rollback si la transacción sigue activa
+                transaction.rollback();
+            }
+            e.printStackTrace();                              // Imprime la traza del error para diagnosticar problemas
         }
-        return a;
     }
+
 
     @Override
     public Alumno deleteAlumno(Long id) {
@@ -85,7 +102,7 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
     }
 
     @Override
-    public Alumno getAlumnoByNroLibreta(int nroLibreta) {
+    public Alumno getAlumnoByNroLibreta(int nroLibreta) { //2 D
         String select = "SELECT a FROM Alumno a WHERE a.nro_libreta = ?1";
         Query query = em.createQuery(select);
         query.setParameter(1, nroLibreta);
@@ -98,7 +115,7 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
     }
 
     @Override
-    public List<Alumno> getAlumnosByGenero(String genero) {
+    public List<Alumno> getAlumnosByGenero(String genero) { // 2 E
         String select = "SELECT a FROM Alumno a WHERE a.genero like ?1";
         List<Alumno> alumnos = em.createQuery(select).setParameter(1, genero).getResultList();
         return alumnos;
