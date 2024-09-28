@@ -44,13 +44,14 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
                 "SELECT ac.alumno " +
                         "FROM Alumno_Carrera ac " +
                         "WHERE ac.carrera = :carrera " +
-                        "AND ac.alumno.ciudadResidencia = :city", Alumno.class);
+                        "AND ac.alumno.ciudad = :city", Alumno.class);
 
         query.setParameter("carrera", c);
         query.setParameter("city", city);
 
         return query.getResultList();
     }
+
 
 
 //    @Override

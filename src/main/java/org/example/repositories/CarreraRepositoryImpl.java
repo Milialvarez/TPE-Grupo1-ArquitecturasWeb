@@ -51,10 +51,10 @@ public class CarreraRepositoryImpl implements CarreraRepository {
         TypedQuery<Carrera> query = em.createQuery(
                 "SELECT c " +
                         "FROM Carrera c " +
-                        "JOIN c.alumnos ac " +  // Hacemos un JOIN con la relación de alumnos en Alumno_Carrera
-                        "GROUP BY c " +  // Agrupamos por carrera
-                        "HAVING COUNT(ac.alumno) > 0 " +  // Solo seleccionamos carreras con al menos un inscripto
-                        "ORDER BY COUNT(ac.alumno) DESC", Carrera.class);  // Ordenamos por cantidad de alumnos
+                        "JOIN c.alumnos ac " +
+                        "GROUP BY c " +
+                        "HAVING COUNT(ac.alumno) > 0 " +
+                        "ORDER BY COUNT(ac.alumno) DESC", Carrera.class);
 
         return query.getResultList();
     }
