@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface CarreraRepository {
 
-    public void crearCarrera(Carrera c);
-    public List<Carrera> listarCarreras();
-    public Carrera buscarCarreraPorNombre(String c);
+     void crearCarrera(Carrera c);
+     List<Carrera> listarCarreras();
+     Carrera buscarCarreraPorNombre(String c);
+     List<Carrera> listarCarrerasConAlumnosInscriptos();
+     List<Carrera> getMajorsReport();
 }

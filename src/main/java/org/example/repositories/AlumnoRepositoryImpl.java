@@ -1,11 +1,9 @@
 package main.java.org.example.repositories;
 
 import main.java.org.example.entities.Alumno;
+import main.java.org.example.entities.Carrera;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +34,24 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
         } else{
             orden = "DESC";
         }
-        String select = "SELECT a FROM Alumno a ORDER BY "+ criterio +" "+orden;
+        String select = "SELECT a FROM Alumno a ORDER BY " + criterio + " " + orden;
         List<Alumno> lista = em.createQuery(select, Alumno.class).getResultList();
         return lista;
     }
+
+    public List<Alumno> getAlumnosByMajorFilteredBy(Carrera c, String city) {
+        TypedQuery<Alumno> query = em.createQuery(
+                "SELECT ac.alumno " +
+                        "FROM Alumno_Carrera ac " +
+                        "WHERE ac.carrera = :carrera " +
+                        "AND ac.alumno.ciudadResidencia = :city", Alumno.class);
+
+        query.setParameter("carrera", c);
+        query.setParameter("city", city);
+
+        return query.getResultList();
+    }
+
 
 //    @Override
 //    public Alumno saveAlumno(Alumno a) {

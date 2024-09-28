@@ -11,7 +11,7 @@ import java.util.List;
 public class Carrera implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int carrera_id;
+    private int id;
     @Column
     private String nombre;
     @Column
@@ -34,5 +34,13 @@ public class Carrera implements Serializable {
     }
 
 
-    public int getCarrera_id(){ return this.carrera_id; }
+    public int getCarrera_id(){ return this.id; }
+
+    @Override
+    public String toString() {
+        return "Carrera{" +
+                "id: " + this.id +
+                ", nombre: '" + nombre + '\'' +
+                '}';
+    }
 }

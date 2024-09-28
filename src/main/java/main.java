@@ -10,6 +10,7 @@ import main.java.org.example.repositories.CarreraRepositoryImpl;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.List;
 
 public class main {
@@ -17,6 +18,7 @@ public class main {
         System.out.println("1) Generando esquema en la base de datos: ");
         EntityManagerFactory enf = Persistence.createEntityManagerFactory("Example");
         EntityManager em = enf.createEntityManager();
+        System.out.println("---------------");
 
         AlumnoRepositoryImpl alumnoRep = new AlumnoRepositoryImpl(em);
         CarreraRepositoryImpl carreraRep = new CarreraRepositoryImpl(em);
@@ -25,6 +27,7 @@ public class main {
         System.out.println("Populando tablas con algunos datos");
         tableDataPop.poblarTablaAlumnos(alumnoRep);
         tableDataPop.poblarTablaCarreras(carreraRep);
+        System.out.println("---------------");
 
         // Implementación de consultas
         // 2) A. Dar de alta un estudiante
@@ -42,23 +45,58 @@ public class main {
         System.out.println(alumnoCarreraRep.buscarAlumnoID(miGeneralQueGrandeSos.getAlumno_id()));
         System.out.println("---------------");
 
-//        System.out.print(alumno.getAlumnoById(new Long("9")));
-//        alumno.saveAlumno(Manuel);
-//
-//        System.out.print(alumno.updateAlumno(prueba, new Long("13")));
-//
-//        List<Alumno> alumnos = alumno.getAlumnos("nombre", false);
-//        for (Alumno a : alumnos) {
-//            System.out.println(a);
-//        }
-//
-//        System.out.println("2) D/ ");
-//        System.out.print(alumno.getAlumnoByNroLibreta(1));
-//        System.out.println("2) E/ ");
-//        System.out.println(alumno.getAlumnosByGenero("femenino"));
+        //2) C. Recuperar todos los estudiantes y especificar algún criterio de ordenamiento simple.
+        System.out.println("2) C / LISTAR TODOS LOS ALUMNOS");
 
-//        em.persist(Mili);
-//        em.persist(mT);
+        List<Alumno> alumnos = alumnoRep.getAlumnos("apellido", true);
+        for (Alumno a : alumnos) {
+            System.out.println(a);
+        }
+        System.out.println("---------------");
+
+        // 2) D. Recuperar un estudiante, en base a su número de libreta universitaria.
+        System.out.println("2) D / ALUMNOS POR LU: 12345");
+        Alumno al = alumnoRep.getAlumnoByNroLibreta(23980);
+        System.out.println(al);
+        System.out.println("---------------");
+
+        //2) E. Recuperar todos los estudiantes, en base a su género.
+        System.out.println("2) E / ALUMNOS POR GÉNERO: Fememenino");
+        List<Alumno> alumnosGenero = alumnoRep.getAlumnosByGenero("femenino");
+        for (Alumno a : alumnosGenero) {
+            System.out.println(a);
+        }
+        System.out.println("---------------");
+
+        // 2) F. Recuperar las carreras con estudiantes inscriptos y ordenar por cantidad de inscriptos.
+        System.out.println("2) F / TODAS LAS CARRERAS CON ALUMNOS INSCRIPTOS");
+        List<Carrera> carrerasEstInscriptos = carreraRep.listarCarrerasConAlumnosInscriptos();
+        for (Carrera c : carrerasEstInscriptos) {
+            System.out.println(c);
+        }
+        System.out.println("---------------");
+
+        // 2) G. Recuperar los estudiantes de una determinada carrera filtrado por ciudad de residencia.
+        System.out.println("2) G / TODOS LOS ESTUDIANTES DE LA CARRERA: Tudai Y CIUDAD: Tandil");
+        Carrera c5 = carreraRep.buscarCarreraPorNombre("tudai");
+        List<Alumno> listarAlumnosPorCarrera = alumnoRep.getAlumnosByMajorFilteredBy(c5, "tandil");
+        for (Alumno a : listarAlumnosPorCarrera) {
+            System.out.println(a);
+        }
+        System.out.println("---------------");
+
+
+        // 3) Generar un reporte de las carreras, que para cada carrera incluya información de los
+        //	  inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
+        //	  los años de manera cronológica.
+
+        System.out.println("3) REPORTE DE LAS CARRERAS POR NOMBRE Y EN ORDEN CRONOLOGICO");
+        List<Carrera> majorsReport = carreraRep.getMajorsReport();
+        for (Carrera m : majorsReport){
+            System.out.println(m);
+        }
+        System.out.println("---------------");
+
         em.close();
     }
 }
