@@ -27,22 +27,23 @@ public class main {
         System.out.println("Populando tablas con algunos datos");
         tableDataPop.poblarTablaAlumnos(alumnoRep);
         tableDataPop.poblarTablaCarreras(carreraRep);
+        tableDataPop.matricularEstudiantes(alumnoCarreraRep, alumnoRep, carreraRep);
         System.out.println("---------------");
 
         // Implementación de consultas
         // 2) A. Dar de alta un estudiante
-        System.out.println("2) A / DAR DE ALTA UN ESTUDIANTE: Juan Domingo Peron");
-        Alumno miGeneralQueGrandeSos = new Alumno("Juan Domingo", "Peron", 129, "masculino", 140578, "lobos",
+        System.out.println("2) A / DAR DE ALTA UN ESTUDIANTE: Nicolas Simonelli");
+        Alumno alum007 = new Alumno("Nicolas", "Simonelli", 29, "masculino", 38499001, "olavarria",
                 17101945);
-        alumnoRep.crearAlumno(miGeneralQueGrandeSos);
+        alumnoRep.crearAlumno(alum007);
         System.out.println(alumnoRep.getAlumnoByNroLibreta(17101945));
         System.out.println("---------------");
 
         // 2) B. Matricular un estudiante en una carrera
-        System.out.println("2) B / MATRICULAR UN ESTUDIANTE EN UNA CARRERA: Juan Domingo Peron en Economicas");
-        Carrera carrera = carreraRep.buscarCarreraPorNombre("economicas");
-        alumnoCarreraRep.matricularAlumno(miGeneralQueGrandeSos, carrera);
-        System.out.println(alumnoCarreraRep.buscarAlumnoID(miGeneralQueGrandeSos.getAlumno_id()));
+        System.out.println("2) B / MATRICULAR UN ESTUDIANTE EN UNA CARRERA: Nicolas Simonelli en bioquimica");
+        Carrera carrera = carreraRep.buscarCarreraPorNombre("bioquimica");
+        alumnoCarreraRep.matricularAlumno(alum007, carrera);
+        System.out.println(alumnoCarreraRep.buscarAlumnoID(alum007.getAlumno_id()));
         System.out.println("---------------");
 
         //2) C. Recuperar todos los estudiantes y especificar algún criterio de ordenamiento simple.
