@@ -25,7 +25,7 @@ public class main {
         CarreraRepositoryImpl carreraRep = new CarreraRepositoryImpl(em);
         AlumnoCarreraRepositoryImpl alumnoCarreraRep = new AlumnoCarreraRepositoryImpl(em);
 
-        System.out.println("Populando tablas con algunos datos");
+       System.out.println("Populando tablas con algunos datos");
         tableDataPop.poblarTablaAlumnos(alumnoRep);
         tableDataPop.poblarTablaCarreras(carreraRep);
         tableDataPop.matricularEstudiantes(alumnoCarreraRep, alumnoRep, carreraRep);
@@ -88,9 +88,9 @@ public class main {
         System.out.println("---------------");
 
 
-        // 3) Generar un reporte de las carreras, que para cada carrera incluya información de los
-        //	  inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
-        //	  los años de manera cronológica.
+//         3) Generar un reporte de las carreras, que para cada carrera incluya información de los
+//        	  inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
+//        	  los años de manera cronológica.
 
         System.out.println("3) REPORTE DE LAS CARRERAS POR NOMBRE Y EN ORDEN CRONOLOGICO");
         List<ReporteCarrerasDTO> majorsReport = carreraRep.getMajorsReport();

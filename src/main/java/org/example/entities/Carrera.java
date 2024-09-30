@@ -33,6 +33,10 @@ public class Carrera implements Serializable {
         this.alumnos = new ArrayList<>();
     }
 
+    public Carrera() {
+
+    }
+
     public String getNombre(){
         return this.nombre;
     }

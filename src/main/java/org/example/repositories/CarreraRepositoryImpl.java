@@ -60,56 +60,51 @@ public class CarreraRepositoryImpl implements CarreraRepository {
     }
 
     public List<ReporteCarrerasDTO> getMajorsReport(){
-        String querysql = "SELECT nombre AS carrera, anio, MAX(cant_inscriptos) AS cant_inscriptos, MAX(cant_graduados) AS cant_egresados " +
-                "FROM ( " +
-                "    SELECT c.nombre, YEAR(fechaGraduacion) as anio, COUNT(fechaGraduacion) AS cant_graduados, 0 AS cant_inscriptos " +
-                "    FROM Carrera c LEFT JOIN Alumno_Carrera ac ON ac.id_carrera = c.carrera_id " +
-                "    WHERE fechaGraduacion IS NOT NULL " +
-                "    GROUP BY c.carrera_id, fechaGraduacion " +
-                "    UNION " +
-                "    SELECT c.nombre, YEAR(ac.fechaInscripcion), 0, COUNT(YEAR(ac.fechaInscripcion)) AS cant_inscriptos " +
-                "    FROM Carrera c LEFT JOIN Alumno_Carrera ac ON ac.id_carrera = c.carrera_id " +
-                "    GROUP BY c.carrera_id, YEAR(ac.fechaInscripcion)" +
-                ") graduados_inscriptos " +
-                "GROUP BY nombre, anio " +
-                "ORDER BY nombre, anio;";
+        String querysql = "SELECT c.nombre, COUNT(ac.fechaGraduacion) AS cant_graduados, YEAR(ac.fechaInscripcion), COUNT(ac.fechaInscripcion) AS cantidad_inscriptos " +
+                            "FROM Carrera c JOIN Alumno_Carrera ac ON (ac.id.carrera_id = c.carrera_id)" +
+                            "GROUP BY c.nombre, YEAR(ac.fechaInscripcion) " +
+                            "ORDER BY c.nombre ASC, YEAR(ac.fechaInscripcion) ASC";
 
-        Query query = em.createNativeQuery(querysql);
-        List<Object[]> carreras = query.getResultList();
+        Query query = em.createQuery(querysql);
+        List<Object[]> result = query.getResultList();
 
-        List<ReporteCarrerasDTO> dtos = new ArrayList<>();
-        for (Object[] fila:carreras){
-            ReporteCarrerasDTO newDTO = new ReporteCarrerasDTO();
-            // NOMBRE CARRERA
-            newDTO.setNombreCarrera((String) fila[0]);
-
-            // FECHA
-            Date fecha = (Date) fila[1];
-            if (fecha != null) {
-                java.util.Calendar calendar = java.util.Calendar.getInstance();
-                calendar.setTime(fecha);
-                int anio = calendar.get(java.util.Calendar.YEAR);
-                newDTO.setAnio(anio);
-            } else {
-                newDTO.setAnio(0); // O el valor que desees asignar si la fecha es nula
-            }
-
-            //INSCRIPTOS
-            java.math.BigInteger bigInteger = (BigInteger) fila[2];
-            int entero = (Integer) bigInteger.intValue();
-            newDTO.setInscriptos(entero);
-
-
-            //GRADUADOS
-            java.math.BigInteger bigInteger2 = (BigInteger) fila[3];
-            int entero2 = (Integer) bigInteger2.intValue();
-            newDTO.setEgresados(entero2);
-
-            dtos.add(newDTO);
+        for(Object[] o: result) {
+            System.out.println(o[0] + " - " + o[1] + " - " + o[2]+ " - " + o[3]);
         }
 
-        return dtos;
+//        List<Object[]> carreras = query.getResultList();
+//
+//        List<ReporteCarrerasDTO> dtos = new ArrayList<>();
+//        for (Object[] fila:carreras){
+//            ReporteCarrerasDTO newDTO = new ReporteCarrerasDTO();
+//            // NOMBRE CARRERA
+//            newDTO.setNombreCarrera((String) fila[0]);
+//
+//            // FECHA
+//            Date fecha = (Date) fila[1];
+//            if (fecha != null) {
+//                java.util.Calendar calendar = java.util.Calendar.getInstance();
+//                calendar.setTime(fecha);
+//                int anio = calendar.get(java.util.Calendar.YEAR);
+//                newDTO.setAnio(anio);
+//            } else {
+//                newDTO.setAnio(0); // O el valor que desees asignar si la fecha es nula
+//            }
+//
+//            //INSCRIPTOS
+//            java.math.BigInteger bigInteger = (BigInteger) fila[2];
+//            int entero = (Integer) bigInteger.intValue();
+//            newDTO.setInscriptos(entero);
+//
+//
+//            //GRADUADOS
+//            java.math.BigInteger bigInteger2 = (BigInteger) fila[3];
+//            int entero2 = (Integer) bigInteger2.intValue();
+//            newDTO.setEgresados(entero2);
+//
+//            dtos.add(newDTO);
+        //}
+
+        return null;
     }
-
-
 }
