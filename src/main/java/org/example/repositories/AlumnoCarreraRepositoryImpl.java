@@ -2,12 +2,13 @@ package main.java.org.example.repositories;
 
 import main.java.org.example.entities.Alumno;
 import main.java.org.example.entities.Alumno_Carrera;
-import main.java.org.example.entities.Alumno_Carrera_Id;
 import main.java.org.example.entities.Carrera;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.sql.Date;
+import java.util.Calendar;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AlumnoCarreraRepositoryImpl implements AlumnoCarreraRepository {
     private EntityManager em;
@@ -21,11 +22,27 @@ public class AlumnoCarreraRepositoryImpl implements AlumnoCarreraRepository {
     public void matricularAlumno(Alumno a, Carrera c) {
         em.getTransaction().begin();
 
-        Alumno_Carrera ac = new Alumno_Carrera(a, c, 6, false);
+        Date fechaInscripcion = generarFechaAleatoria(2020, 2024);
+
+        Alumno_Carrera ac = new Alumno_Carrera(a, c, fechaInscripcion, false);
 
         em.persist(ac);
         em.getTransaction().commit();
     }
+
+    private java.sql.Date generarFechaAleatoria(int anioInicio, int anioFin) {
+        Calendar calendar = Calendar.getInstance();
+
+        // Generar un año aleatorio entre anioInicio y anioFin
+        int anioAleatorio = ThreadLocalRandom.current().nextInt(anioInicio, anioFin + 1);
+        int mesAleatorio = ThreadLocalRandom.current().nextInt(0, 12);
+        int diaAleatorio = ThreadLocalRandom.current().nextInt(1, 29);
+
+        calendar.set(anioAleatorio, mesAleatorio, diaAleatorio);
+
+        return new java.sql.Date(calendar.getTimeInMillis());
+    }
+
 
     @Override
     public Alumno_Carrera buscarAlumnoID(Alumno_Carrera id) {
@@ -47,11 +64,5 @@ public class AlumnoCarreraRepositoryImpl implements AlumnoCarreraRepository {
         query.setParameter("acId", id);
         return query.getSingleResult();
     }
-
-
-    //    @Override
-    //    public void GraduarAlumno(Date today, Alumno_Carrera ac) {
-    //        ac.setFechaGraduacion(today);
-    //    }
 
 }

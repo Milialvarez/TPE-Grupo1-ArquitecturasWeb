@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Data
@@ -25,18 +26,21 @@ public class Alumno_Carrera implements Serializable{
     private Carrera carrera;
 
     @Column
-    private int antiguedad;
+    private Date fechaInscripcion;
+    @Column
+    private Date fechaGraduacion;
     @Column
     private boolean graduado;
 
-    public Alumno_Carrera(Alumno alumno, Carrera carrera, int antiguedad, boolean graduado) {
+    public Alumno_Carrera(Alumno alumno, Carrera carrera, Date fechaInscripcion, boolean graduado) {
         this.id = new Alumno_Carrera_Id();
         this.alumno = alumno;
         this.carrera = carrera;
-        this.antiguedad = antiguedad;
+        this.fechaInscripcion = fechaInscripcion;
         this.graduado = graduado;
     }
 
     public Alumno_Carrera() {
     }
+
 }

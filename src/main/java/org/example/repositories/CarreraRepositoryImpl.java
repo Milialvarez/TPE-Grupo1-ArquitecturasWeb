@@ -1,13 +1,13 @@
 package main.java.org.example.repositories;
 
+import main.java.org.example.dtos.ReporteCarrerasDTO;
 import main.java.org.example.entities.Carrera;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.math.BigInteger;
+import java.util.*;
 
 public class CarreraRepositoryImpl implements CarreraRepository {
     private EntityManager em;
@@ -59,42 +59,57 @@ public class CarreraRepositoryImpl implements CarreraRepository {
         return query.getResultList();
     }
 
-    public List<Carrera> getMajorsReport() {
+    public List<ReporteCarrerasDTO> getMajorsReport(){
+        String querysql = "SELECT nombre AS carrera, anio, MAX(cant_inscriptos) AS cant_inscriptos, MAX(cant_graduados) AS cant_egresados " +
+                "FROM ( " +
+                "    SELECT c.nombre, YEAR(fechaGraduacion) as anio, COUNT(fechaGraduacion) AS cant_graduados, 0 AS cant_inscriptos " +
+                "    FROM Carrera c LEFT JOIN Alumno_Carrera ac ON ac.id_carrera = c.carrera_id " +
+                "    WHERE fechaGraduacion IS NOT NULL " +
+                "    GROUP BY c.carrera_id, fechaGraduacion " +
+                "    UNION " +
+                "    SELECT c.nombre, YEAR(ac.fechaInscripcion), 0, COUNT(YEAR(ac.fechaInscripcion)) AS cant_inscriptos " +
+                "    FROM Carrera c LEFT JOIN Alumno_Carrera ac ON ac.id_carrera = c.carrera_id " +
+                "    GROUP BY c.carrera_id, YEAR(ac.fechaInscripcion)" +
+                ") graduados_inscriptos " +
+                "GROUP BY nombre, anio " +
+                "ORDER BY nombre, anio;";
 
-        TypedQuery<Object[]> query = em.createQuery(
-                "SELECT c, ac.antiguedad, " +
-                        "COUNT(ac.alumno) AS inscriptos, " +
-                        "SUM(CASE WHEN ac.graduado = true THEN 1 ELSE 0 END) AS egresados " +
-                        "FROM Carrera c " +
-                        "JOIN c.alumnos ac " +
-                        "GROUP BY c, ac.antiguedad " +
-                        "ORDER BY c.nombre ASC, ac.antiguedad ASC", Object[].class);
+        Query query = em.createNativeQuery(querysql);
+        List<Object[]> carreras = query.getResultList();
 
-        // Obtener los resultados
-        List<Object[]> results = query.getResultList();
+        List<ReporteCarrerasDTO> dtos = new ArrayList<>();
+        for (Object[] fila:carreras){
+            ReporteCarrerasDTO newDTO = new ReporteCarrerasDTO();
+            // NOMBRE CARRERA
+            newDTO.setNombreCarrera((String) fila[0]);
 
-        // Crear un Map para almacenar las carreras y su información asociada
-        Map<Carrera, Map<Integer, int[]>> carreraReporte = new HashMap<>();
+            // FECHA
+            Date fecha = (Date) fila[1];
+            if (fecha != null) {
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                calendar.setTime(fecha);
+                int anio = calendar.get(java.util.Calendar.YEAR);
+                newDTO.setAnio(anio);
+            } else {
+                newDTO.setAnio(0); // O el valor que desees asignar si la fecha es nula
+            }
 
-        // Procesar los resultados y agrupar por carrera
-        for (Object[] row : results) {
-            Carrera carrera = (Carrera) row[0]; // Carrera
-            int antiguedad = (int) row[1];      // Año de inscripción
-            long inscriptos = (long) row[2];    // Cantidad de inscriptos
-            long egresados = (long) row[3];     // Cantidad de egresados
+            //INSCRIPTOS
+            java.math.BigInteger bigInteger = (BigInteger) fila[2];
+            int entero = (Integer) bigInteger.intValue();
+            newDTO.setInscriptos(entero);
 
-            // Obtener o crear el Map para la carrera
-            Map<Integer, int[]> yearReport = carreraReporte.getOrDefault(carrera, new HashMap<>());
-            yearReport.put(antiguedad, new int[]{(int) inscriptos, (int) egresados});
-            carreraReporte.put(carrera, yearReport);
+
+            //GRADUADOS
+            java.math.BigInteger bigInteger2 = (BigInteger) fila[3];
+            int entero2 = (Integer) bigInteger2.intValue();
+            newDTO.setEgresados(entero2);
+
+            dtos.add(newDTO);
         }
 
-        // Crear una lista final de carreras con la información de inscriptos y egresados
-        List<Carrera> carreras = new ArrayList<>(carreraReporte.keySet());
-
-        // Aquí puedes hacer más procesamiento si deseas agregar la información agregada al modelo Carrera
-
-        return carreras;
+        return dtos;
     }
+
 
 }

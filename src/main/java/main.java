@@ -1,5 +1,6 @@
 package main.java;
 
+import main.java.org.example.dtos.ReporteCarrerasDTO;
 import main.java.org.example.entities.Alumno;
 import main.java.org.example.entities.Carrera;
 import main.java.org.example.helpers.tableDataPop;
@@ -92,8 +93,8 @@ public class main {
         //	  los años de manera cronológica.
 
         System.out.println("3) REPORTE DE LAS CARRERAS POR NOMBRE Y EN ORDEN CRONOLOGICO");
-        List<Carrera> majorsReport = carreraRep.getMajorsReport();
-        for (Carrera m : majorsReport){
+        List<ReporteCarrerasDTO> majorsReport = carreraRep.getMajorsReport();
+        for (ReporteCarrerasDTO m : majorsReport){
             System.out.println(m);
         }
         System.out.println("---------------");

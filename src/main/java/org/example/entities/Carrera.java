@@ -33,6 +33,9 @@ public class Carrera implements Serializable {
         this.alumnos = new ArrayList<>();
     }
 
+    public String getNombre(){
+        return this.nombre;
+    }
 
     public int getCarrera_id(){ return this.carrera_id; }
 

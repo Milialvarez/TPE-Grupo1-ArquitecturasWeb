@@ -1,5 +1,6 @@
 package main.java.org.example.repositories;
 
+import main.java.org.example.dtos.ReporteCarrerasDTO;
 import main.java.org.example.entities.Carrera;
 
 import java.util.List;
@@ -10,5 +11,5 @@ public interface CarreraRepository {
      List<Carrera> listarCarreras();
      Carrera buscarCarreraPorNombre(String c);
      List<Carrera> listarCarrerasConAlumnosInscriptos();
-     List<Carrera> getMajorsReport();
+     List<ReporteCarrerasDTO> getMajorsReport();
 }

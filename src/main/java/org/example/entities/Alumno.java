@@ -56,7 +56,7 @@ public class Alumno implements Serializable {
                 ", nombre: '" + this.nombre + '\'' +
                 ", apellido: '" + this.apellido + '\'' +
                 ", edad: '" + this.edad + '\'' +
-                ", edad: '" + this.nro_libreta + '\'' +
+                ", nro libreta: '" + this.nro_libreta + '\'' +
                 '}';
     }
 
