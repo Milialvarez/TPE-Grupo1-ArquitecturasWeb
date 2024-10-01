@@ -41,4 +41,12 @@ public class Alumno_Carrera_Id implements java.io.Serializable {
     public int hashCode() {
         return Objects.hash(alumno_id, carrera_id);
     }
+
+    @Override
+    public String toString() {
+        return "Alumno_Carrera_Id{" +
+                "alumno_id=" + alumno_id +
+                ", carrera_id=" + carrera_id +
+                '}';
+    }
 }

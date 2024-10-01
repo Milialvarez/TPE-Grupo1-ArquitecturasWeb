@@ -25,19 +25,20 @@ public class Alumno_Carrera implements Serializable{
     @JoinColumn(name="id_carrera", referencedColumnName = "carrera_id")
     private Carrera carrera;
 
+    @Column(nullable = false)
+    private int inscripcion;
     @Column
-    private Date fechaInscripcion;
+    private int graduacion;
     @Column
-    private Date fechaGraduacion;
-    @Column
-    private boolean graduado;
+    private int antiguedad;
 
-    public Alumno_Carrera(Alumno alumno, Carrera carrera, Date fechaInscripcion, boolean graduado) {
+    public Alumno_Carrera(Alumno alumno, Carrera carrera, int inscripcion, int graduacion, int antiguedad) {
         this.id = new Alumno_Carrera_Id();
         this.alumno = alumno;
         this.carrera = carrera;
-        this.fechaInscripcion = fechaInscripcion;
-        this.graduado = graduado;
+        this.inscripcion = inscripcion;
+        this.graduacion = graduacion;
+        this.antiguedad = antiguedad;
     }
 
     public Alumno_Carrera() {

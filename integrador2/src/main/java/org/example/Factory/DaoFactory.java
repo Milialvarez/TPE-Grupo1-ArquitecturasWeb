@@ -1,5 +1,14 @@
-package main.java.org.example.Factory;
+package main.java.org.example.factory;
 
+import main.java.org.example.repositories.AlumnoCarreraRepository;
+import main.java.org.example.repositories.AlumnoCarreraRepositoryImpl;
+import main.java.org.example.repositories.AlumnoRepository;
+import main.java.org.example.repositories.CarreraRepository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 
 public abstract class DaoFactory  {
 
@@ -7,13 +16,13 @@ public abstract class DaoFactory  {
         switch (whichFactory) {
             case 1:
                 return MySqlDaoFactory.getInstance();
-            //case 2:
-            //  return new DerbyJDBCDAOFactory();
             default:
                 return null;
         }
     }
-    //hacer metodos daos
 
+    public abstract AlumnoRepository getAlumnoRepository();
+    public abstract CarreraRepository getCarreraRepository();
+    public abstract AlumnoCarreraRepository getAlumnoCarreraRepository();
 
 }

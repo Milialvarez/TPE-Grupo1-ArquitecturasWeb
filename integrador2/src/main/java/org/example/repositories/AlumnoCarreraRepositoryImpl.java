@@ -14,35 +14,19 @@ public class AlumnoCarreraRepositoryImpl implements AlumnoCarreraRepository {
     private EntityManager em;
 
     public AlumnoCarreraRepositoryImpl(EntityManager e){
-        this.em=e;
+        this.em = e;
     }
 
 
     @Override
-    public void matricularAlumno(Alumno a, Carrera c) {
+    public void matricularAlumno(Alumno a, Carrera c, Integer inscripcion, Integer graduacion, Integer antiguedad) {
         em.getTransaction().begin();
 
-        Date fechaInscripcion = generarFechaAleatoria(2020, 2024);
-
-        Alumno_Carrera ac = new Alumno_Carrera(a, c, fechaInscripcion, false);
+        Alumno_Carrera ac = new Alumno_Carrera(a, c, inscripcion, graduacion, antiguedad);
 
         em.persist(ac);
         em.getTransaction().commit();
     }
-
-    private java.sql.Date generarFechaAleatoria(int anioInicio, int anioFin) {
-        Calendar calendar = Calendar.getInstance();
-
-        // Generar un año aleatorio entre anioInicio y anioFin
-        int anioAleatorio = ThreadLocalRandom.current().nextInt(anioInicio, anioFin + 1);
-        int mesAleatorio = ThreadLocalRandom.current().nextInt(0, 12);
-        int diaAleatorio = ThreadLocalRandom.current().nextInt(1, 29);
-
-        calendar.set(anioAleatorio, mesAleatorio, diaAleatorio);
-
-        return new java.sql.Date(calendar.getTimeInMillis());
-    }
-
 
     @Override
     public Alumno_Carrera buscarAlumnoID(Alumno_Carrera id) {

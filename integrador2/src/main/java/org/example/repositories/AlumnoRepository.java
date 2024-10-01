@@ -8,7 +8,7 @@ import java.util.List;
 public interface AlumnoRepository {
     Alumno getAlumnoById(Long id);
     List<Alumno> getAlumnos(String criterio, Boolean orden);
-    //Alumno saveAlumno(Alumno a);
+    void crearAlumno(Alumno a);
     Alumno deleteAlumno(Long id);
     Alumno updateAlumno(Alumno a, Long id);
     Alumno getAlumnoByNroLibreta(int nroLibreta);

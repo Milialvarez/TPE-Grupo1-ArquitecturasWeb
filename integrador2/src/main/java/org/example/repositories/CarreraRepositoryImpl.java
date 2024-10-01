@@ -59,52 +59,91 @@ public class CarreraRepositoryImpl implements CarreraRepository {
         return query.getResultList();
     }
 
-    public List<ReporteCarrerasDTO> getMajorsReport(){
-        String querysql = "SELECT c.nombre, COUNT(ac.fechaGraduacion) AS cant_graduados, YEAR(ac.fechaInscripcion), COUNT(ac.fechaInscripcion) AS cantidad_inscriptos " +
-                            "FROM Carrera c JOIN Alumno_Carrera ac ON (ac.id.carrera_id = c.carrera_id)" +
-                            "GROUP BY c.nombre, YEAR(ac.fechaInscripcion) " +
-                            "ORDER BY c.nombre ASC, YEAR(ac.fechaInscripcion) ASC";
+    public List<ReporteCarrerasDTO> getMajorsReport() {
+        String jpqlGraduados = "SELECT c.nombre, COUNT(ac.graduacion), ac.graduacion " +
+                                "FROM Carrera c JOIN Alumno_Carrera ac " +
+                                "ON c.carrera_id = ac.id.carrera_id " +
+                                "WHERE ac.graduacion > 0 " +
+                                "GROUP BY c.nombre, ac.graduacion " +
+                                "ORDER BY c.nombre ASC, ac.graduacion ASC ";
 
-        Query query = em.createQuery(querysql);
-        List<Object[]> result = query.getResultList();
+        Query q1 = em.createQuery(jpqlGraduados);
 
-        for(Object[] o: result) {
-            System.out.println(o[0] + " - " + o[1] + " - " + o[2]+ " - " + o[3]);
+        List<Object[]> listGraduaciones = q1.getResultList();
+
+        String jpqlInscripciones = "SELECT c.nombre, COUNT(ac.inscripcion), ac.inscripcion " +
+                                    "FROM Carrera c JOIN Alumno_Carrera ac " +
+                                    "ON c.carrera_id = ac.id.carrera_id " +
+                                    "GROUP BY c.nombre, ac.inscripcion " +
+                                    "ORDER BY c.nombre ASC, ac.inscripcion ASC ";
+
+        Query q2 = em.createQuery(jpqlInscripciones);
+
+        List<Object[]> listInscripciones = q2.getResultList();
+
+        ArrayList<ReporteCarrerasDTO> dtoList = new ArrayList<>();
+
+        HashMap<String, HashMap<Integer, ArrayList<Integer>>> union = new HashMap<>();
+
+        for (Object[] o : listInscripciones) {
+            String carrera = (String) o[0];
+            Long inscriptos = (Long) o[1];
+            int nInscriptos = inscriptos.intValue();
+            Integer anio = (Integer) o[2];
+
+            if (!union.containsKey(carrera)) {
+                union.put(carrera, new HashMap<>());
+            }
+
+            if (!union.get(carrera).containsKey(anio)) {
+                union.get(carrera).put(anio, new ArrayList<>());
+            }
+
+            union.get(carrera).get(anio).add(nInscriptos);
         }
 
-//        List<Object[]> carreras = query.getResultList();
-//
-//        List<ReporteCarrerasDTO> dtos = new ArrayList<>();
-//        for (Object[] fila:carreras){
-//            ReporteCarrerasDTO newDTO = new ReporteCarrerasDTO();
-//            // NOMBRE CARRERA
-//            newDTO.setNombreCarrera((String) fila[0]);
-//
-//            // FECHA
-//            Date fecha = (Date) fila[1];
-//            if (fecha != null) {
-//                java.util.Calendar calendar = java.util.Calendar.getInstance();
-//                calendar.setTime(fecha);
-//                int anio = calendar.get(java.util.Calendar.YEAR);
-//                newDTO.setAnio(anio);
-//            } else {
-//                newDTO.setAnio(0); // O el valor que desees asignar si la fecha es nula
-//            }
-//
-//            //INSCRIPTOS
-//            java.math.BigInteger bigInteger = (BigInteger) fila[2];
-//            int entero = (Integer) bigInteger.intValue();
-//            newDTO.setInscriptos(entero);
-//
-//
-//            //GRADUADOS
-//            java.math.BigInteger bigInteger2 = (BigInteger) fila[3];
-//            int entero2 = (Integer) bigInteger2.intValue();
-//            newDTO.setEgresados(entero2);
-//
-//            dtos.add(newDTO);
-        //}
+        for (Object[] o : listGraduaciones) {
+            String carrera = (String) o[0];
+            Long graduados = (Long) o[1];
+            int nGraduados = graduados.intValue();
+            Integer anio = (Integer) o[2];
 
-        return null;
+            HashMap<Integer, ArrayList<Integer>> aux = union.get(carrera);
+
+            if (!aux.containsKey(anio)) {
+                aux.put(anio, new ArrayList<>());
+                aux.get(anio).add(0);
+            }
+
+            aux.get(anio).add(nGraduados);
+        }
+
+        List<String> carrerasKeys = new ArrayList<>(union.keySet());
+        Collections.sort(carrerasKeys);
+
+        for (String carrera : carrerasKeys) {
+            List<Integer> aniosKeys = new ArrayList<>(union.get(carrera).keySet());
+            Collections.sort(aniosKeys);
+
+            for (Integer anio : aniosKeys) {
+                ReporteCarrerasDTO dto = new ReporteCarrerasDTO();
+                dto.setNombreCarrera(carrera);
+                dto.setAnio(anio);
+
+                ArrayList<Integer> n = union.get(carrera).get(anio);
+
+                dto.setInscriptos(n.get(0));
+
+                if (n.size() > 1) {
+                    dto.setEgresados(n.get(1));
+                } else {
+                    dto.setEgresados(0);
+                }
+
+                dtoList.add(dto);
+            }
+        }
+
+        return dtoList;
     }
 }

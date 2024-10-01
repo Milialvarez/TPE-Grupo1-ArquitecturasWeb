@@ -52,12 +52,14 @@ public class Alumno implements Serializable {
     @Override
     public String toString() {
         return "Alumno{" +
-                "alumno_id: " + this.alumno_id +
-                ", nombre: '" + this.nombre + '\'' +
-                ", apellido: '" + this.apellido + '\'' +
-                ", edad: '" + this.edad + '\'' +
-                ", nro libreta: '" + this.nro_libreta + '\'' +
+                "ciudad='" + ciudad + '\'' +
+                ", dni=" + dni +
+                ", genero='" + genero + '\'' +
+                ", edad=" + edad +
+                ", apellido='" + apellido + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", LU='" + nro_libreta + '\'' +
+                ", alumno_id=" + alumno_id +
                 '}';
     }
-
 }

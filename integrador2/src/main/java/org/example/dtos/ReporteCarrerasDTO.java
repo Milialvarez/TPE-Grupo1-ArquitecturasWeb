@@ -38,7 +38,7 @@ public class ReporteCarrerasDTO {
         this.nombreCarrera = nombreCarrera;
     }
 
-    public void setAnio(int ant) {
+    public void setAnio(int anio) {
         this.anio = anio;
     }
 

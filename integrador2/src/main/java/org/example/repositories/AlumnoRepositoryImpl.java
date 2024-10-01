@@ -27,59 +27,52 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
         posiblesCriterios.add("genero");
         posiblesCriterios.add("nro_libreta");
         posiblesCriterios.add("apellido");
-        if(!posiblesCriterios.contains(criterio)) { throw new IllegalArgumentException("criterio invalido: "+criterio); }
+
+        if(!posiblesCriterios.contains(criterio)) {
+            throw new IllegalArgumentException("criterio invalido: " + criterio);
+        }
+
         String orden;
-        if(ascendente) {
+
+        if (ascendente) {
             orden = "ASC";
-        } else{
+        } else {
             orden = "DESC";
         }
+
         String select = "SELECT a FROM Alumno a ORDER BY " + criterio + " " + orden;
         List<Alumno> lista = em.createQuery(select, Alumno.class).getResultList();
         return lista;
     }
 
+    @Override
     public List<Alumno> getAlumnosByMajorFilteredBy(Carrera c, String city) {
-        TypedQuery<Alumno> query = em.createQuery(
-                "SELECT ac.alumno " +
-                        "FROM Alumno_Carrera ac " +
-                        "WHERE ac.carrera = :carrera " +
-                        "AND ac.alumno.ciudad = :city", Alumno.class);
+        String select = "SELECT ac.alumno FROM Alumno_Carrera ac WHERE ac.carrera = :carrera AND ac.alumno.ciudad LIKE :ciudad";
+
+        TypedQuery<Alumno> query = em.createQuery(select, Alumno.class);
 
         query.setParameter("carrera", c);
-        query.setParameter("city", city);
+        query.setParameter("ciudad", city);
 
         return query.getResultList();
     }
 
-
-
-//    @Override
-//    public Alumno saveAlumno(Alumno a) {
-//        if (a.getAlumno_id() == null) {
-//            em.persist(a);
-//        } else {
-//            a = em.merge(a);
-//        }
-//        return a;
-//    }
-
+    @Override
     public void crearAlumno(Alumno a) {
-        EntityTransaction transaction = em.getTransaction();  // Obtén la transacción
+        EntityTransaction transaction = em.getTransaction();
         try {
-            if (!transaction.isActive()) {                    // Verifica si ya está activa
-                transaction.begin();                          // Inicia la transacción solo si no está activa
+            if (!transaction.isActive()) {
+                transaction.begin();
             }
-            em.persist(a);                                    // Persiste el alumno
-            transaction.commit();                             // Confirma la transacción
+            em.persist(a);
+            transaction.commit();
         } catch (Exception e) {
-            if (transaction.isActive()) {                     // Si hay un error, realiza rollback si la transacción sigue activa
+            if (transaction.isActive()) {
                 transaction.rollback();
             }
-            e.printStackTrace();                              // Imprime la traza del error para diagnosticar problemas
+            e.printStackTrace();
         }
     }
-
 
     @Override
     public Alumno deleteAlumno(Long id) {
@@ -115,7 +108,7 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
     }
 
     @Override
-    public Alumno getAlumnoByNroLibreta(int nroLibreta) { //2 D
+    public Alumno getAlumnoByNroLibreta(int nroLibreta) {
         String select = "SELECT a FROM Alumno a WHERE a.nro_libreta = ?1";
         Query query = em.createQuery(select);
         query.setParameter(1, nroLibreta);
@@ -128,7 +121,7 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
     }
 
     @Override
-    public List<Alumno> getAlumnosByGenero(String genero) { // 2 E
+    public List<Alumno> getAlumnosByGenero(String genero) {
         String select = "SELECT a FROM Alumno a WHERE a.genero like ?1";
         List<Alumno> alumnos = em.createQuery(select).setParameter(1, genero).getResultList();
         return alumnos;
