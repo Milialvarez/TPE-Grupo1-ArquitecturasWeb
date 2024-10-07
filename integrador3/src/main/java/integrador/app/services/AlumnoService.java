@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("AlumnoService")
 public class AlumnoService implements BaseService<Alumno> {
@@ -19,7 +20,8 @@ public class AlumnoService implements BaseService<Alumno> {
 
     @Override
     public Alumno findById(Long id) throws Exception {
-        return null;
+        Optional<Alumno> a = alumnoRepository.findById(id);
+        return a.orElse(null);
     }
 
     @Override
@@ -34,6 +36,12 @@ public class AlumnoService implements BaseService<Alumno> {
 
     @Override
     public boolean delete(Long id) throws Exception {
-        return false;
+        try {
+            alumnoRepository.delete(findById(id));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }
