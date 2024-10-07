@@ -1,13 +1,11 @@
-package main.java.org.example.repositories;
+package org.example.repositories;
 
-import main.java.org.example.entities.Alumno;
-import main.java.org.example.entities.Alumno_Carrera;
-import main.java.org.example.entities.Carrera;
+import org.example.entities.Alumno;
+import org.example.entities.Alumno_Carrera_Id;
+import org.example.entities.Carrera;
+import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-
-public interface AlumnoCarreraRepository {
-    public void matricularAlumno(Alumno a, Carrera c, Integer inscripcion, Integer graduacion, Integer antiguedad);
-    public Alumno_Carrera buscarAlumnoID(Alumno_Carrera id);
-    public Alumno_Carrera buscarAlumnoID(int id);
-}
+//@Repository("AlumnoCarreraRepository")
+//public interface AlumnoCarreraRepository extends RepoBase<Alumno_Carerra, Alumno_Carrera_Id> {
+//    public void matricularAlumno(Alumno a, Carrera c, Integer inscripcion, Integer graduacion, Integer antiguedad);
+//}

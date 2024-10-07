@@ -1,17 +1,15 @@
-package main.java.org.example.repositories;
+package org.example.repositories;
 
-import main.java.org.example.entities.Alumno;
-import main.java.org.example.entities.Carrera;
+import org.example.entities.Alumno;
+import org.example.entities.Carrera;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface AlumnoRepository {
-    Alumno getAlumnoById(Long id);
-    List<Alumno> getAlumnos(String criterio, Boolean orden);
-    void crearAlumno(Alumno a);
-    Alumno deleteAlumno(Long id);
-    Alumno updateAlumno(Alumno a, Long id);
-    Alumno getAlumnoByNroLibreta(int nroLibreta);
+@Repository("AlumnoRepository")
+public interface AlumnoRepository extends RepoBase<Alumno, Long> {
+
+    Alumno getAlumnoByNroLibreta(int nro_libreta);
     List<Alumno> getAlumnosByGenero(String genero);
     List<Alumno> getAlumnosByMajorFilteredBy(Carrera c, String city);
 }

@@ -1,14 +1,14 @@
-package main.java.org.example.repositories;
+package org.example.repositories;
 
-import main.java.org.example.dtos.ReporteCarrerasDTO;
-import main.java.org.example.entities.Carrera;
+import org.example.dtos.ReporteCarrerasDTO;
+import org.example.entities.Carrera;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface CarreraRepository {
+@Repository("CarerraRepository")
+public interface CarreraRepository extends RepoBase<Carrera, Long> {
 
-     void crearCarrera(Carrera c);
-     List<Carrera> listarCarreras();
      Carrera buscarCarreraPorNombre(String c);
      List<Carrera> listarCarrerasConAlumnosInscriptos();
      List<ReporteCarrerasDTO> getMajorsReport();

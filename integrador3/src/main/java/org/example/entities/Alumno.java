@@ -1,8 +1,9 @@
-package main.java.org.example.entities;
+package org.example.entities;
 
+import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 public class Alumno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int alumno_id;
+    private Long alumno_id;
     @Column
     private String nombre;
     @Column
@@ -27,8 +28,8 @@ public class Alumno implements Serializable {
     private String ciudad;
     @Column
     private int nro_libreta;
-    @OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY)
-    private List<Alumno_Carrera> carreras;
+//    @OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY)
+//    private List<Alumno_Carrera> carreras;
 
     public Alumno(String nombre, String apellido, int edad, String genero, int dni, String ciudad, int nro_libreta) {
         super();
@@ -39,14 +40,10 @@ public class Alumno implements Serializable {
         this.dni = dni;
         this.ciudad = ciudad;
         this.nro_libreta = nro_libreta;
-        carreras = new ArrayList<>();
+//        carreras = new ArrayList<>();
     }
 
     public Alumno() {
-    }
-
-    public int getAlumno_id() {
-        return this.alumno_id;
     }
 
     @Override

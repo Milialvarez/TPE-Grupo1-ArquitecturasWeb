@@ -1,6 +1,5 @@
-package main.java.org.example.dtos;
+package org.example.dtos;
 
-import java.util.Date;
 
 public class ReporteCarrerasDTO {
     private String nombreCarrera;
