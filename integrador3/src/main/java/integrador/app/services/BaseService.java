@@ -1,4 +1,5 @@
-package org.example.services;
+package integrador.app.services;
+
 import java.util.List;
 
 public interface BaseService<E> {

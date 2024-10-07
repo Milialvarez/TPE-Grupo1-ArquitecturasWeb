@@ -1,19 +1,16 @@
-package org.example.entities;
+package integrador.app.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Getter
+@Data
 public class Alumno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long alumno_id;
+    private int alumno_id;
     @Column
     private String nombre;
     @Column
