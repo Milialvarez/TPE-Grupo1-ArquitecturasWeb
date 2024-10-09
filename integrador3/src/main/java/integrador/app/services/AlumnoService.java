@@ -5,6 +5,7 @@ import integrador.app.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,5 +44,11 @@ public class AlumnoService implements BaseService<Alumno> {
             return false;
         }
 
+    }
+
+    public ArrayList<Alumno> getEstudiantesByGenero(String genero) {
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        alumnos = alumnoRepository.getEstudiantesByGenero(genero);
+        return alumnos;
     }
 }

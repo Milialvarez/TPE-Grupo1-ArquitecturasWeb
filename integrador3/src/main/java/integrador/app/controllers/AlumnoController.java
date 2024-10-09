@@ -107,4 +107,19 @@ public class AlumnoController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/genero/{genre}")
+    public ResponseEntity<?> getEstudiantesByGenero(@PathVariable(name = "genre") String genero) {
+            try{
+            if(!genero.equals("femenino") && !genero.equals("masculino")){
+                Map<String, String> errorResponse = new HashMap<>();
+                errorResponse.put("error", "Género no valido");
+                return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+            }
+            ArrayList<Alumno> alumnos = this.alumnoService.getEstudiantesByGenero(genero);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnos);
+        } catch (Exception e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+    }
 }

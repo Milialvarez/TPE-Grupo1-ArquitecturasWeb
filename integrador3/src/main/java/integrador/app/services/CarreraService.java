@@ -1,5 +1,6 @@
 package integrador.app.services;
 
+import integrador.app.entities.Alumno;
 import integrador.app.entities.Carrera;
 import integrador.app.repositories.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("CarreraService")
 public class CarreraService implements BaseService<Carrera> {
@@ -23,7 +25,8 @@ public class CarreraService implements BaseService<Carrera> {
 
     @Override
     public Carrera findById(Long id) throws Exception {
-        return carreraRepository.findById(id).get();
+        Optional<Carrera> c = carreraRepository.findById(id);
+        return c.orElse(null);
     }
 
     @Override
