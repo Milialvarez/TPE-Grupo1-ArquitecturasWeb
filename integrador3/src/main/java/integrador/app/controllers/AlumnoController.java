@@ -122,4 +122,36 @@ public class AlumnoController {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
     }
+
+    @GetMapping("/libreta/{nro}")
+    public ResponseEntity<?> getEstudianteByLibreta(@PathVariable(name = "nro") int nroLibreta) {
+        try{
+            Alumno a = this.alumnoService.getEstudianteByLibreta(nroLibreta);
+            if(a == null){
+                Map<String, String> errorResponse = new HashMap<>();
+                errorResponse.put("error", "Estudiante con nro de libreta " + nroLibreta + " no encontrado");
+                return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(a);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**averiguar por qué no ordena, no le da bola al criterio, trae todo sin ordenar*/
+    @GetMapping("/criterio/{criterio}")
+    public ResponseEntity<?> getEstudiantesByCriterio(@PathVariable("criterio") String criterio) {
+        try{
+            if(!criterio.equals("apellido") && !criterio.equals("ciudad") && !criterio.equals("dni") && !criterio.equals("edad")){
+                Map<String, String> errorResponse = new HashMap<>();
+                errorResponse.put("error", "Criterio de ordenamiento no valido u orden erroneo");
+                return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+            }
+
+            ArrayList<Alumno> alumnos = this.alumnoService.getEstudiantesByCriterio(criterio);
+            return ResponseEntity.status(HttpStatus.OK).body(alumnos);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

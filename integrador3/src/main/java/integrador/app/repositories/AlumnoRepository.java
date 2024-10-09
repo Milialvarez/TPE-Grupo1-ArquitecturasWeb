@@ -12,4 +12,10 @@ public interface AlumnoRepository extends RepoBase<Alumno, Long> {
 
     @Query("SELECT a FROM Alumno a WHERE a.genero like :genero")
     ArrayList<Alumno> getEstudiantesByGenero(@Param("genero") String genero);
+
+    @Query("SELECT a FROM Alumno a WHERE a.nro_libreta = :nroLibreta")
+    Alumno getEstudianteByLibreta(@Param("nroLibreta") int nroLibreta);
+
+    @Query("SELECT a FROM Alumno a ORDER BY :criterio ASC")
+    ArrayList<Alumno> getEstudiantesByCriterio(@Param("criterio") String criterio);
 }

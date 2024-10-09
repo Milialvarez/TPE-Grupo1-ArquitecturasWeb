@@ -51,4 +51,15 @@ public class AlumnoService implements BaseService<Alumno> {
         alumnos = alumnoRepository.getEstudiantesByGenero(genero);
         return alumnos;
     }
+
+    public Alumno getEstudianteByLibreta(int nroLibreta) {
+        Alumno a = this.alumnoRepository.getEstudianteByLibreta(nroLibreta);
+        return a;
+    }
+
+    public ArrayList<Alumno> getEstudiantesByCriterio(String criterio) {
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        alumnos = alumnoRepository.getEstudiantesByCriterio(criterio);
+        return alumnos;
+    }
 }
