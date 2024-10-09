@@ -16,7 +16,5 @@ public interface RepoBase<T,ID extends Serializable> extends org.springframework
 
     boolean existsById(Long id);
 
-    void deleteById(Long id);
-
     T save( T persisted);
 }
