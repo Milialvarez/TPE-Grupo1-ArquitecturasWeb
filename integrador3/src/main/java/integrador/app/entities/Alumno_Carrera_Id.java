@@ -5,25 +5,24 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Setter
 @Getter
 @Embeddable
-public class Alumno_Carrera_Id implements java.io.Serializable {
-    private static final long serialVersionUID = 3255599046800011076L;
+public class Alumno_Carrera_Id implements Serializable {
+    @Column
+    private Long alumno_id;
 
     @Column
-    private int alumno_id;
-
-    @Column
-    private int carrera_id;
+    private Long carrera_id;
 
     public Alumno_Carrera_Id() {
 
     }
 
-    public Alumno_Carrera_Id(int a_id, int c_id) {
+    public Alumno_Carrera_Id(Long a_id, Long c_id) {
         alumno_id = a_id;
         carrera_id = c_id;
     }

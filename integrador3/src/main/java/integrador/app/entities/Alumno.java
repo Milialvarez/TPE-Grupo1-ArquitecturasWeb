@@ -1,5 +1,6 @@
 package integrador.app.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class Alumno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int alumno_id;
+    private Long alumno_id;
     @Column
     private String nombre;
     @Column
@@ -28,6 +29,7 @@ public class Alumno implements Serializable {
     @Column
     private int nro_libreta;
     @OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Alumno_Carrera> carreras;
 
     public Alumno(String nombre, String apellido, int edad, String genero, int dni, String ciudad, int nro_libreta) {
