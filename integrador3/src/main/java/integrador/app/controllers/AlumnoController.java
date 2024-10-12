@@ -81,9 +81,9 @@ public class AlumnoController {
     @GetMapping("/populate")
     public ResponseEntity<?> populateAlumnos() {
         Alumno a1 = new Alumno("Manuel", "Alvarez", 30, "masculino", 37766544, "tandil",23980);
-        Alumno a2 = new Alumno("Milagros Irma", "Alvarez", 19, "femenino", 46001923, "cuzco", 66756);
+        Alumno a2 = new Alumno("Milagros", "Alvarez", 19, "femenino", 46001923, "tandil", 66756);
         Alumno a3 = new Alumno("Facundo", "Bravo", 19, "masculino", 45801635, "tandil", 91218);
-        Alumno a4 = new Alumno("Carolina", "Vytas Tuckus", 22, "femenino", 42768998, "capital federal", 26611);
+        Alumno a4 = new Alumno("Carolina", "Vytas Tuckus", 21, "femenino", 42768998, "capital federal", 26611);
         Alumno a5 = new Alumno("Ignacio", "Barranquero", 32, "masculino", 35666555, "tandil",998866);
         Alumno a6 = new Alumno("Azul", "Senn", 27, "femenino", 40092717, "tandil", 188765);
         Alumno a7 = new Alumno("Roman", "Mezclazcke", 19, "masculino", 47777683, "tandil", 242925);
