@@ -81,9 +81,9 @@ public class AlumnoController {
     @GetMapping("/populate")
     public ResponseEntity<?> populateAlumnos() {
         Alumno a1 = new Alumno("Manuel", "Alvarez", 30, "masculino", 37766544, "tandil",23980);
-        Alumno a2 = new Alumno("Milagros", "Alvarez", 19, "femenino", 46001923, "tandil", 66756);
+        Alumno a2 = new Alumno("Milagros Irma", "Alvarez", 19, "femenino", 46001923, "cuzco", 66756);
         Alumno a3 = new Alumno("Facundo", "Bravo", 19, "masculino", 45801635, "tandil", 91218);
-        Alumno a4 = new Alumno("Carolina", "Vytas Tuckus", 21, "femenino", 42768998, "capital federal", 26611);
+        Alumno a4 = new Alumno("Carolina", "Vytas Tuckus", 22, "femenino", 42768998, "capital federal", 26611);
         Alumno a5 = new Alumno("Ignacio", "Barranquero", 32, "masculino", 35666555, "tandil",998866);
         Alumno a6 = new Alumno("Azul", "Senn", 27, "femenino", 40092717, "tandil", 188765);
         Alumno a7 = new Alumno("Roman", "Mezclazcke", 19, "masculino", 47777683, "tandil", 242925);
@@ -139,15 +139,10 @@ public class AlumnoController {
     }
 
     /**averiguar por qué no ordena, no le da bola al criterio, trae todo sin ordenar*/
+    // sacamos la logica del controller y la pusimos en el service.
     @GetMapping("/criterio/{criterio}")
     public ResponseEntity<?> getEstudiantesByCriterio(@PathVariable("criterio") String criterio) {
         try{
-            if(!criterio.equals("apellido") && !criterio.equals("ciudad") && !criterio.equals("dni") && !criterio.equals("edad")){
-                Map<String, String> errorResponse = new HashMap<>();
-                errorResponse.put("error", "Criterio de ordenamiento no valido u orden erroneo");
-                return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-            }
-
             ArrayList<Alumno> alumnos = this.alumnoService.getEstudiantesByCriterio(criterio);
             return ResponseEntity.status(HttpStatus.OK).body(alumnos);
         } catch (Exception e) {

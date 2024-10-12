@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public interface CarreraRepository extends RepoBase<Carrera, Long> {
 
+
     @Query("SELECT c " +
             "FROM Carrera c " +
             "JOIN c.alumnos ac " +

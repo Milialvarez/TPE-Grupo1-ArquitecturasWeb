@@ -58,8 +58,16 @@ public class AlumnoService implements BaseService<Alumno> {
     }
 
     public ArrayList<Alumno> getEstudiantesByCriterio(String criterio) {
-        ArrayList<Alumno> alumnos = new ArrayList<>();
-        alumnos = alumnoRepository.getEstudiantesByCriterio(criterio);
-        return alumnos;
+        List<String> posiblesCriterios = new ArrayList<>();
+        posiblesCriterios.add("nombre");
+        posiblesCriterios.add("genero");
+        posiblesCriterios.add("nro_libreta");
+        posiblesCriterios.add("apellido");
+
+        if(!posiblesCriterios.contains(criterio)) {
+            throw new IllegalArgumentException("criterio invalido: " + criterio);
+        }
+
+        return alumnoRepository.getEstudiantesByCriterio(criterio);
     }
 }
