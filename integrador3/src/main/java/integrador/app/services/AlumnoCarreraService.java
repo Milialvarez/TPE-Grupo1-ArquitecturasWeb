@@ -1,19 +1,22 @@
 package integrador.app.services;
 
-import integrador.app.entities.Alumno;
 import integrador.app.entities.Alumno_Carrera;
+import integrador.app.entities.Carrera;
 import integrador.app.repositories.AlumnoCarreraRepository;
-import integrador.app.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("AlumnoCarreraService")
 public class AlumnoCarreraService implements BaseService<Alumno_Carrera> {
     @Autowired
     private AlumnoCarreraRepository alumnoCarreraRepository;
+    @Autowired
+    private CarreraService cs;
 
     @Override
     public List<Alumno_Carrera> findAll() throws Exception {
@@ -43,5 +46,14 @@ public class AlumnoCarreraService implements BaseService<Alumno_Carrera> {
     @Override
     public boolean delete(Long id) throws Exception {
         return false;
+    }
+
+    public List<Object> getAlumnosByMajor(String ciudad, String carrera) throws Exception {
+        Optional<Carrera> c = this.cs.findByName(carrera);
+        List<Object> l = new ArrayList<>();
+        if (c.isPresent()) {
+            l.addAll(this.alumnoCarreraRepository.getAlumnosByMajor(ciudad, c));
+        }
+        return l;
     }
 }

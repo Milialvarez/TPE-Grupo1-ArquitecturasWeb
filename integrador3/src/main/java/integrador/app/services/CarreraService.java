@@ -1,6 +1,5 @@
 package integrador.app.services;
 
-import integrador.app.entities.Alumno;
 import integrador.app.entities.Carrera;
 import integrador.app.repositories.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,10 @@ public class CarreraService implements BaseService<Carrera> {
     public Carrera findById(Long id) throws Exception {
         Optional<Carrera> c = carreraRepository.findById(id);
         return c.orElse(null);
+    }
+
+    public Optional<Carrera> findByName(String name){
+        return Optional.ofNullable(this.carreraRepository.getMajorByName(name));
     }
 
     @Override
