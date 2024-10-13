@@ -26,6 +26,10 @@ import java.util.Random;
 public class AlumnoCarreraController {
     @Autowired
     private AlumnoCarreraService alumnoCarreraService;
+    @Autowired
+    private AlumnoService as;
+    @Autowired
+    private CarreraService cs;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
@@ -36,14 +40,11 @@ public class AlumnoCarreraController {
         }
     }
 
-    // Matriculacion de alumnos temporal. Arreglar los tipos de atributo.
     @GetMapping("/populate")
     public ResponseEntity<?> populate() {
-        AlumnoService as = new AlumnoService();
-        CarreraService cs = new CarreraService();
         try{
             for (Alumno al : as.findAll()){
-                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), getRandomYear(false), getRandomYear(true), 3);
+                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), getRandomYear(false), getRandomYear(true), 3L);
                 alumnoCarreraService.save(ac);
             }
 
@@ -61,17 +62,16 @@ public class AlumnoCarreraController {
         return carreras.get((r.nextInt(n)));
     }
 
-    public static int getRandomYear(boolean puedeCero) {
-        Integer[] years;
+    public Long getRandomYear(boolean puedeCero) {
+        Long[] years;
 
         if (puedeCero) {
-            years = new Integer[]{0, 2025, 2026, 2027};
+            years = new Long[]{0L, 2025L, 2026L, 2027L};
         } else {
-            years = new Integer[]{2021, 2022, 2023, 2024};
+            years = new Long[]{2021L, 2022L, 2023L, 2024L};
         }
 
         int numero = (int) (Math.random() * years.length);
-
         return years[numero];
     }
 }

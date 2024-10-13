@@ -4,6 +4,7 @@ import integrador.app.entities.Alumno;
 import integrador.app.entities.Carrera;
 import integrador.app.repositories.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +22,10 @@ public class CarreraService implements BaseService<Carrera> {
     @Override
     public List<Carrera> findAll() throws Exception {
         return carreraRepository.findAll();
+    }
+
+    public List<Carrera> findAll(Sort s) throws Exception {
+        return carreraRepository.findAll(s);
     }
 
     @Override

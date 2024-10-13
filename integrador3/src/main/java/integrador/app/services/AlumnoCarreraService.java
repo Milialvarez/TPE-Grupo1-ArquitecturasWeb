@@ -5,6 +5,7 @@ import integrador.app.entities.Alumno_Carrera;
 import integrador.app.repositories.AlumnoCarreraRepository;
 import integrador.app.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +21,18 @@ public class AlumnoCarreraService implements BaseService<Alumno_Carrera> {
     }
 
     @Override
+    public List<Alumno_Carrera> findAll(Sort sort) throws Exception {
+        return null;
+    }
+
+    @Override
     public Alumno_Carrera findById(Long id) throws Exception {
         return null;
     }
 
     @Override
     public Alumno_Carrera save(Alumno_Carrera entity) throws Exception {
-        return null;
+        return this.alumnoCarreraRepository.save(entity);
     }
 
     @Override
