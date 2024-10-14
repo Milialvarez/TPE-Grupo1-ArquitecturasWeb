@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 @RequestMapping("/alumnos/carreras")
@@ -42,8 +39,9 @@ public class AlumnoCarreraController {
         AlumnoService as = new AlumnoService();
         CarreraService cs = new CarreraService();
         try{
-            for (Alumno al : as.findAll()){
-                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), getRandomYear(false), getRandomYear(true), 3);
+            ArrayList<Alumno> alumnus = (ArrayList<Alumno>) as.findAll();
+            for (Alumno al : alumnus){
+                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), (long) getRandomYear(false), (long) getRandomYear(true), (long)3);
                 alumnoCarreraService.save(ac);
             }
 

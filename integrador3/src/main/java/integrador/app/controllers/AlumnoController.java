@@ -138,8 +138,6 @@ public class AlumnoController {
         }
     }
 
-    /**averiguar por qué no ordena, no le da bola al criterio, trae todo sin ordenar*/
-    // sacamos la logica del controller y la pusimos en el service.
     @GetMapping("/criterio/{criterio}")
     public ResponseEntity<?> getEstudiantesByCriterio(@PathVariable("criterio") String criterio) {
         try{
