@@ -13,6 +13,6 @@ import java.util.Optional;
 @Repository("AlumnoCarreraRepository")
 public interface AlumnoCarreraRepository extends RepoBase<Alumno_Carrera, Long> {
 
-    @Query("SELECT ac.alumno FROM Alumno_Carrera ac WHERE ac.carrera = :carrera AND ac.alumno.ciudad LIKE :ciudad")
-    ArrayList<Alumno> getAlumnosByMajor(@Param("ciudad") String ciudad, @Param("carrera") Optional<Carrera> c);
+    @Query("SELECT ac.alumno FROM Alumno_Carrera ac WHERE ac.carrera.carrera_id = :carrera AND ac.alumno.ciudad LIKE :ciudad")
+    ArrayList<Alumno> getAlumnosByMajor(@Param("ciudad") String ciudad, @Param("carrera") Long carrera);
 }

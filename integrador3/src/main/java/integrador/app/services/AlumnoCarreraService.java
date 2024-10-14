@@ -39,21 +39,23 @@ public class AlumnoCarreraService implements BaseService<Alumno_Carrera> {
     }
 
     @Override
-    public Alumno_Carrera update(Long id, Alumno_Carrera entity) throws Exception {
-        return null;
-    }
-
-    @Override
     public boolean delete(Long id) throws Exception {
-        return false;
+        try {
+            alumnoCarreraRepository.delete(findById(id));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public List<Object> getAlumnosByMajor(String ciudad, String carrera) throws Exception {
-        Optional<Carrera> c = this.cs.findByName(carrera);
+    public List<Object> getAlumnosByMajor(String ciudad, Long carrera_id) throws Exception {
+        Carrera c = this.cs.findById(carrera_id);
         List<Object> l = new ArrayList<>();
-        if (c.isPresent()) {
-            l.addAll(this.alumnoCarreraRepository.getAlumnosByMajor(ciudad, c));
+        if (c != null) {
+            l.addAll(this.alumnoCarreraRepository.getAlumnosByMajor(ciudad, carrera_id));
+            return l;
         }
-        return l;
+        throw new Exception("carrera con el id "+ carrera_id+" no encontrada");
+
     }
 }

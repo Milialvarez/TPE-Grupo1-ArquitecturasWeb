@@ -1,5 +1,6 @@
 package integrador.app.controllers;
 
+import integrador.app.dtos.ReporteCarrerasDTO;
 import integrador.app.entities.Alumno;
 import integrador.app.entities.Carrera;
 import integrador.app.services.CarreraService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -105,6 +107,16 @@ public class CarreraController {
             response.put("msg", "Tabla carreras cargada");
 
             return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/report")
+    public ResponseEntity<?> getMajorsReport(){
+        try{
+            List<ReporteCarrerasDTO> result = this.carreraService.getMajorsReport();
+            return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

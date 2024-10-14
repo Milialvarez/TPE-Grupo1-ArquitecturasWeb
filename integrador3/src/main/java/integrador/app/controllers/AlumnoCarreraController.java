@@ -39,12 +39,14 @@ public class AlumnoCarreraController {
         }
     }
 
-    @GetMapping("/carrera/{carrera}/ciudad/{ciudad}")
-    public ResponseEntity<?> getByMajorAndCity(@PathVariable(name = "ciudad") String ciudad, @PathVariable(name = "carrera") String carrera){
+    @GetMapping("/carrera/{c_id}/ciudad/{ciudad}")
+    public ResponseEntity<?> getByMajorAndCity(@PathVariable(name = "ciudad") String ciudad, @PathVariable(name = "c_id") Long carrera_id){
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(alumnoCarreraService.getAlumnosByMajor(ciudad, carrera));
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoCarreraService.getAlumnosByMajor(ciudad, carrera_id));
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            Map<String, String> response = new HashMap<>();
+            response.put("error", e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -40,11 +40,6 @@ public class AlumnoService implements BaseService<Alumno> {
     }
 
     @Override
-    public Alumno update(Long id, Alumno entity) throws Exception {
-        return null;
-    }
-
-    @Override
     public boolean delete(Long id) throws Exception {
         try {
             alumnoRepository.delete(findById(id));
