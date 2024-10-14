@@ -1,5 +1,6 @@
 package integrador.app.controllers;
 
+import integrador.app.dtos.AlumnoCarreraDTO;
 import integrador.app.entities.Alumno;
 import integrador.app.entities.Alumno_Carrera;
 import integrador.app.entities.Carrera;
@@ -80,5 +81,17 @@ public class AlumnoCarreraController {
 
         int numero = (int) (Math.random() * years.length);
         return years[numero];
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody AlumnoCarreraDTO acDTO) {
+        try{
+            Alumno a  = this.as.findById(acDTO.getId_alumno());
+            Carrera c = this.cs.findById(acDTO.getId_carrera());
+            Alumno_Carrera ac = new Alumno_Carrera(a, c, acDTO.getInscripcion(), acDTO.getGraduacion(), acDTO.getAntiguedad());
+            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoCarreraService.save(ac));
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
