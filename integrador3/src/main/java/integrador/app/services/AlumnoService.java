@@ -3,6 +3,7 @@ package integrador.app.services;
 import integrador.app.entities.Alumno;
 import integrador.app.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,9 +15,17 @@ public class AlumnoService implements BaseService<Alumno> {
     @Autowired
     private AlumnoRepository alumnoRepository;
 
+    public AlumnoService(){
+
+    }
+
     @Override
     public List<Alumno> findAll() throws Exception {
-        return alumnoRepository.findAll();
+        return this.alumnoRepository.findAll();
+    }
+
+    public List<Alumno> findAll(Sort s) throws Exception {
+        return this.alumnoRepository.findAll(s);
     }
 
     @Override
@@ -58,12 +67,17 @@ public class AlumnoService implements BaseService<Alumno> {
     }
 
     public ArrayList<Alumno> getEstudiantesByCriterio(String criterio) {
-        if(criterio.equals("apellido")){
-            return this.alumnoRepository.getEstudiantesByCriterioApellido();
-        } else if(criterio.equals("dni")) {
-            return this.alumnoRepository.getEstudiantesByCriterioDni();
-        } else{
+        List<String> posiblesCriterios = new ArrayList<>();
+        posiblesCriterios.add("nombre");
+        posiblesCriterios.add("dni");
+        posiblesCriterios.add("edad");
+        posiblesCriterios.add("apellido");
+
+        if(!posiblesCriterios.contains(criterio)) {
             throw new IllegalArgumentException("criterio invalido: " + criterio);
         }
+
+        Sort sort = Sort.by(Sort.Direction.ASC, criterio);
+        return (ArrayList<Alumno>) alumnoRepository.findAll(sort);
     }
 }

@@ -12,19 +12,24 @@ import integrador.app.services.CarreraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/alumnos/carreras")
 public class AlumnoCarreraController {
     @Autowired
     private AlumnoCarreraService alumnoCarreraService;
+    @Autowired
+    private AlumnoService as;
+    @Autowired
+    private CarreraService cs;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(alumnoCarreraService.findAll());
@@ -33,15 +38,20 @@ public class AlumnoCarreraController {
         }
     }
 
-    // Matriculacion de alumnos temporal. Arreglar los tipos de atributo.
+    @GetMapping("/carrera/{carrera}/ciudad/{ciudad}")
+    public ResponseEntity<?> getByMajorAndCity(@PathVariable(name = "ciudad") String ciudad, @PathVariable(name = "carrera") String carrera){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoCarreraService.getAlumnosByMajor(ciudad, carrera));
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/populate")
     public ResponseEntity<?> populate() {
-        AlumnoService as = new AlumnoService();
-        CarreraService cs = new CarreraService();
         try{
-            ArrayList<Alumno> alumnus = (ArrayList<Alumno>) as.findAll();
-            for (Alumno al : alumnus){
-                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), (long) getRandomYear(false), (long) getRandomYear(true), (long)3);
+            for (Alumno al : as.findAll()){
+                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), getRandomYear(false), getRandomYear(true), 3L);
                 alumnoCarreraService.save(ac);
             }
 
@@ -59,17 +69,16 @@ public class AlumnoCarreraController {
         return carreras.get((r.nextInt(n)));
     }
 
-    public static int getRandomYear(boolean puedeCero) {
-        Integer[] years;
+    public Long getRandomYear(boolean puedeCero) {
+        Long[] years;
 
         if (puedeCero) {
-            years = new Integer[]{0, 2025, 2026, 2027};
+            years = new Long[]{0L, 2025L, 2026L, 2027L};
         } else {
-            years = new Integer[]{2021, 2022, 2023, 2024};
+            years = new Long[]{2021L, 2022L, 2023L, 2024L};
         }
 
         int numero = (int) (Math.random() * years.length);
-
         return years[numero];
     }
 }
