@@ -15,10 +15,6 @@ public class AlumnoService implements BaseService<Alumno> {
     @Autowired
     private AlumnoRepository alumnoRepository;
 
-    public AlumnoService(){
-
-    }
-
     @Override
     public List<Alumno> findAll() throws Exception {
         return this.alumnoRepository.findAll();
@@ -47,7 +43,6 @@ public class AlumnoService implements BaseService<Alumno> {
         } catch (Exception e) {
             return false;
         }
-
     }
 
     public ArrayList<Alumno> getEstudiantesByGenero(String genero) {
