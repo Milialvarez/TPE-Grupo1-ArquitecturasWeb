@@ -1,5 +1,6 @@
 package integrador.app.repositories;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
@@ -11,6 +12,8 @@ public interface RepoBase<T,ID extends Serializable> extends org.springframework
     void delete( T deleted);
 
     List<T> findAll();
+
+    List<T> findAll(Sort sort);
 
     Optional<T> findById(Long id);
 

@@ -1,5 +1,6 @@
 package integrador.app.controllers;
 
+import integrador.app.dtos.AlumnoCarreraDTO;
 import integrador.app.entities.Alumno;
 import integrador.app.entities.Alumno_Carrera;
 import integrador.app.entities.Carrera;
@@ -12,9 +13,7 @@ import integrador.app.services.CarreraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +25,12 @@ import java.util.Random;
 public class AlumnoCarreraController {
     @Autowired
     private AlumnoCarreraService alumnoCarreraService;
+    @Autowired
+    private AlumnoService as;
+    @Autowired
+    private CarreraService cs;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(alumnoCarreraService.findAll());
@@ -36,14 +39,22 @@ public class AlumnoCarreraController {
         }
     }
 
-    // Matriculacion de alumnos temporal. Arreglar los tipos de atributo.
+    @GetMapping("/carrera/{c_id}/ciudad/{ciudad}")
+    public ResponseEntity<?> getByMajorAndCity(@PathVariable(name = "ciudad") String ciudad, @PathVariable(name = "c_id") Long carrera_id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(alumnoCarreraService.getAlumnosByMajor(ciudad, carrera_id));
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/populate")
     public ResponseEntity<?> populate() {
-        AlumnoService as = new AlumnoService();
-        CarreraService cs = new CarreraService();
         try{
             for (Alumno al : as.findAll()){
-                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), getRandomYear(false), getRandomYear(true), 3);
+                Alumno_Carrera ac = new Alumno_Carrera(al, getRandomMajor(5, cs.findAll()), getRandomYear(false), getRandomYear(true), 3L);
                 alumnoCarreraService.save(ac);
             }
 
@@ -61,17 +72,28 @@ public class AlumnoCarreraController {
         return carreras.get((r.nextInt(n)));
     }
 
-    public static int getRandomYear(boolean puedeCero) {
-        Integer[] years;
+    public Long getRandomYear(boolean puedeCero) {
+        Long[] years;
 
         if (puedeCero) {
-            years = new Integer[]{0, 2025, 2026, 2027};
+            years = new Long[]{0L, 2025L, 2026L, 2027L};
         } else {
-            years = new Integer[]{2021, 2022, 2023, 2024};
+            years = new Long[]{2021L, 2022L, 2023L, 2024L};
         }
 
         int numero = (int) (Math.random() * years.length);
-
         return years[numero];
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody AlumnoCarreraDTO acDTO) {
+        try{
+            Alumno a  = this.as.findById(acDTO.getId_alumno());
+            Carrera c = this.cs.findById(acDTO.getId_carrera());
+            Alumno_Carrera ac = new Alumno_Carrera(a, c, acDTO.getInscripcion(), acDTO.getGraduacion(), acDTO.getAntiguedad());
+            return ResponseEntity.status(HttpStatus.CREATED).body(alumnoCarreraService.save(ac));
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

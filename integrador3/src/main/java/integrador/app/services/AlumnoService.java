@@ -3,6 +3,7 @@ package integrador.app.services;
 import integrador.app.entities.Alumno;
 import integrador.app.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +17,11 @@ public class AlumnoService implements BaseService<Alumno> {
 
     @Override
     public List<Alumno> findAll() throws Exception {
-        return alumnoRepository.findAll();
+        return this.alumnoRepository.findAll();
+    }
+
+    public List<Alumno> findAll(Sort s) throws Exception {
+        return this.alumnoRepository.findAll(s);
     }
 
     @Override
@@ -31,11 +36,6 @@ public class AlumnoService implements BaseService<Alumno> {
     }
 
     @Override
-    public Alumno update(Long id, Alumno entity) throws Exception {
-        return null;
-    }
-
-    @Override
     public boolean delete(Long id) throws Exception {
         try {
             alumnoRepository.delete(findById(id));
@@ -43,7 +43,6 @@ public class AlumnoService implements BaseService<Alumno> {
         } catch (Exception e) {
             return false;
         }
-
     }
 
     public ArrayList<Alumno> getEstudiantesByGenero(String genero) {
@@ -60,14 +59,15 @@ public class AlumnoService implements BaseService<Alumno> {
     public ArrayList<Alumno> getEstudiantesByCriterio(String criterio) {
         List<String> posiblesCriterios = new ArrayList<>();
         posiblesCriterios.add("nombre");
-        posiblesCriterios.add("genero");
-        posiblesCriterios.add("nro_libreta");
+        posiblesCriterios.add("dni");
+        posiblesCriterios.add("edad");
         posiblesCriterios.add("apellido");
 
         if(!posiblesCriterios.contains(criterio)) {
             throw new IllegalArgumentException("criterio invalido: " + criterio);
         }
 
-        return alumnoRepository.getEstudiantesByCriterio(criterio);
+        Sort sort = Sort.by(Sort.Direction.ASC, criterio);
+        return (ArrayList<Alumno>) alumnoRepository.findAll(sort);
     }
 }
