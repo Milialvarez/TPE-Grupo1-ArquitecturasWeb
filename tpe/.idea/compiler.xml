@@ -7,13 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MaintenanceMicrosevice" />
-        <module name="ReportsMicrosevice" />
         <module name="AdminMicrosevice" />
+        <module name="ReportsMicrosevice" />
+        <module name="UserMicrosevice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="User-microservice" target="21" />
-      <module name="UserMicrosevice" target="23" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
