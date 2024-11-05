@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="" />
+    <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelsMicrosevice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +74,9 @@
       <recent name="D:\Predeterminado\Documentos\Facu\Facultad\Segundo\Arquitecturas\Proyectos\integradores\TPE-Grupo1-ArquitecturasWeb\tpe\AdminMicroservice" />
       <recent name="D:\Predeterminado\Documentos\Facu\Facultad\Segundo\Arquitecturas\Proyectos\integradores\TPE-Grupo1-ArquitecturasWeb\tpe\MaintenanceMicroservice" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Predeterminado\Documentos\Facu\Facultad\Segundo\Arquitecturas\Proyectos\integradores\TPE-Grupo1-ArquitecturasWeb\tpe\UserMicrosevice" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="UserMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -93,7 +106,7 @@
       <workItem from="1730400739892" duration="343000" />
       <workItem from="1730812591886" duration="797000" />
       <workItem from="1730813804510" duration="1391000" />
-      <workItem from="1730815289398" duration="340000" />
+      <workItem from="1730815289398" duration="1045000" />
     </task>
     <servers />
   </component>

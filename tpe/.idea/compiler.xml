@@ -10,6 +10,8 @@
         <module name="AdminMicrosevice" />
         <module name="ReportsMicrosevice" />
         <module name="UserMicrosevice" />
+        <module name="BillingMicrosevice" />
+        <module name="TravelsMicrosevice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
