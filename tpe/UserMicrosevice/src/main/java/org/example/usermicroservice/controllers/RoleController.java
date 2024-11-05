@@ -1,7 +1,7 @@
-package org.example.usermicroservice.controllers;
+package org.example.billingmicroservice.controllers;
 
-import org.example.usermicroservice.entities.Role;
-import org.example.usermicroservice.services.RoleService;
+import org.example.billingmicroservice.entities.Role;
+import org.example.billingmicroservice.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

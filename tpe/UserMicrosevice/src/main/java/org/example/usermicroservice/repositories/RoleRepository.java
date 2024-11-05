@@ -1,6 +1,6 @@
-package org.example.usermicroservice.repositories;
+package org.example.billingmicroservice.repositories;
 
-import org.example.usermicroservice.entities.Role;
+import org.example.billingmicroservice.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role,Long> {

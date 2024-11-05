@@ -1,8 +1,7 @@
-package org.example.usermicroservice.services;
+package org.example.billingmicroservice.services;
 
-import org.example.usermicroservice.entities.Account;
-import org.example.usermicroservice.entities.User;
-import org.example.usermicroservice.repositories.AccountRepository;
+import org.example.billingmicroservice.entities.Account;
+import org.example.billingmicroservice.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,13 +1,12 @@
-package org.example.usermicroservice.controllers;
+package org.example.billingmicroservice.controllers;
 
-import org.example.usermicroservice.entities.User;
-import org.example.usermicroservice.services.UserService;
+import org.example.billingmicroservice.entities.User;
+import org.example.billingmicroservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController("/users")
 public class UserController {

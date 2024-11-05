@@ -1,6 +1,6 @@
-package org.example.usermicroservice.repositories;
+package org.example.billingmicroservice.repositories;
 
-import org.example.usermicroservice.entities.User;
+import org.example.billingmicroservice.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package org.example.usermicroservice.entities;
+package org.example.billingmicroservice.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
