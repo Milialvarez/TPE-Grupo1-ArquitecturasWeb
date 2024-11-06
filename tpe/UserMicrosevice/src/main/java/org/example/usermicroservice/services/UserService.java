@@ -1,7 +1,7 @@
-package org.example.billingmicroservice.services;
+package org.example.usermicroservice.services;
 
-import org.example.billingmicroservice.entities.User;
-import org.example.billingmicroservice.repositories.UserRepository;
+import org.example.usermicroservice.entities.User;
+import org.example.usermicroservice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

@@ -1,5 +1,6 @@
-package org.example.billingmicroservice.entities;
+package org.example.usermicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
@@ -26,6 +27,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "rol_id", nullable = false)
+    @JsonBackReference
     private Role role;
 
 

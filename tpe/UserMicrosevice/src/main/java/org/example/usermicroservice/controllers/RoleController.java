@@ -1,20 +1,21 @@
-package org.example.billingmicroservice.controllers;
+package org.example.usermicroservice.controllers;
 
-import org.example.billingmicroservice.entities.Role;
-import org.example.billingmicroservice.services.RoleService;
+import org.example.usermicroservice.entities.Role;
+import org.example.usermicroservice.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/roles")
+@RestController
+@RequestMapping("/roles")
 public class RoleController {
 
     @Autowired
     private RoleService roleService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Role>> getAllRoles() {
         List<Role> users = roleService.getAll();
         if (users.isEmpty()) {
@@ -32,7 +33,7 @@ public class RoleController {
         return ResponseEntity.ok(role);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Role> save(@RequestBody Role user) {
         Role newRole = roleService.save(user);
         return ResponseEntity.ok(newRole);

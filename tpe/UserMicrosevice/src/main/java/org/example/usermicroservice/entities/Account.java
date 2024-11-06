@@ -1,4 +1,4 @@
-package org.example.billingmicroservice.entities;
+package org.example.usermicroservice.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.List;
 public class Account {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column

@@ -1,19 +1,20 @@
-package org.example.billingmicroservice.controllers;
+package org.example.usermicroservice.controllers;
 
-import org.example.billingmicroservice.entities.User;
-import org.example.billingmicroservice.services.UserService;
+import org.example.usermicroservice.entities.User;
+import org.example.usermicroservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/users")
+@RestController
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAll();
         if (users.isEmpty()) {
@@ -31,7 +32,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<User> save(@RequestBody User user) {
         User userNew = userService.save(user);
         return ResponseEntity.ok(userNew);
