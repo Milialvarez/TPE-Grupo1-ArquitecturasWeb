@@ -1,4 +1,4 @@
-package org.example.usermicroservice.config;
+package org.example.adminmicroservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
