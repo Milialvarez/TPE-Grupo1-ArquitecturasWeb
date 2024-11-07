@@ -5,33 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Monopatin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Parada.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Pausa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Viaje.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/MonopatinRepositorie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ViajeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/ViajeConIdMonopatinDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/ViajeRepositorie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ViajeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/src/main/java/org/example/travelsmicroservice/TravelsMicroserviceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelsMicrosevice/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -116,10 +96,11 @@
       <recent name="D:\Predeterminado\Documentos\Facu\Facultad\Segundo\Arquitecturas\Proyectos\integradores\TPE-Grupo1-ArquitecturasWeb\tpe\UserMicrosevice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.monopatinmicroservice.repositories" />
+      <recent name="org.example.monopatinmicroservice.services" />
+      <recent name="org.example.monopatinmicroservice.controllers" />
       <recent name="org.example.monopatinmicroservice.config" />
       <recent name="org.example.adminmicroservice.models" />
-      <recent name="org.example.adminmicroservice.repositories" />
-      <recent name="org.example.adminmicroservice.config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -228,7 +209,7 @@
       <workItem from="1730848545037" duration="5785000" />
       <workItem from="1730899761594" duration="445000" />
       <workItem from="1730916100376" duration="2224000" />
-      <workItem from="1731014925268" duration="4157000" />
+      <workItem from="1731014925268" duration="7925000" />
     </task>
     <servers />
   </component>

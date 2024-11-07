@@ -1,7 +1,10 @@
 package org.example.monopatinmicroservice.controllers;
 
+import org.example.monopatinmicroservice.dtos.MonopatinConIdParadaDTO;
 import org.example.monopatinmicroservice.entities.Monopatin;
+import org.example.monopatinmicroservice.entities.Parada;
 import org.example.monopatinmicroservice.services.MonopatinService;
+import org.example.monopatinmicroservice.services.ParadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,9 @@ import java.util.List;
 public class MonopatinController {
     @Autowired
     private MonopatinService monopatinService;
+
+    @Autowired
+    private ParadaService paradaService;
 
     @GetMapping
     public ResponseEntity<?> getMonopatines() {
@@ -44,8 +50,19 @@ public class MonopatinController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addMonopatine(@RequestBody Monopatin monopatin) {
+    public ResponseEntity<?> addMonopatine(@RequestBody MonopatinConIdParadaDTO monopatinDTO) {
         try {
+            Long paradaId = monopatinDTO.getId_parada();
+            Parada parada = null;
+
+            if (paradaId != null) {
+                parada = paradaService.getById(paradaId);
+            }
+
+            Monopatin monopatin = new Monopatin();
+            monopatin.setParada(parada);
+            monopatin.setKmRecorridos(monopatinDTO.getKmRecorridos());
+
             Monopatin result = this.monopatinService.add(monopatin);
             return ResponseEntity.status(201).body(result);
         } catch (Exception e) {
@@ -57,7 +74,32 @@ public class MonopatinController {
     public ResponseEntity<?> getMonopatinesPorViajesPorAnio(@PathVariable("anio") Integer anio, @PathVariable("xViajes") Integer xViajes) {
         try {
             List<Monopatin> result = this.monopatinService.getMonopatinesPorViajesPorAnio(anio, xViajes);
-            return ResponseEntity.ok().body(result);
+
+            if (!result.isEmpty()) {
+                return ResponseEntity.ok().body(result);
+            } else {
+                HashMap<String, String> notFound = new HashMap<>();
+                notFound.put("error", "No hay ningún monopatin con los parametros año: " + anio + " y xViajes: " + xViajes);
+                return ResponseEntity.status(404).body(notFound);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @DeleteMapping("/{id_monopatin}")
+    public ResponseEntity<?> deleteViaje(@PathVariable("id_monopatin") Long id) {
+        try {
+            Monopatin result = this.monopatinService.delete(id);
+
+            if (result != null) {
+                return ResponseEntity.ok().body(result);
+            } else {
+                HashMap<String, String> notFound = new HashMap<>();
+                notFound.put("error", "El monopatin con el id " + id + " no existe.");
+                return ResponseEntity.status(404).body(notFound);
+            }
+
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }

@@ -1,0 +1,73 @@
+openapi: 3.0.0
+
+info: 
+  version: 1.0.0
+  title: TPE Arquitecturas Web TUDAI - GRUPO 1
+  description: API de Aplicación para Monopatines Eléctricos
+servers:
+- url: http://localhost:8003
+  
+paths: 
+  /viaje:
+    get:
+      summary: Obtiene todos los viajes
+      description: Retorna una lista de todos los viajes
+      responses:
+        200:
+          description: (OK) La lista de todos los viajes fue obtenida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoListaViajes'
+        500:
+          $ref: '#/components/responses/InternalError'
+      
+components:
+  responses:
+    InternalError:
+      description: El sistema falló
+  
+  schemas:
+    ExitoListaViajes:
+      type: array
+      items:
+        $ref: '#/components/schemas/Viaje'
+        
+    Viaje:
+        properties:
+          id:
+            type: number
+            description: id del viaje
+          duracion:
+            type: number
+            description: duracion del viaje
+          fecha:
+            type: string
+            description: fecha del viaje
+          id_usuario:
+            type: number
+            description: id del usuario
+          monopatin:
+            $ref: '#/components/schemas/Monopatin'
+
+    Monopatin:
+      type: object
+      properties:
+        id:
+          type: number
+          description: id del monopatin
+        "kmRecorridos":
+          type: number
+          description: los km que recorrió el monopatin
+        "parada":
+          $ref: '#/components/schemas/Parada'
+
+    Parada:
+      type: object
+      properties:
+        id:
+          type: number
+          description: id de la parada
+        isHabilitada:
+          type: boolean
+          description: true si está libre false si está ocupada
