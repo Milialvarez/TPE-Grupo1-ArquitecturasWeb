@@ -23,7 +23,6 @@
         <module>AdminMicrosevice</module>
         <module>ReportsMicrosevice</module>
         <module>MaintenanceMicrosevice</module>
-        <module>TravelsMicrosevice</module>
         <module>BillingMicrosevice</module>
         <module>MonopatinMicrosevice</module>
     </modules>

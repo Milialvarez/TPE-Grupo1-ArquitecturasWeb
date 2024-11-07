@@ -4,16 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    private Long id;
-    private String name;
-    private String phoneNumber;
-    private String email;
-    private List<Account> accounts;
-    private Role role;
+public class Account {
+    private long id;
+    private Date creation_date;
+    private Integer balance;
+    private List<User> users;
 }

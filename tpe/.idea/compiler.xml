@@ -13,10 +13,10 @@
         <module name="ReportsMicrosevice" />
         <module name="BillingMicrosevice" />
         <module name="MonopatinMicrosevice" />
-        <module name="TravelsMicrosevice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="TravelsMicrosevice" target="21" />
       <module name="User-microservice" target="21" />
     </bytecodeTargetLevel>
   </component>
