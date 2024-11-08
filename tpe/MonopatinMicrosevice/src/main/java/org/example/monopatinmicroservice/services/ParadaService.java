@@ -18,8 +18,8 @@ public class ParadaService {
         return paradaRepositorie.findAll();
     }
 
-    public Parada add(Parada viaje) {
-        return paradaRepositorie.save(viaje);
+    public Parada add(Parada parada) {
+        return paradaRepositorie.save(parada);
     }
 
     public Parada getById(Long id) {

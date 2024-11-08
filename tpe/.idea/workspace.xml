@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ViajeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/ViajeConIdMonopatinDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/ViajeRepositorie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ViajeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ParadaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/ParadaConIdMonopatinDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ParadaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ParadaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,33 +54,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AdminMicroserviceApplication.executor": "Run",
-    "Spring Boot.MonopatinMicroserviceApplication.executor": "Run",
-    "Spring Boot.UserMicroserviceApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Predeterminado/Documentos/Facu/Facultad/Segundo/Arquitecturas/Proyectos/Recursos/Recursos microservicios parte 1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MonopatinMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Predeterminado/Documentos/Facu/Facultad/Segundo/Arquitecturas/Proyectos/integradores/TPE-Grupo1-ArquitecturasWeb/integrador1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Predeterminado\Documentos\Facu\Facultad\Segundo\Arquitecturas\Proyectos\integradores\TPE-Grupo1-ArquitecturasWeb\tpe\AdminMicrosevice\src\main\java" />
@@ -96,11 +93,11 @@
       <recent name="D:\Predeterminado\Documentos\Facu\Facultad\Segundo\Arquitecturas\Proyectos\integradores\TPE-Grupo1-ArquitecturasWeb\tpe\UserMicrosevice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.monopatinmicroservice.controllers" />
       <recent name="org.example.monopatinmicroservice.repositories" />
       <recent name="org.example.monopatinmicroservice.services" />
-      <recent name="org.example.monopatinmicroservice.controllers" />
+      <recent name="org.example.monopatinmicroservice.dtos" />
       <recent name="org.example.monopatinmicroservice.config" />
-      <recent name="org.example.adminmicroservice.models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -209,7 +206,9 @@
       <workItem from="1730848545037" duration="5785000" />
       <workItem from="1730899761594" duration="445000" />
       <workItem from="1730916100376" duration="2224000" />
-      <workItem from="1731014925268" duration="7925000" />
+      <workItem from="1731014925268" duration="8719000" />
+      <workItem from="1731071163044" duration="618000" />
+      <workItem from="1731076287004" duration="425000" />
     </task>
     <servers />
   </component>
