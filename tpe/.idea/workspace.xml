@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ParadaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/ParadaConIdMonopatinDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ParadaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ParadaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/PausaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/PausaConIdViajeDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/PausaRepositorie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/PausaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +208,7 @@
       <workItem from="1730916100376" duration="2224000" />
       <workItem from="1731014925268" duration="8719000" />
       <workItem from="1731071163044" duration="618000" />
-      <workItem from="1731076287004" duration="425000" />
+      <workItem from="1731076287004" duration="811000" />
     </task>
     <servers />
   </component>
