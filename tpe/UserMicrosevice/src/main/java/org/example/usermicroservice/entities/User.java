@@ -25,6 +25,9 @@ public class User {
     @ManyToMany
     private List<Account> accounts;
 
+    @Column
+    private boolean anullated;
+
     @ManyToOne
     @JoinColumn(name = "rol_id", nullable = false)
     @JsonBackReference

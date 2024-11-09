@@ -1,13 +1,11 @@
 package org.example.adminmicroservice.controllers;
 
+import org.example.adminmicroservice.models.Monopatin;
 import org.example.adminmicroservice.models.User;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,16 @@ public class AdminController {
     public ResponseEntity<List<User>> getAdmins() {
         List<User> admins = adminService.getAdmins();
         return ResponseEntity.ok(admins);
+    }
+
+    @GetMapping("/xViajes/{xViajes}/anio/{anio}")
+    public ResponseEntity<?> getMonopatinesPorViajesPorAnio(@PathVariable("anio") Integer anio, @PathVariable("xViajes") Integer xViajes){
+        List<Monopatin> admins = adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
+        return ResponseEntity.ok(admins);
+    }
+
+    @PutMapping("/null")
+    public ResponseEntity<?> anullateAccount(@RequestBody User user){
+       return ResponseEntity.ok(adminService.anullateAccount(user));
     }
 }

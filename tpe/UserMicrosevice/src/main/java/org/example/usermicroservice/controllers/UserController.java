@@ -1,11 +1,13 @@
 package org.example.usermicroservice.controllers;
 
+import jakarta.xml.ws.http.HTTPBinding;
 import org.example.usermicroservice.entities.User;
 import org.example.usermicroservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -36,6 +38,22 @@ public class UserController {
     public ResponseEntity<User> save(@RequestBody User user) {
         User userNew = userService.save(user);
         return ResponseEntity.ok(userNew);
+    }
+
+    @PutMapping("/null")
+    public ResponseEntity<?> anullateAccount(@RequestBody User user){
+        Long id = user.getId();
+        if(this.userService.getUserById(id) == null){
+            return ResponseEntity.notFound().build();
+        } else{
+            user.setAnullated(true);
+            return ResponseEntity.status(201).body("user anullated succesfully");
+        }
+    }
+
+    @GetMapping("/monopatins/location/{posx}/{posy")
+    public ResponseEntity<?> getClosestMonopatins(@PathVariable("posx") int posx, @PathVariable("posy") int posy){
+        return ResponseEntity.status(200).body(this.userService.getClosestMonopatins(posx, posy));
     }
 
 

@@ -7,10 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="AdminMicrosevice" />
-        <module name="UserMicrosevice" />
         <module name="MaintenanceMicrosevice" />
+        <module name="AdminMicrosevice" />
         <module name="ReportsMicrosevice" />
+        <module name="UserMicrosevice" />
         <module name="BillingMicrosevice" />
         <module name="MonopatinMicrosevice" />
       </profile>

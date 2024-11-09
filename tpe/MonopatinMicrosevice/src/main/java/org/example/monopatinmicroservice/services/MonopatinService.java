@@ -5,6 +5,7 @@ import org.example.monopatinmicroservice.repositories.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,5 +37,21 @@ public class MonopatinService {
         }
 
         return monopatin;
+    }
+
+    public ArrayList<Monopatin> getClosestMonopatins(int posx, int posy) {
+        double radio = 1.0; //radio de maximo 1 kilómetro
+        List<Monopatin> monopatins = this.monopatinRepository.findAll();
+        ArrayList<Monopatin> response = new ArrayList<>();
+        for(Monopatin monopatin : monopatins) {
+            if(this.calcularDistancia(monopatin, posx, posy) <= radio) {
+                response.add(monopatin);
+            }
+        }
+        return response;
+    }
+
+    public double calcularDistancia(Monopatin m, int x, int y) {
+        return Math.sqrt(Math.pow(x - m.getPosX(), 2) + Math.pow(y - m.getPosY(), 2));
     }
 }
