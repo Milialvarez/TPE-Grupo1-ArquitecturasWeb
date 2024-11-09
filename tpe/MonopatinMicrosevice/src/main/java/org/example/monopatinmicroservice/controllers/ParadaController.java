@@ -1,9 +1,6 @@
 package org.example.monopatinmicroservice.controllers;
 
-import org.example.monopatinmicroservice.dtos.ParadaConIdMonopatinDTO;
-import org.example.monopatinmicroservice.entities.Monopatin;
 import org.example.monopatinmicroservice.entities.Parada;
-import org.example.monopatinmicroservice.services.MonopatinService;
 import org.example.monopatinmicroservice.services.ParadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +14,6 @@ import java.util.List;
 public class ParadaController {
     @Autowired
     private ParadaService paradaService;
-
-    @Autowired
-    private MonopatinService monopatinService;
 
     @GetMapping
     public ResponseEntity<?> getParadas() {
@@ -50,19 +44,8 @@ public class ParadaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addParada(@RequestBody ParadaConIdMonopatinDTO paradaDTO) {
+    public ResponseEntity<?> addParada(@RequestBody Parada parada) {
         try {
-            Long monopatinId = paradaDTO.getId_monopatin();
-            Monopatin monopatin = null;
-
-            if (monopatinId != null) {
-                monopatin = monopatinService.getById(monopatinId);
-            }
-
-            Parada parada = new Parada();
-            parada.setMonopatin(monopatin);
-            parada.setHabilitada(paradaDTO.getIsHabilitada());
-
             Parada result = this.paradaService.add(parada);
             return ResponseEntity.status(201).body(result);
         } catch (Exception e) {

@@ -1,35 +1,34 @@
 package org.example.monopatinmicroservice.services;
 
 import org.example.monopatinmicroservice.entities.Viaje;
-import org.example.monopatinmicroservice.repositories.ViajeRepositorie;
+import org.example.monopatinmicroservice.repositories.ViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ViajeService {
     @Autowired
-    private ViajeRepositorie viajeRepositorie;
+    private ViajeRepository viajeRepository;
 
     public List<Viaje> getAll() {
-        return viajeRepositorie.findAll();
+        return viajeRepository.findAll();
     }
 
     public Viaje add(Viaje viaje) {
-        return viajeRepositorie.save(viaje);
+        return viajeRepository.save(viaje);
     }
 
     public Viaje getById(Long id) {
-        return viajeRepositorie.findById(id).orElse(null);
+        return viajeRepository.findById(id).orElse(null);
     }
 
     public Viaje delete(Long id) {
-        Viaje viaje = viajeRepositorie.findById(id).orElse(null);
+        Viaje viaje = viajeRepository.findById(id).orElse(null);
 
         if (viaje != null) {
-            viajeRepositorie.deleteById(id);
+            viajeRepository.deleteById(id);
         }
 
         return viaje;

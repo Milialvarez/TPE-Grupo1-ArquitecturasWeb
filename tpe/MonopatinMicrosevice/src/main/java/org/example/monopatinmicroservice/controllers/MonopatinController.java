@@ -50,7 +50,7 @@ public class MonopatinController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addMonopatine(@RequestBody MonopatinConIdParadaDTO monopatinDTO) {
+    public ResponseEntity<?> addMonopatin(@RequestBody MonopatinConIdParadaDTO monopatinDTO) {
         try {
             Long paradaId = monopatinDTO.getId_parada();
             Parada parada = null;
@@ -60,7 +60,13 @@ public class MonopatinController {
             }
 
             Monopatin monopatin = new Monopatin();
-            monopatin.setParada(parada);
+
+            if (parada != null) {
+                if (parada.isHabilitada()) {
+                    monopatin.setParada(parada);
+                }
+            }
+
             monopatin.setKmRecorridos(monopatinDTO.getKmRecorridos());
 
             Monopatin result = this.monopatinService.add(monopatin);
@@ -88,7 +94,7 @@ public class MonopatinController {
     }
 
     @DeleteMapping("/{id_monopatin}")
-    public ResponseEntity<?> deleteViaje(@PathVariable("id_monopatin") Long id) {
+    public ResponseEntity<?> deleteMonopatin(@PathVariable("id_monopatin") Long id) {
         try {
             Monopatin result = this.monopatinService.delete(id);
 

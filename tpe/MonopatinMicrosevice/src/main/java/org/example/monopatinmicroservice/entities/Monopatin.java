@@ -1,5 +1,6 @@
 package org.example.monopatinmicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +20,6 @@ public class Monopatin {
 
     @OneToOne
     @JoinColumn(nullable = true)
+    @JsonManagedReference
     private Parada parada;
 }

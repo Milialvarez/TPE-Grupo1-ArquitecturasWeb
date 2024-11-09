@@ -1,5 +1,6 @@
 package org.example.monopatinmicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,10 +15,12 @@ public class Parada {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private boolean isHabilitada;
-
-    @OneToOne
+    @OneToOne(mappedBy = "parada")
     @JoinColumn(nullable = true)
+    @JsonBackReference
     private Monopatin monopatin;
+
+    public boolean isHabilitada() {
+        return monopatin == null;
+    }
 }
