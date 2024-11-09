@@ -20,6 +20,10 @@ public class Account {
     @Column
     private Integer balance;
 
+    @Column
+    private boolean anullated;
+
+
     @ManyToMany(mappedBy = "accounts") // Especificamos el lado inverso de la relación
     private List<User> users;
 

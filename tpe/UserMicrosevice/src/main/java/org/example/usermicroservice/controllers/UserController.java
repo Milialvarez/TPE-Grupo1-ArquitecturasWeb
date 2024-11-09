@@ -40,17 +40,6 @@ public class UserController {
         return ResponseEntity.ok(userNew);
     }
 
-    @PutMapping("/null")
-    public ResponseEntity<?> anullateAccount(@RequestBody User user){
-        Long id = user.getId();
-        if(this.userService.getUserById(id) == null){
-            return ResponseEntity.notFound().build();
-        } else{
-            user.setAnullated(true);
-            return ResponseEntity.status(201).body("user anullated succesfully");
-        }
-    }
-
     @GetMapping("/monopatins/location/{posx}/{posy")
     public ResponseEntity<?> getClosestMonopatins(@PathVariable("posx") int posx, @PathVariable("posy") int posy){
         return ResponseEntity.status(200).body(this.userService.getClosestMonopatins(posx, posy));

@@ -28,4 +28,11 @@ public class AccountService {
     public Account getAccountById(Long id){
         return accountRepository.findById(id).orElse(null);
     }
+
+    public Account setAccountAnullated(Long id, boolean state) {
+        Account ac = accountService.getAccountById(id);
+        if (ac!=null) this.accountRepository.setAccountAnullated(id, state);
+        return ac;
+
+    }
 }

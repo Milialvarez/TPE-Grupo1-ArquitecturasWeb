@@ -38,5 +38,17 @@ public class AccountController {
         return ResponseEntity.ok(newAccount);
     }
 
+    //modificar metodo para que sea desanulable :)
+    @PutMapping("/null")
+    public ResponseEntity<?> anullateAccount(@RequestBody Account acc){
+        Long id = acc.getId();
+        if(this.accountservice.getAccountById(id) == null){
+            return ResponseEntity.notFound().build();
+        } else{
+            accountservice.setAccountAnullated(id, true);
+            return ResponseEntity.status(201).body("user anullated succesfully");
+        }
+    }
+
 
 }

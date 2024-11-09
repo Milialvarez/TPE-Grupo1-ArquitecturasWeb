@@ -19,6 +19,4 @@ public interface UserFeignClient {
     @PostMapping
     ResponseEntity<User> save(@RequestBody User user);
 
-    @PutMapping("/null")
-    ResponseEntity<?> anullateAccount(@RequestBody User user);
 }
