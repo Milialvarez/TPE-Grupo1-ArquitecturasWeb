@@ -52,7 +52,8 @@ public class BillService {
         return 0.0;
     }
 
-    public ArrayList<Bill> getAllBills() {
-        return null;
+    public Bill modifyBill(Bill bill) {
+        this.billRepository.modify(bill.getId(), bill.getPrice(), bill.getAdditionalPrice());
+        return bill;
     }
 }

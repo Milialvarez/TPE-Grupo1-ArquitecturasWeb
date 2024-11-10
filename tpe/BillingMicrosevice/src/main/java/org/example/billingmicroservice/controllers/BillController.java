@@ -18,7 +18,7 @@ public class BillController{
 
     @GetMapping
     public ResponseEntity<?> getAllBills(){
-        ArrayList<Bill> bills =  billService.getAllBills();
+        ArrayList<Bill> bills = (ArrayList<Bill>) billService.getAll();
         return ResponseEntity.ok(bills);
     }
 
@@ -29,6 +29,16 @@ public class BillController{
             return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @PutMapping("/modify")
+    public ResponseEntity<?> modifyBill(@RequestBody Bill bill){
+        try{
+            Bill b = billService.modifyBill(bill);
+            return ResponseEntity.ok(b);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
