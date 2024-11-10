@@ -1,8 +1,14 @@
-import org.example.usermicroservice.entities.Bill;
-import org.example.usermicroservice.repositories.BillRepository;
+package org.example.billingmicroservice.services;
+
+
+import org.example.billingmicroservice.entities.Bill;
+import org.example.billingmicroservice.feignClient.MonopatinFeignClient;
+import org.example.billingmicroservice.repositories.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,6 +29,7 @@ public class BillService {
 
     public boolean delete(Bill b) {
         billRepository.delete(b);
+        return true;
     }
 
     public Bill getBillById(Long id) {
@@ -36,6 +43,14 @@ public class BillService {
     }
 
     public double getTotalBilled(LocalDate origin, LocalDate end){
-        List<?> viajes = this.monopatinFeignClient.getViajesBetween(origin, end);
+        List<?> viajes = (List<?>) this.monopatinFeignClient.getViajesBetween(origin, end);
+        double total = 0.0;
+        for(Object v : viajes){
+            total += (Double) v.get
+        }
+    }
+
+    public ArrayList<Bill> getAllBills() {
+        return null;
     }
 }

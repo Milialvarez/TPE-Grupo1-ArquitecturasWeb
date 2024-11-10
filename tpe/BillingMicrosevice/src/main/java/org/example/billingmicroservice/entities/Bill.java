@@ -1,3 +1,8 @@
+package org.example.billingmicroservice.entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
 @Data
 @Entity
 public class Bill {
