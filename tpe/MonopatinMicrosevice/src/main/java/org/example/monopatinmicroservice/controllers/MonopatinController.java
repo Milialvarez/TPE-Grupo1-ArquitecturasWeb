@@ -120,4 +120,10 @@ public class MonopatinController {
             return ResponseEntity.status(500).build();
         }
     }
+
+    // hay que pasar el metodo a viajeController y cambiar en el feignClient para BillService
+    // que sea un ViajeFeignClient en vez de MonopatinFeignClient
+    @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
+    public ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2);
+
 }

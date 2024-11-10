@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @FeignClient(name="MonopatinMicroservice", url="http://localhost:8003/monopatin")
 public interface MonopatinFeignClient {
 
-    @GetMapping("/origen/{fechaOrigen}/fin/{fechaFin}")
+    @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2);
 
 }

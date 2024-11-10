@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/bills")
@@ -17,23 +18,21 @@ public class BillController{
 
     @GetMapping
     public ResponseEntity<?> getAllBills(){
-        try{
-            ArrayList<Bill> bills =  billService.getAllBills();
-            return ResponseEntity.ok().body(bills);
-        }catch(Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-
+        ArrayList<Bill> bills =  billService.getAllBills();
+        return ResponseEntity.ok(bills);
     }
 
-    public ResponseEntity<?> getTotalBilled(LocalDate origin, LocalDate end){
-        try{
-            double total = billService.getTotalBilled(origin,end);
-            return ResponseEntity.ok().body(total);
-        }catch(Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+    @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
+        try {
+            double reporteTotalFacturadoEntreFechas = billService.getTotalBilled(origin, end);
+            return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
+        } catch (Exception e) {
+            return null;
         }
     }
+
+
 
 
 

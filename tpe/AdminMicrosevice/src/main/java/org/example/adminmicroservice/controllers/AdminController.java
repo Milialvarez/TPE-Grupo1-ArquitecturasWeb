@@ -31,4 +31,15 @@ public class AdminController {
     public ResponseEntity<?> anullateAccount(@RequestBody User user){
        return ResponseEntity.ok(adminService.anullateAccount(user));
     }
+
+    @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen")LocalDate origin,@PathVariable("fechaFin") LocalDate end){
+        try {
+            List<Object[]> reporteTotalFacturadoEntreFechas = adminService.getTotalBilled(origin, end);
+            return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
+        } catch () {
+
+        }
+
+    }
 }

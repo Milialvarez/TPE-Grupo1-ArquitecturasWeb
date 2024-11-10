@@ -15,6 +15,7 @@ import java.util.List;
 public class BillService {
     @Autowired
     BillRepository billRepository;
+
     MonopatinFeignClient monopatinFeignClient;
 
     public List<Bill> getAll() {
@@ -46,8 +47,9 @@ public class BillService {
         List<?> viajes = (List<?>) this.monopatinFeignClient.getViajesBetween(origin, end);
         double total = 0.0;
         for(Object v : viajes){
-            total += (Double) v.get
+//            total += (Double) v.get
         }
+        return 0.0;
     }
 
     public ArrayList<Bill> getAllBills() {
