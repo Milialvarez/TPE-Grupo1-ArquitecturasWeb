@@ -21,6 +21,7 @@ public class AdminService {
 
     UserFeignClient userFeignClient;
     MonopatinFeignClient monopatinFeignClient;
+    ReportsFeignClient reportsFeignClient;
 
     public List<User> getAdmins() {
         return restTemplate.getForObject("http://localhost:8001/users", List.class);
@@ -34,5 +35,13 @@ public class AdminService {
     @PutMapping("/null")
     public ResponseEntity<?> anullateAccount(@RequestBody User user){
         return this.userFeignClient.anullateAccount(user);
+    }
+
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen")LocalDate origin,@PathVariable("fechaFin") LocalDate end){
+        try {
+            return this.reportsFeignClient.getTotalBilled(origin, end);
+        } catch () {
+
+        }
     }
 }

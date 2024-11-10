@@ -9,6 +9,7 @@ import java.util.List;
 public class BillService {
     @Autowired
     BillRepository billRepository;
+
     MonopatinFeignClient monopatinFeignClient;
 
     public List<Bill> getAll() {

@@ -54,4 +54,6 @@ public class MonopatinService {
     public double calcularDistancia(Monopatin m, int x, int y) {
         return Math.sqrt(Math.pow(x - m.getPosX(), 2) + Math.pow(y - m.getPosY(), 2));
     }
+
+
 }

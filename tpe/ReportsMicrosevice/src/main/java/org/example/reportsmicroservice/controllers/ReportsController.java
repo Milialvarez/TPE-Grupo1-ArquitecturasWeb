@@ -1,32 +1,24 @@
-import org.example.usermicroservice.entities.Role;
-import org.example.usermicroservice.services.RoleService;
+package org.example.reportsmicroservice.controllers;
+
+import org.example.adminmicroservice.services.ReportsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bills")
-public class BillController{
+@RequestMapping("/reports")
+public class ReportsController {
     @Autowired
-    private BillService billService;
-
-    @GetMapping
-    public ResponseEntity<?> getAllBills(){
-        ArrayList<Bill> billService.getAllBills();
-
-    }
+    private ReportsService reportService;
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen")LocalDate origin,@PathVariable("fechaFin") LocalDate end){
         try {
-            List<Object[]> reporteTotalFacturadoEntreFechas = billService.getTotalBilled(origin, end);
+            List<Object[]> reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
             return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
         } catch () {
 
         }
 
     }
-
-
-
 }
