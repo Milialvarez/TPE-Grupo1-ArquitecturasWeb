@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -124,6 +125,28 @@ public class MonopatinController {
     // hay que pasar el metodo a viajeController y cambiar en el feignClient para BillService
     // que sea un ViajeFeignClient en vez de MonopatinFeignClient
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2);
+    public ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2){
+        return null;
+    }
+
+    @GetMapping("/mantenimiento")
+    public ResponseEntity<?> getMonopatinesEnMantenimiento(){
+        try{
+            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinesEnMantenimiento();
+            return ResponseEntity.ok().body(monopatins);
+        }catch(Exception e){
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/activos")
+    public ResponseEntity<?> getMonopatinesActivos(){
+        try{
+            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinesActivos();
+            return ResponseEntity.ok().body(monopatins);
+        }catch(Exception e){
+            return ResponseEntity.status(500).build();
+        }
+    }
 
 }

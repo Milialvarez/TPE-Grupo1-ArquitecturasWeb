@@ -1,8 +1,11 @@
 package org.example.monopatinmicroservice.services;
 
 import org.example.monopatinmicroservice.entities.Monopatin;
+import org.example.monopatinmicroservice.feignClients.ManteinanceFeignClient;
+import org.example.monopatinmicroservice.models.Mantenimiento;
 import org.example.monopatinmicroservice.repositories.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +15,7 @@ import java.util.List;
 public class MonopatinService {
     @Autowired
     private MonopatinRepository monopatinRepository;
+    private ManteinanceFeignClient mfc;
 
     public List<Monopatin> getAll() {
         return monopatinRepository.findAll();
@@ -56,4 +60,23 @@ public class MonopatinService {
     }
 
 
+    public ArrayList<Monopatin> getMonopatinesEnMantenimiento() {
+        ResponseEntity<?> mantenimientos = this.mfc.getAllManteinanceUnvailable();
+        ArrayList<Mantenimiento> response = (ArrayList<Mantenimiento>) mantenimientos.getBody();
+        ArrayList<Monopatin> result = new ArrayList<>();
+        for(Mantenimiento m: response){
+            result.add(this.monopatinRepository.findById(m.getId_monopatin()).orElse(null));
+        }
+        return result;
+    }
+
+    public ArrayList<Monopatin> getMonopatinesActivos() {
+        ResponseEntity<?> activos = this.mfc.getAllManteinanceActive();
+        ArrayList<Mantenimiento> response = (ArrayList<Mantenimiento>) activos.getBody();
+        ArrayList<Monopatin> result = new ArrayList<>();
+        for(Mantenimiento m: response){
+            result.add(this.monopatinRepository.findById(m.getId_monopatin()).orElse(null));
+        }
+        return result;
+    }
 }
