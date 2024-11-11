@@ -31,7 +31,7 @@ public class AccountService {
 
     public Account setAccountAnullated(Long id, boolean state) {
         Account ac = this.getAccountById(id);
-        if (ac!=null) this.accountRepository.setAccountAnullated(id, state);
+        if (ac!=null) this.accountRepository.setAccountAnullated(id);
         return ac;
 
     }
