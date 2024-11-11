@@ -24,8 +24,6 @@ public class Monopatin {
     @JsonManagedReference
     private Parada parada;
 
-    private boolean mantenimiento;
-
     @Column
     private int posX;
     @Column
