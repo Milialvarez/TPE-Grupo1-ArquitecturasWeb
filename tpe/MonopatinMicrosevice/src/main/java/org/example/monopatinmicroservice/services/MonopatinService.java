@@ -45,16 +45,17 @@ public class MonopatinService {
         return monopatin;
     }
 
-    public ArrayList<Monopatin> getClosestMonopatins(int posx, int posy) {
-        double radio = 1.0; //radio de maximo 1 kilómetro
-        List<Monopatin> monopatins = this.monopatinRepository.findAll();
-        ArrayList<Monopatin> response = new ArrayList<>();
-        for(Monopatin monopatin : monopatins) {
-            if(this.calcularDistancia(monopatin, posx, posy) <= radio) {
-                response.add(monopatin);
+    public ArrayList<Monopatin> getClosestMonopatins(int posx, int posy) throws Exception {
+        try{
+            List<Monopatin> monopatines= this.monopatinRepository.getMonopatinesEnRadio1km(posx,posy);
+            List<Monopatin> respuesta = new ArrayList<>();
+            for (Monopatin monopatin : monopatines) {
+                respuesta.add(monopatin);
             }
+            return (ArrayList<Monopatin>) respuesta;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
-        return response;
     }
 
     public double calcularDistancia(Monopatin m, int x, int y) {
