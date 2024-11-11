@@ -16,4 +16,12 @@ public class Mantenimiento {
     @Column(nullable = false)
     private String estado;
 
+    public Mantenimiento(Long id_monopatin, String estado) {
+        this.id_monopatin = id_monopatin;
+        this.estado = estado;
+    }
+
+    public Mantenimiento() {
+
+    }
 }

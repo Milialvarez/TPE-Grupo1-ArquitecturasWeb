@@ -10,7 +10,22 @@ import java.util.ArrayList;
 public class MantenimientoService {
     private MantenimientoRepository mantenimientoRepository;
 
-    public ArrayList<Mantenimiento> getAll(String status){
+    public ArrayList<Mantenimiento> getAll(String status) {
         return this.mantenimientoRepository.findAllByStatus(status);
+    }
+
+    public Mantenimiento save(Long idMonopatin) {
+        Mantenimiento mantenimiento = new Mantenimiento(idMonopatin, "no disponible");
+        return this.mantenimientoRepository.save(mantenimiento);
+    }
+
+    public Mantenimiento updateMaintenance(Long id, String status) {
+        Mantenimiento mantenimiento = (Mantenimiento) this.mantenimientoRepository.findByIdMonopatin(id);
+        if (mantenimiento != null) {
+            this.mantenimientoRepository.update(id, status);
+            return this.mantenimientoRepository.findById(id).get();
+        } else {
+            return null;
+        }
     }
 }
