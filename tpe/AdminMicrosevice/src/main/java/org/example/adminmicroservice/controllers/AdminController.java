@@ -5,11 +5,13 @@ import org.example.adminmicroservice.models.Monopatin;
 import org.example.adminmicroservice.models.User;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin")
@@ -37,11 +39,13 @@ public class AdminController {
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
         try {
-            List<Object[]> reporteTotalFacturadoEntreFechas = (List<Object[]>) adminService.getTotalBilled(origin, end);
-            return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
+            Optional<Object[]> reporteTotalFacturadoEntreFechas = (Optional<Object[]>) adminService.getTotalBilled(origin, end);
+            if (reporteTotalFacturadoEntreFechas.isPresent())
+                return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+            if (origin.isAfter(end)) return ResponseEntity.badRequest().body(e.getMessage());
 
+        }
+        return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
     }
 }

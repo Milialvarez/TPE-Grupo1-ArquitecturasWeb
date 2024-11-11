@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TravelMicrosevice/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TravelMicrosevice/target/classes/org/example/travelsmicroservice/TravelsMicroserviceApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/entities/Reporte.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/entities/ReporteFacturacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/controllers/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/controllers/BillController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/controllers/ReportsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/controllers/ReportsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/services/ReportsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/services/ReportsService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +60,7 @@
     "Spring Boot.MaintenanceMicroserviceApplication.executor": "Run",
     "Spring Boot.MonopatinMicroserviceApplication.executor": "Run",
     "Spring Boot.UserMicroserviceApplication.executor": "Run",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Manuel/Documents/TUDAI/ArquitecturasWeb/integrador/TPE-Grupo1-ArquitecturasWeb/integrador3",
     "node.js.detected.package.eslint": "true",
@@ -111,7 +108,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AdminMicroserviceApplication">
+  <component name="RunManager">
     <configuration name="AdminMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="AdminMicrosevice" />
