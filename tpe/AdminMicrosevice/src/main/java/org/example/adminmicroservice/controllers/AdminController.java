@@ -1,5 +1,6 @@
 package org.example.adminmicroservice.controllers;
 
+import org.example.adminmicroservice.models.Account;
 import org.example.adminmicroservice.models.Monopatin;
 import org.example.adminmicroservice.models.User;
 import org.example.adminmicroservice.services.AdminService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -28,17 +30,17 @@ public class AdminController {
     }
 
     @PutMapping("/null")
-    public ResponseEntity<?> anullateAccount(@RequestBody User user){
-       return ResponseEntity.ok(adminService.anullateAccount(user));
+    public ResponseEntity<?> anullateAccount(@RequestBody Account ac){
+       return ResponseEntity.ok(adminService.anullateAccount(ac));
     }
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen")LocalDate origin,@PathVariable("fechaFin") LocalDate end){
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
         try {
-            List<Object[]> reporteTotalFacturadoEntreFechas = adminService.getTotalBilled(origin, end);
+            List<Object[]> reporteTotalFacturadoEntreFechas = (List<Object[]>) adminService.getTotalBilled(origin, end);
             return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
-        } catch () {
-
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
     }

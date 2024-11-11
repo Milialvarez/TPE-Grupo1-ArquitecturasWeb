@@ -1,6 +1,6 @@
 package org.example.adminmicroservice.feignClients;
 
-import org.example.adminmicroservice.models.User;
+import org.example.adminmicroservice.models.Account;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

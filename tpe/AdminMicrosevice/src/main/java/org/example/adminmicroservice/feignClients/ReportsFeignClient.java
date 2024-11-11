@@ -1,10 +1,10 @@
 package org.example.adminmicroservice.feignClients;
 
-import org.example.adminmicroservice.models.Reporte;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @FeignClient(name="ReportsMicroservice", url="http://localhost:8001/reports")
