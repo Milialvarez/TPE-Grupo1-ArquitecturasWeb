@@ -33,4 +33,8 @@ public class ViajeService {
 
         return viaje;
     }
+
+    public double getTotalBilled(LocalDate origin, LocalDate end) {
+
+    }
 }

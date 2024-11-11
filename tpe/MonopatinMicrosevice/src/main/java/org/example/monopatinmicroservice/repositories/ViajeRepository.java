@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ViajeRepository extends JpaRepository<Viaje, Long> {
+
+
+    public double getTotalBilled(LocalDate origin, LocalDate end);
 }

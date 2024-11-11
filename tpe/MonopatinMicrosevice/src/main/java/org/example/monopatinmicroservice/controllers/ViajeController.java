@@ -89,4 +89,9 @@ public class ViajeController {
             return ResponseEntity.status(500).build();
         }
     }
+
+    @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
+    public ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2){
+
+    }
 }

@@ -16,7 +16,7 @@ public class BillService {
     @Autowired
     BillRepository billRepository;
 
-    MonopatinFeignClient monopatinFeignClient;
+    ViajeFeignClient viajeFeignClient;
 
     public List<Bill> getAll() {
         return billRepository.findAll();
@@ -44,7 +44,7 @@ public class BillService {
     }
 
     public double getTotalBilled(LocalDate origin, LocalDate end){
-        List<?> viajes = (List<?>) this.monopatinFeignClient.getViajesBetween(origin, end);
+        List<?> viajes = (List<?>) this.viajeFeignClient.getViajesBetween(origin, end);
         double total = 0.0;
         for(Object v : viajes){
 //            total += (Double) v.get
