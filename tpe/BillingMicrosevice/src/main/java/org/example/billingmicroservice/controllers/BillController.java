@@ -41,9 +41,4 @@ public class BillController{
             return ResponseEntity.badRequest().build();
         }
     }
-
-
-
-
-
 }

@@ -2,13 +2,12 @@ package org.example.billingmicroservice.services;
 
 
 import org.example.billingmicroservice.entities.Bill;
-import org.example.billingmicroservice.feignClient.MonopatinFeignClient;
+import org.example.billingmicroservice.feignClient.ViajeFeignClient;
 import org.example.billingmicroservice.repositories.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,14 +41,39 @@ public class BillService {
         if (b != null) this.billRepository.setNewPrice(id, price);
         return b;
     }
-
-    public double getTotalBilled(LocalDate origin, LocalDate end){
-        List<?> viajes = (List<?>) this.viajeFeignClient.getViajesBetween(origin, end);
-        double total = 0.0;
-        for(Object v : viajes){
-//            total += (Double) v.get
+//hace falta cambiar el calculo del costo. El precio adicinal deberia ser por cada precio fijo.
+    private double getCostoViaje(Object[] viaje, Bill tarifa){
+        double sumatoria = 0;
+        Integer duracionViaje = (Integer) viaje[2];
+        Object[] pausa = (Object[]) viaje[3];
+        if (pausa != null && (Integer) pausa[1] > 15){
+            sumatoria += tarifa.getAdditionalPrice();
         }
-        return 0.0;
+        sumatoria += duracionViaje * tarifa.getPrice();
+        return sumatoria;
+    }
+
+    public Bill getCostos(){ //
+        List<Bill> tarifas = this.billRepository.findAll();
+        return tarifas.getFirst();
+    }
+
+    //El credito comienza a consumirse cuando se activa el viaje (es decir en t == 0)
+    // Si el viaje tuvo un tiempo de pausa asociado mayor a 15 minutos, se debe calcular
+    // un costo adicional que se suma al fijo por el resto del viaje
+    public double getTotalBilled(LocalDate origin, LocalDate end){
+        try {
+            Bill tarifa = this.getCostos();
+            List<Object[]> viajes = (List<Object[]>) this.viajeFeignClient.getViajesBetween(origin, end);
+            double sumatoria = 0;
+            for (Object[] v : viajes){
+                sumatoria += this.getCostoViaje(v, tarifa);
+            }
+            return sumatoria;
+        } catch (Exception ignored) {
+
+        }
+
     }
 
     public Bill modifyBill(Bill bill) {
