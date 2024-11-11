@@ -3,15 +3,29 @@ package org.example.maintenancemicroservice.controllers;
 import org.example.maintenancemicroservice.entities.Mantenimiento;
 import org.example.maintenancemicroservice.models.Monopatin;
 import org.example.maintenancemicroservice.services.MantenimientoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/mantenimiento")
 public class MantenimientoController {
+    @Autowired
     private MantenimientoService ms;
+
+    @GetMapping
+    public ResponseEntity<?> getMantenimientos() {
+        try{
+            ArrayList<Mantenimiento> m = this.ms.getAllManteinances();
+            return ResponseEntity.ok(m);
+        }catch(Exception e){
+//            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
+    }
 
     @GetMapping("/unvailable")
     public ResponseEntity<?> getAllManteinanceUnvailable(){
@@ -44,11 +58,12 @@ public class MantenimientoController {
         }
     }
 
-    @PutMapping("/estado/{status}")
-    public ResponseEntity<?> updateStatus(@RequestBody Monopatin m, @PathVariable String status){
+    @PutMapping("id/{id}/estado/{status}")
+    public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @PathVariable String status){
         try{
-            Mantenimiento mantenimiento = this.ms.updateMaintenance(m.getId(), status);
-            return ResponseEntity.ok(m);
+            Mantenimiento mantenimiento = this.ms.updateMaintenance(id, status);
+            System.out.println(mantenimiento);
+            return ResponseEntity.ok(mantenimiento);
         }catch(Exception e){
             return ResponseEntity.noContent().build();
         }
@@ -58,9 +73,15 @@ public class MantenimientoController {
     public ResponseEntity<?> getManteinanceByMonopatinId(@PathVariable Long id_monopatin){
         try{
             Mantenimiento mantenimiento = this.ms.findByMonopatinId(id_monopatin);
-            return ResponseEntity.ok(mantenimiento);
+            if(mantenimiento != null) {
+                return ResponseEntity.ok(mantenimiento);
+            }else {
+                HashMap<String, String> notFound = new HashMap<>();
+                notFound.put("error", "El monopatin con el id " + id_monopatin + " no existe.");
+                return ResponseEntity.status(404).body(notFound);
+            }
         }catch(Exception e){
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(500).build();
         }
     }
 }

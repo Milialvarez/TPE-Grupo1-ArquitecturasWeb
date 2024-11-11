@@ -2,10 +2,11 @@ package org.example.billingmicroservice.services;
 
 
 import org.example.billingmicroservice.entities.Bill;
-import org.example.billingmicroservice.feignClient.MonopatinFeignClient;
+import org.example.billingmicroservice.feignClient.ViajeFeignClient;
 import org.example.billingmicroservice.repositories.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class BillService {
     @Autowired
     BillRepository billRepository;
 
+    @Autowired
     ViajeFeignClient viajeFeignClient;
 
     public List<Bill> getAll() {
@@ -52,6 +54,7 @@ public class BillService {
         return 0.0;
     }
 
+    @Transactional
     public Bill modifyBill(Bill bill) {
         this.billRepository.modify(bill.getId(), bill.getPrice(), bill.getAdditionalPrice());
         return bill;

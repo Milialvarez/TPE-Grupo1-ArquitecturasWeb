@@ -20,13 +20,12 @@ import java.util.List;
 public class AdminService {
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
     AccountsFeignClient accountsFeignClient;
+    @Autowired
     MonopatinFeignClient monopatinFeignClient;
+    @Autowired
     ReportsFeignClient reportsFeignClient;
-
-    public List getAdmins() {
-        return restTemplate.getForObject("http://localhost:8001/users", List.class);
-    }
 
     public List<Monopatin> getMonopatinesPorViajesPorAnio(Integer anio, Integer xViajes) {
         ResponseEntity<?> monopatins = this.monopatinFeignClient.getMonopatinesPorViajesPorAnio(anio, xViajes);

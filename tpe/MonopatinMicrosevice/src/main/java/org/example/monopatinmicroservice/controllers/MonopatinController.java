@@ -142,15 +142,15 @@ public class MonopatinController {
         }
     }
 
-    @PostMapping("/mantener")
-    public ResponseEntity<?> enviarMonopatinAMantenimiento(@RequestBody Monopatin monopatin){
-        ResponseEntity<?> response = this.monopatinService.enviarMonopatinAMantenimiento(monopatin);
+    @PostMapping("/mantener/{id_monopatin}")
+    public ResponseEntity<?> enviarMonopatinAMantenimiento(@PathVariable("id_monopatin") Integer id_monopatin){
+        ResponseEntity<?> response = this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
         return response;
     }
 
-    @PutMapping("/mantenimiento/estado/{estado}")
-    public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @RequestBody Monopatin monopatin){
-        ResponseEntity<?> response = this.monopatinService.cambiarEstadoMonopatin(monopatin, estado);
+    @PutMapping("/mantenimiento/id/{id}/estado/{estado}")
+    public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @PathVariable("id") Integer id){
+        ResponseEntity<?> response = this.monopatinService.cambiarEstadoMonopatin(id, estado);
         return response;
     }
 
