@@ -53,4 +53,14 @@ public class MantenimientoController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    @GetMapping("/{id_monopatin}")
+    public ResponseEntity<?> getManteinanceByMonopatinId(@PathVariable Long id_monopatin){
+        try{
+            Mantenimiento mantenimiento = this.ms.findByMonopatinId(id_monopatin);
+            return ResponseEntity.ok(mantenimiento);
+        }catch(Exception e){
+            return ResponseEntity.noContent().build();
+        }
+    }
 }

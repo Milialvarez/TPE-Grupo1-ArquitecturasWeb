@@ -20,4 +20,7 @@ public interface MantenimientoRepository extends JpaRepository<Mantenimiento,Lon
     @Modifying
     @Query("UPDATE m FROM Mantenimiento m SET m.estado =:status WHERE m.id =: id")
     void update(@PathVariable("id") Long id, @PathVariable("status") String status);
+
+    @Query("SELECT m FROM Mantenimiento m WHERE m.id_monopatin =: idMonopatin")
+    Mantenimiento findByMonopatinId(@PathVariable("idMonopatin")Long idMonopatin);
 }

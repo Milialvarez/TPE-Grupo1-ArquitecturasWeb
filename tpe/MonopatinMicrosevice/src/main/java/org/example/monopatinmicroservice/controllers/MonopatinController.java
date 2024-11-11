@@ -149,4 +149,16 @@ public class MonopatinController {
         }
     }
 
+    @PostMapping("/mantener")
+    public ResponseEntity<?> enviarMonopatinAMantenimiento(@RequestBody Monopatin monopatin){
+        ResponseEntity<?> response = this.monopatinService.enviarMonopatinAMantenimiento(monopatin);
+        return response;
+    }
+
+    @PutMapping("/mantenimiento/estado/{estado}")
+    public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @RequestBody Monopatin monopatin){
+        ResponseEntity<?> response = this.monopatinService.cambiarEstadoMonopatin(monopatin, estado);
+        return response;
+    }
+
 }

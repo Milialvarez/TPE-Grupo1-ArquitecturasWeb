@@ -28,4 +28,9 @@ public class MantenimientoService {
             return null;
         }
     }
+
+    public Mantenimiento findByMonopatinId(Long idMonopatin) {
+        Mantenimiento m = this.mantenimientoRepository.findByMonopatinId(idMonopatin);
+        return m;
+    }
 }
