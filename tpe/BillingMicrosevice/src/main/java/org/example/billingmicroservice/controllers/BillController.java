@@ -3,11 +3,13 @@ package org.example.billingmicroservice.controllers;
 import org.example.billingmicroservice.entities.Bill;
 import org.example.billingmicroservice.services.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -26,9 +28,13 @@ public class BillController{
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
         try {
             double reporteTotalFacturadoEntreFechas = billService.getTotalBilled(origin, end);
-            return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
+            if (reporteTotalFacturadoEntreFechas!= -1)
+                return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
+            else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro una facturacion para las fechas solicitadas.");
+            }
         } catch (Exception e) {
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrio un error al realizar la solicitud.");
         }
     }
 

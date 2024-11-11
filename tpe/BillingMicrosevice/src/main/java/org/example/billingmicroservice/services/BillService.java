@@ -54,6 +54,7 @@ public class BillService {
     }
 
     public Bill getCostos(){ //
+
         List<Bill> tarifas = this.billRepository.findAll();
         return tarifas.getFirst();
     }
@@ -70,8 +71,8 @@ public class BillService {
                 sumatoria += this.getCostoViaje(v, tarifa);
             }
             return sumatoria;
-        } catch (Exception ignored) {
-
+        } catch (Exception e) {
+            return -1.0;
         }
 
     }
