@@ -5,6 +5,7 @@ import org.example.monopatinmicroservice.repositories.ViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -35,6 +36,6 @@ public class ViajeService {
     }
 
     public double getTotalBilled(LocalDate origin, LocalDate end) {
-
+        return 0.0;
     }
 }

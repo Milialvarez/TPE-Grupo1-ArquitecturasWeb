@@ -40,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok(userNew);
     }
 
-    @GetMapping("/monopatins/location/{posx}/{posy")
+    @GetMapping("/monopatins/location/{posx}/{posy}")
     public ResponseEntity<?> getClosestMonopatins(@PathVariable("posx") int posx, @PathVariable("posy") int posy){
         return ResponseEntity.status(200).body(this.userService.getClosestMonopatins(posx, posy));
     }
