@@ -1,14 +1,15 @@
 package org.example.reportsmicroservice.entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 
 public class ReporteFacturacion extends Reporte{
     private double totalFacturado;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
+    private Date fechaInicio;
+    private Date fechaFin;
 
-    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, LocalDate fechaInicio, LocalDate fechaFin) {
+    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, Date fechaInicio, Date fechaFin) {
         super(nombre, descripcion);
         this.totalFacturado = totalFacturado;
         this.fechaInicio = fechaInicio;
@@ -25,11 +26,11 @@ public class ReporteFacturacion extends Reporte{
         return totalFacturado;
     }
 
-    public LocalDate getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public LocalDate getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 }
