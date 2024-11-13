@@ -20,10 +20,10 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @GetMapping
-    public ResponseEntity<List<Object>> getAdmins() {
-        List<Object> admins = adminService.getAdmins();
-        return ResponseEntity.status(200).body(admins);
+    @GetMapping("/{role}") //role must be either: [usuario, admin, mantenimiento]
+    public ResponseEntity<List<Object>> getAccountsByRole(@PathVariable("role") String r) {
+        List<Object> acc = adminService.getAccByRole(r);
+        return ResponseEntity.status(200).body(acc);
     }
 
     @GetMapping("/xViajes/{xViajes}/anio/{anio}")
@@ -54,7 +54,7 @@ public class AdminController {
     public ResponseEntity<?> getReporteMonopatinesSegunEstado(){
         try{
             Object reporte = adminService.getReporteMonopatinesSegunEstado();
-            return ResponseEntity.status(200).body(reporte);
+            return ResponseEntity.status(200).body(reporte.toString());
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }

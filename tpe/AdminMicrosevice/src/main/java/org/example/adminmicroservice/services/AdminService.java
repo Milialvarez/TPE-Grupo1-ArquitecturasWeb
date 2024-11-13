@@ -47,8 +47,8 @@ public class AdminService {
         return reporte;
     }
 
-    public List<Object> getAdmins(){
-        return (List<Object>) this.accountsFeignClient.getAccountByRole("admin");
+    public List<Object> getAccByRole(String r){
+        return (List<Object>) this.accountsFeignClient.getAccountsByRole(r);
     }
 
     public Object getReporteMonopatinesSegunEstado(){

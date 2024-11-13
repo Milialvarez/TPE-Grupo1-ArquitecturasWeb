@@ -17,7 +17,7 @@ public interface AccountsFeignClient {
     ResponseEntity<Account> getAccountById(@PathVariable("id") Long id);
 
     @GetMapping("/{role}")
-    ResponseEntity<Account> getAccountByRole(@PathVariable("role") String role);
+    ResponseEntity<Account> getAccountsByRole(@PathVariable("role") String role);
 
     @PostMapping
     ResponseEntity<Account> save(@RequestBody Account acc);
