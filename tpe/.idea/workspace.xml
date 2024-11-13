@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/dtos/BillDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/BillingFeignClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/services/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/feignClients/BillingFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/feignClients/BillingFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/controllers/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/controllers/BillController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/entities/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/entities/Bill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/repositories/BillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/repositories/BillRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,35 +47,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AdminMicroserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MaintenanceMicroserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MonopatinMicroserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserMicroserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Manuel/Documents/TUDAI/ArquitecturasWeb/integrador/TPE-Grupo1-ArquitecturasWeb/integrador3&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AdminMicroserviceApplication.executor": "Run",
+    "Spring Boot.MaintenanceMicroserviceApplication.executor": "Run",
+    "Spring Boot.MonopatinMicroserviceApplication.executor": "Run",
+    "Spring Boot.UserMicroserviceApplication.executor": "Run",
+    "git-widget-placeholder": "setBillService",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Manuel/Documents/TUDAI/ArquitecturasWeb/integrador/TPE-Grupo1-ArquitecturasWeb/integrador3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.example.adminmicroservice.models" />

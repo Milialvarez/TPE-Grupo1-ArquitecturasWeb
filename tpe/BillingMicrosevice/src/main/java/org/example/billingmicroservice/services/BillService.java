@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,7 +21,6 @@ public class BillService {
     public List<Bill> getAll() {
         return billRepository.findAll();
     }
-
 
     public Bill save(Bill b) {
         this.billRepository.save(b);
@@ -77,8 +77,13 @@ public class BillService {
 
     }
 
-    public Bill modifyBill(Bill bill) {
-        this.billRepository.modify(bill.getId(), bill.getPrice(), bill.getAdditionalPrice());
-        return bill;
+    public Bill setNewBill(Date f, float pFijo, float pEx) {
+        Date lastBillDate = this.billRepository.getLastOne();
+        if (f.before(lastBillDate)) return null;
+        Bill b = new Bill();
+        b.setFecha(f);
+        b.setPrice(pFijo);
+        b.setAdditionalPrice(pEx);
+        return this.billRepository.save(b);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,13 +39,13 @@ public class BillController{
         }
     }
 
-    @PutMapping("/modify")
-    public ResponseEntity<?> modifyBill(@RequestBody Bill bill){
+    @PostMapping()
+    public ResponseEntity<?> setNewBill(Date fechaVigencia, float pFijo, float pExtra){
         try{
-            Bill b = billService.modifyBill(bill);
-            return ResponseEntity.ok(b);
+            Bill b = billService.setNewBill(fechaVigencia, pFijo, pExtra);
+            return ResponseEntity.status(201).body(b);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
