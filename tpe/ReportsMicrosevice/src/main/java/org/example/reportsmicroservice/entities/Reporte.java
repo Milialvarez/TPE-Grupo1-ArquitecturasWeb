@@ -10,6 +10,10 @@ public abstract class Reporte {
         this.descripcion = descripcion;
     }
 
+    public Reporte() {
+
+    }
+
     public abstract String toString ();
 
     public String getNombre() {
