@@ -4,6 +4,7 @@ import org.example.usermicroservice.entities.Account;
 import org.example.usermicroservice.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class AccountService {
         this.accountRepository.save(account);
         return account;
     }
+
     public void delete(Account account){
 
         accountRepository.delete(account);
@@ -29,6 +31,7 @@ public class AccountService {
         return accountRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public Account setAccountAnullated(Long id, boolean state) {
         Account ac = this.getAccountById(id);
         if (ac!=null) this.accountRepository.setAccountAnullated(id);

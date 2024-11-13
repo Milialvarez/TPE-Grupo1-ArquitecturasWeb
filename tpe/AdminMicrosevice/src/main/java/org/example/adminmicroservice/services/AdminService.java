@@ -19,19 +19,19 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminService {
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
     AccountsFeignClient accountsFeignClient;
+    @Autowired
     MonopatinFeignClient monopatinFeignClient;
+    @Autowired
     ReportsFeignClient reportsFeignClient;
     BillingFeignClient billingFeignClient;
-
-    public List getAdmins() {
-        return restTemplate.getForObject("http://localhost:8001/users", List.class);
-    }
 
     public List<Monopatin> getMonopatinesPorViajesPorAnio(Integer anio, Integer xViajes) {
         ResponseEntity<?> monopatins = this.monopatinFeignClient.getMonopatinesPorViajesPorAnio(anio, xViajes);
@@ -43,12 +43,9 @@ public class AdminService {
         return this.accountsFeignClient.anullateAccount(ac);
     }
 
-    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
-        try {
-            return this.reportsFeignClient.getTotalBilled(origin, end);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public Optional<Object[]> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
+        Optional<Object[]> reporte = (Optional<Object[]>) this.reportsFeignClient.getTotalBilled(origin, end).getBody();
+        return reporte;
     }
 
     public Object setNewBill(Date fecha, float pFijo, float pExtra){

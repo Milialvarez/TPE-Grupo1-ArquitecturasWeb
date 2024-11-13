@@ -1,13 +1,16 @@
 package org.example.maintenancemicroservice.services;
 
+import jakarta.transaction.Transactional;
 import org.example.maintenancemicroservice.entities.Mantenimiento;
 import org.example.maintenancemicroservice.repositories.MantenimientoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service("MantenimientoService")
 public class MantenimientoService {
+    @Autowired
     private MantenimientoRepository mantenimientoRepository;
 
     public ArrayList<Mantenimiento> getAll(String status) {
@@ -16,21 +19,27 @@ public class MantenimientoService {
 
     public Mantenimiento save(Long idMonopatin) {
         Mantenimiento mantenimiento = new Mantenimiento(idMonopatin, "no disponible");
-        return this.mantenimientoRepository.save(mantenimiento);
+        Mantenimiento result = this.mantenimientoRepository.save(mantenimiento);
+        return result;
     }
 
+    @Transactional
     public Mantenimiento updateMaintenance(Long id, String status) {
-        Mantenimiento mantenimiento = (Mantenimiento) this.mantenimientoRepository.findByIdMonopatin(id);
+        Mantenimiento mantenimiento = this.mantenimientoRepository.findByIdMonopatin(id);
         if (mantenimiento != null) {
             this.mantenimientoRepository.update(id, status);
-            return this.mantenimientoRepository.findById(id).get();
-        } else {
-            return null;
+            mantenimiento.setEstado(status);
         }
+        return mantenimiento;
     }
 
     public Mantenimiento findByMonopatinId(Long idMonopatin) {
         Mantenimiento m = this.mantenimientoRepository.findByMonopatinId(idMonopatin);
+        return m;
+    }
+
+    public ArrayList<Mantenimiento> getAllManteinances() {
+        ArrayList<Mantenimiento> m = (ArrayList<Mantenimiento>) this.mantenimientoRepository.findAll();
         return m;
     }
 }

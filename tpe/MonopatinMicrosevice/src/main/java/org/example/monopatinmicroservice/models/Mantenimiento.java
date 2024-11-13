@@ -1,6 +1,11 @@
 package org.example.monopatinmicroservice.models;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class Mantenimiento {
     private long id;
     private Long id_monopatin;

@@ -6,6 +6,7 @@ import org.example.billingmicroservice.feignClient.ViajeFeignClient;
 import org.example.billingmicroservice.repositories.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -16,6 +17,7 @@ public class BillService {
     @Autowired
     BillRepository billRepository;
 
+    @Autowired
     ViajeFeignClient viajeFeignClient;
 
     public List<Bill> getAll() {
