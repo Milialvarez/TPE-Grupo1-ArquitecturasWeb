@@ -29,7 +29,6 @@ public class AdminService {
     AccountsFeignClient accountsFeignClient;
     @Autowired
     MonopatinFeignClient monopatinFeignClient;
-    @Autowired
     ReportsFeignClient reportsFeignClient;
     BillingFeignClient billingFeignClient;
 
@@ -46,6 +45,14 @@ public class AdminService {
     public Optional<Object[]> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
         Optional<Object[]> reporte = (Optional<Object[]>) this.reportsFeignClient.getTotalBilled(origin, end).getBody();
         return reporte;
+    }
+
+    public List<Object> getAdmins(){
+        return (List<Object>) this.accountsFeignClient.getAccountByRole("admin");
+    }
+
+    public Object getReporteMonopatinesSegunEstado(){
+        return this.reportsFeignClient.getReporteMonopatinesSegunEstado();
     }
 
     public Object setNewBill(Date fecha, float pFijo, float pExtra){

@@ -12,4 +12,7 @@ public interface ReportsFeignClient {
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     ResponseEntity<?> getTotalBilled(LocalDate origin, LocalDate end);
+
+    @GetMapping("/activosVsMantenimiento")
+    ResponseEntity<?> getReporteMonopatinesSegunEstado();
 }

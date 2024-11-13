@@ -3,7 +3,6 @@ package org.example.adminmicroservice.controllers;
 import org.example.adminmicroservice.dtos.BillDTO;
 import org.example.adminmicroservice.models.Account;
 import org.example.adminmicroservice.models.Monopatin;
-import org.example.adminmicroservice.models.User;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +21,9 @@ public class AdminController {
     AdminService adminService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAdmins() {
-        List<User> admins = adminService.getAdmins();
-        return ResponseEntity.ok(admins);
+    public ResponseEntity<List<Object>> getAdmins() {
+        List<Object> admins = adminService.getAdmins();
+        return ResponseEntity.status(200).body(admins);
     }
 
     @GetMapping("/xViajes/{xViajes}/anio/{anio}")
@@ -49,6 +48,16 @@ public class AdminController {
 
         }
         return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
+    }
+
+    @GetMapping("/activosVsMantenimiento")
+    public ResponseEntity<?> getReporteMonopatinesSegunEstado(){
+        try{
+            Object reporte = adminService.getReporteMonopatinesSegunEstado();
+            return ResponseEntity.status(200).body(reporte);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @PostMapping()
