@@ -3,10 +3,12 @@ package org.example.usermicroservice.services;
 import org.example.usermicroservice.entities.User;
 import org.example.usermicroservice.feignClients.MonopatinFeignClient;
 import org.example.usermicroservice.repositories.UserRepository;
+import org.example.usermicroservice.utils.HelperUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class UserService {
@@ -17,6 +19,13 @@ public class UserService {
 
     public List<User> getAll(){
         return userRepository.findAll();
+    }
+
+    public List<User> getUsersByRole(String r){
+        HelperUsers h = new HelperUsers();
+        ArrayList enumOfRoles = h.getEnumRoles();
+        if (enumOfRoles.contains(r)) return this.userRepository.getUsersByRole(r);
+        else return new ArrayList<>();
     }
 
     public User save(User user){

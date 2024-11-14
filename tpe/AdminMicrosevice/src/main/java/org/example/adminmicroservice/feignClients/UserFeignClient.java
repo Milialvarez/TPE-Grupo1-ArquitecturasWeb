@@ -1,5 +1,6 @@
 package org.example.adminmicroservice.feignClients;
 
+import org.example.adminmicroservice.models.Account;
 import org.example.adminmicroservice.models.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,9 @@ public interface UserFeignClient {
 
     @GetMapping
     ResponseEntity<List<User>> getAllUsers();
+
+    @GetMapping("/{role}")
+    ResponseEntity<Account> getUsersByRole(@PathVariable("role") String role);
 
     @GetMapping("/{id}")
     ResponseEntity<User> getUserById(@PathVariable("id") Long id);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,5 +46,12 @@ public class UserController {
         return ResponseEntity.status(200).body(this.userService.getClosestMonopatins(posx, posy));
     }
 
-
+    @GetMapping("/{role}")
+    public ResponseEntity<?> getUsersByRole(@PathVariable("role") String role){
+        List<User> users = this.userService.getUsersByRole(role);
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.status(200).body(users);
+    }
 }

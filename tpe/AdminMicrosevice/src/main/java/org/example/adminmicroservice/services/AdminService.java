@@ -2,10 +2,7 @@ package org.example.adminmicroservice.services;
 
 import feign.FeignException;
 import org.example.adminmicroservice.dtos.BillDTO;
-import org.example.adminmicroservice.feignClients.BillingFeignClient;
-import org.example.adminmicroservice.feignClients.MonopatinFeignClient;
-import org.example.adminmicroservice.feignClients.ReportsFeignClient;
-import org.example.adminmicroservice.feignClients.AccountsFeignClient;
+import org.example.adminmicroservice.feignClients.*;
 import org.example.adminmicroservice.models.Account;
 import org.example.adminmicroservice.models.Monopatin;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +23,12 @@ public class AdminService {
     @Autowired
     RestTemplate restTemplate;
     @Autowired
-    AccountsFeignClient accountsFeignClient;
+    UserFeignClient usersFeignClient;
     @Autowired
     MonopatinFeignClient monopatinFeignClient;
     ReportsFeignClient reportsFeignClient;
     BillingFeignClient billingFeignClient;
+    AccountsFeignClient accountsFeignClient;
 
     public List<Monopatin> getMonopatinesPorViajesPorAnio(Integer anio, Integer xViajes) {
         ResponseEntity<?> monopatins = this.monopatinFeignClient.getMonopatinesPorViajesPorAnio(anio, xViajes);
@@ -47,8 +45,8 @@ public class AdminService {
         return reporte;
     }
 
-    public List<Object> getAccByRole(String r){
-        return (List<Object>) this.accountsFeignClient.getAccountsByRole(r);
+    public List<Object> getUsersByRole(String r){
+        return (List<Object>) this.usersFeignClient.getUsersByRole(r);
     }
 
     public Object getReporteMonopatinesSegunEstado(){
