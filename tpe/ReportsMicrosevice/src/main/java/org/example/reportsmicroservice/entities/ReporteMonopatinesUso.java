@@ -1,5 +1,8 @@
 package org.example.reportsmicroservice.entities;
 
+import lombok.Getter;
+
+@Getter
 public class ReporteMonopatinesUso extends Reporte {
     private Long idMonop;
     private float maxKm;
@@ -16,6 +19,6 @@ public class ReporteMonopatinesUso extends Reporte {
 
     @Override
     public String toString() {
-        return "Nombre del reporte: " + super.getNombre() + "Descripcion: " + super.getDescripcion() + "Cantidad de monopatines activos: " + this.maxKm +"Cantidad de monopatines en mantenimiento: " + this.tiempoMax;
+        return "Nombre del reporte: " + super.getNombre() + "Descripcion: " + super.getDescripcion() + " Id del monopatin: " + this.idMonop + " Cantidad de km recorridos: " + this.maxKm + " Tiempo max de uso: " + this.tiempoMax + " Tiempo max de uso con pausas: " + this.tiempoMaxConPausas;
     }
 }

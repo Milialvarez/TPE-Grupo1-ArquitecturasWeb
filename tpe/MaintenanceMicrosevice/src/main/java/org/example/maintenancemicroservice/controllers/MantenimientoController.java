@@ -27,6 +27,28 @@ public class MantenimientoController {
         }
     }
 
+    @GetMapping("/km/{km}")
+    public ResponseEntity<?> getMonopatinesReporteUsoKm(@PathVariable("km") float km) {
+        try{
+            ArrayList<Monopatin> lista = this.ms.getMonopatinesPorKm(km);
+            return ResponseEntity.status(200).body(lista);
+        }catch(Exception e){
+//            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/tiempo/{t}/{p}")
+    public ResponseEntity<?> getMonopatinesPorTiempo(@PathVariable("t") float tiempo, @PathVariable(value = "p", required = false) boolean p) {
+        try{
+            ArrayList<Monopatin> lista = this.ms.getMonopatinesPorTiempo(tiempo, p);
+            return ResponseEntity.status(200).body(lista);
+        }catch(Exception e){
+//            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
+    }
+
     @GetMapping("/unvailable")
     public ResponseEntity<?> getAllManteinanceUnvailable(){
         try{

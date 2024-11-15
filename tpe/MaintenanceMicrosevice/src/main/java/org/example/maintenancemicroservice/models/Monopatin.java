@@ -1,6 +1,7 @@
 package org.example.maintenancemicroservice.models;
 
 
+import jakarta.persistence.Column;
 import lombok.Getter;
 
 public class Monopatin {
@@ -8,6 +9,8 @@ public class Monopatin {
     private Long id;
 
     private Float kmRecorridos;
+    private Float tiempoUso;
+    private Float tiempoUsoConPausas;
 
     private Parada parada;
 
