@@ -13,4 +13,9 @@ public interface MonopatinFeignClient {
    @GetMapping("/mantenimiento")
    ResponseEntity<?> getMonopatinesEnMantenimiento();
 
+   @GetMapping( "/{km}")
+   ResponseEntity<?> getMonopatinesPorKm(@PathVariable(value = "km") float maxKmRecorridos);
+
+   @GetMapping( "/{t}/{pausa}")
+   ResponseEntity<?> getMonopatinesPorTiempo(@PathVariable(value = "t") float t, @PathVariable(value = "pausa", required = false) boolean pausa);
 }
