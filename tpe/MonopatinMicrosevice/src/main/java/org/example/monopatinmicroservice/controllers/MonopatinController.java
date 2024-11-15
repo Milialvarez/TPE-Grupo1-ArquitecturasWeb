@@ -144,6 +144,7 @@ public class MonopatinController {
 
     @PostMapping("/mantener/{id_monopatin}")
     public ResponseEntity<?> enviarMonopatinAMantenimiento(@PathVariable("id_monopatin") Integer id_monopatin){
+
         ResponseEntity<?> response = this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
         return response;
     }

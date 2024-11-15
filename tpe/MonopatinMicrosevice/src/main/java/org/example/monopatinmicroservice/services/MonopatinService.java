@@ -106,15 +106,22 @@ public class MonopatinService {
             response.put("Inhabilitado", "el monopatín no necesita mantenimiento");
             return ResponseEntity.ok().body(response);
         } else{
-            ResponseEntity<?> result = this.mfc.saveManteinance(id_monopatin);
-            LinkedHashMap<?, ?> l = (LinkedHashMap<?, ?>) result.getBody();
-            Integer auxId = (Integer) l.get("id");
-            Long id = auxId.longValue();
-            Integer auxIdMonopatin = (Integer) l.get("id_monopatin");
-            Long idMonopatin = auxIdMonopatin.longValue();
+            ResponseEntity<?> alreadyExists = this.mfc.getManteinanceByMonopatinId(id_monopatin);
+            if(alreadyExists == null){
+                ResponseEntity<?> result = this.mfc.saveManteinance(id_monopatin);
+                LinkedHashMap<?, ?> l = (LinkedHashMap<?, ?>) result.getBody();
+                Integer auxId = (Integer) l.get("id");
+                Long id = auxId.longValue();
+                Integer auxIdMonopatin = (Integer) l.get("id_monopatin");
+                Long idMonopatin = auxIdMonopatin.longValue();
 
-            Mantenimiento mant = new Mantenimiento(id, idMonopatin, l.get("estado").toString());
-            return ResponseEntity.ok().body(mant);
+                Mantenimiento mant = new Mantenimiento(id, idMonopatin, l.get("estado").toString());
+                return ResponseEntity.ok().body(mant);
+            } else {
+                this.mfc.updateStatus(id_monopatin, "no disponible");
+                response.put("success", "monopatin enviado a mantenimiento");
+                return ResponseEntity.ok().body(response);
+            }
         }
     }
 
