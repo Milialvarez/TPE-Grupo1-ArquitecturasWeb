@@ -1,0 +1,4 @@
+id,creation_date,balance,anullated
+1,2024-01-01,1000,false
+2,2023-06-15,5000,true
+3,2024-03-10,3000,false
