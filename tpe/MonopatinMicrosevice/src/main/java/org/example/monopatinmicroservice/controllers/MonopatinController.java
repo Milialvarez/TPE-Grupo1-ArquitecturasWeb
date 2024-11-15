@@ -23,10 +23,10 @@ public class MonopatinController {
     @Autowired
     private ParadaService paradaService;
 
-    @GetMapping
-    public ResponseEntity<?> getMonopatines() {
+    @GetMapping({"/", "/{km}", "/{tiempo}/{pausa}"})
+    public ResponseEntity<?> getMonopatines(@PathVariable(value = "km", required = false) float maxKmRecorridos, @PathVariable(value = "tiempo", required = false) float tiempoMaxUso, @PathVariable(value = "pausa", required = false) boolean p) {
         try {
-            List<Monopatin> result = this.monopatinService.getAll();
+            List<Monopatin> result = this.monopatinService.getAll(maxKmRecorridos, tiempoMaxUso, p);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
@@ -52,7 +52,7 @@ public class MonopatinController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addMonopatin(@RequestBody MonopatinConIdParadaDTO monopatinDTO) {
+    public ResponseEntity<?> addMonopatin(@RequestBody MonopatinConIdParadaDTO monopatinDTO) { //Agregar monopatin
         try {
             Long paradaId = monopatinDTO.getId_parada();
             Parada parada = null;
@@ -96,7 +96,7 @@ public class MonopatinController {
     }
 
     @DeleteMapping("/{id_monopatin}")
-    public ResponseEntity<?> deleteMonopatin(@PathVariable("id_monopatin") Long id) {
+    public ResponseEntity<?> deleteMonopatin(@PathVariable("id_monopatin") Long id) { //Quitar monopatin
         try {
             Monopatin result = this.monopatinService.delete(id);
 
@@ -132,7 +132,7 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping("/activos")
+    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable
     public ResponseEntity<?> getMonopatinesActivos(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinesActivos();
@@ -142,9 +142,8 @@ public class MonopatinController {
         }
     }
 
-    @PostMapping("/mantener/{id_monopatin}")
+    @PostMapping("/mantener/{id_monopatin}") //Registrar monopatin en mantenimiento
     public ResponseEntity<?> enviarMonopatinAMantenimiento(@PathVariable("id_monopatin") Integer id_monopatin){
-
         ResponseEntity<?> response = this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
         return response;
     }

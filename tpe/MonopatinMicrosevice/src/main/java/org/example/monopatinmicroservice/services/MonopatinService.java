@@ -17,7 +17,12 @@ public class MonopatinService {
     @Autowired
     private ManteinanceFeignClient mfc;
 
-    public List<Monopatin> getAll() {
+    public List<Monopatin> getAll(float maxKm, float tMax, boolean conPausa) { //esta logica se puede mejorar luego
+        if (maxKm > 0.0) return monopatinRepository.getAllByMaxKm(maxKm);
+        if (tMax > 0.0) return monopatinRepository.getAllByMaxTime(tMax);
+        if (tMax > 0.0 && maxKm > 0.0) return monopatinRepository.getAllByMaxTimeAndKm(tMax, maxKm);
+        if (tMax > 0.0 && conPausa) return  monopatinRepository.getAllByMaxTimeWithPauses(tMax);
+        if (tMax > 0.0 && maxKm > 0.0 && conPausa) return monopatinRepository.getAllByMaxTimeWithPausesAndKm(tMax, maxKm);
         return monopatinRepository.findAll();
     }
 

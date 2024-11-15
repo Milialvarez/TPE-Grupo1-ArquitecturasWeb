@@ -58,7 +58,7 @@ public class MantenimientoController {
         }
     }
 
-    @PutMapping("id/{id}/estado/{status}")
+    @PutMapping("id/{id}/estado/{status}") //Registrar fin de mantenimiento
     public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @PathVariable String status){
         try{
             Mantenimiento mantenimiento = this.ms.updateMaintenance(id, status);

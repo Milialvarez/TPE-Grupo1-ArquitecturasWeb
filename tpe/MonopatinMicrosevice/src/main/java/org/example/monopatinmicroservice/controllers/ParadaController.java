@@ -44,7 +44,7 @@ public class ParadaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addParada(@RequestBody Parada parada) {
+    public ResponseEntity<?> addParada(@RequestBody Parada parada) { //Registrar parada
         try {
             Parada result = this.paradaService.add(parada);
             return ResponseEntity.status(201).body(result);
@@ -54,7 +54,7 @@ public class ParadaController {
     }
 
     @DeleteMapping("/{id_parada}")
-    public ResponseEntity<?> deleteParada(@PathVariable("id_parada") Long id) {
+    public ResponseEntity<?> deleteParada(@PathVariable("id_parada") Long id) { //Quitar parada
         try {
             Parada result = this.paradaService.delete(id);
 

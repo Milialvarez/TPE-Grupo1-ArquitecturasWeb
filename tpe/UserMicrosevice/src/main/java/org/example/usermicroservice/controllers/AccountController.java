@@ -40,7 +40,7 @@ public class AccountController {
 
     //modificar metodo para que sea desanulable :)
     @PutMapping("/null")
-    public ResponseEntity<?> anullateAccount(@RequestBody Account acc){
+    public ResponseEntity<?> anullateAccount(@RequestBody Account acc){ //Anular cuenta
         Long id = acc.getId();
         if(this.accountservice.getAccountById(id) == null){
             return ResponseEntity.notFound().build();

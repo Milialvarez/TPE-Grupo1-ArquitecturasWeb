@@ -42,4 +42,18 @@ public class ReportsController {
              return ResponseEntity.internalServerError().build();
          }
      }
+
+     @GetMapping("/usoMonopatinesKm/{kilometros}")
+     public ResponseEntity<?> getReporteUsoMonopatinKm(@PathVariable("kilometros") float maxKm){
+
+     }
+
+    @GetMapping({"/usoMonopatinesPausa", "/usoMonopatinesPausa/{pausa}"})
+     public ResponseEntity<?> getReporteUsoMonopatinPausa(@PathVariable(value = "pausa", required = false) boolean p){
+        if (!p) {
+            // Manejar caso donde el parámetro no está presente
+            return ResponseEntity.ok("Sin información de pausa");
+        }
+
+     }
 }

@@ -19,6 +19,12 @@ public class Monopatin {
     @Column
     private Float kmRecorridos;
 
+    @Column
+    private Float tiempoUso;
+
+    @Column
+    private Float tiempoUsoConPausas;
+
     @OneToOne
     @JoinColumn(nullable = true)
     @JsonManagedReference

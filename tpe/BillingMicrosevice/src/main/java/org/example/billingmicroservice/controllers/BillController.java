@@ -40,7 +40,7 @@ public class BillController{
     }
 
     @PostMapping()
-    public ResponseEntity<?> setNewBill(Date fechaVigencia, float pFijo, float pExtra){
+    public ResponseEntity<?> setNewBill(Date fechaVigencia, float pFijo, float pExtra){ //Definir precio y 3 F
         try{
             Bill b = billService.setNewBill(fechaVigencia, pFijo, pExtra);
             return ResponseEntity.status(201).body(b);
