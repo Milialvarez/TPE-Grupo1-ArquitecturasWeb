@@ -2,12 +2,16 @@ package org.example.usermicroservice.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
+@Getter
+@Setter
 public class Account {
 
     @Id

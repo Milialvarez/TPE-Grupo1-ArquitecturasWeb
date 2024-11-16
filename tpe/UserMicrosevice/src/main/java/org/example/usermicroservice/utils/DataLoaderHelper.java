@@ -33,10 +33,9 @@ public class DataLoaderHelper {
 
         for (String[] record : records.subList(1, records.size())) {
             Account account = new Account();
-            account.setId(Long.parseLong(record[0]));
-            account.setCreation_date(dateFormat.parse(record[1]));
-            account.setBalance(Integer.parseInt(record[2]));
-            account.setAnullated(Boolean.parseBoolean(record[3]));
+            account.setCreation_date(dateFormat.parse(record[0]));
+            account.setBalance(Integer.parseInt(record[1]));
+            account.setAnullated(Boolean.parseBoolean(record[2]));
             accountRepository.save(account);
         }
     }
@@ -47,8 +46,7 @@ public class DataLoaderHelper {
 
         for (String[] record : records.subList(1, records.size())) {
             Role role = new Role();
-            role.setId(Long.parseLong(record[0]));
-            role.setRole(record[1]);
+            role.setRole(record[0]);
             roleRepository.save(role);
         }
     }
@@ -59,13 +57,12 @@ public class DataLoaderHelper {
 
         for (String[] record : records.subList(1, records.size())) {
             User user = new User();
-            user.setId(Long.parseLong(record[0]));
-            user.setName(record[1]);
-            user.setPhoneNumber(record[2]);
-            user.setEmail(record[3]);
+            user.setName(record[0]);
+            user.setPhoneNumber(record[1]);
+            user.setEmail(record[2]);
 
             // Set role
-            Role role = roleRepository.findById(Long.parseLong(record[4])).orElseThrow();
+            Role role = roleRepository.findById(Long.parseLong(record[3])).orElseThrow();
             user.setRole(role);
 
             userRepository.save(user);

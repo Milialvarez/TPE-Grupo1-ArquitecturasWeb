@@ -56,4 +56,13 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"                 # phpMyAdmin disponible en localhost:8080
+    environment:
+      PMA_HOST: user                # Nombre del servicio MySQL (user)
+      #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 ## docker run -d --name mysqlUsuarios -e MYSQL_ROOT_PASSWORD=admin -p 3307:3306 mysql
