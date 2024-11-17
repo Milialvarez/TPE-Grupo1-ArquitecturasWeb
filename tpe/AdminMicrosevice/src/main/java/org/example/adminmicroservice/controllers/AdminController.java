@@ -20,7 +20,7 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @GetMapping("/{role}") //role must be either: [usuario, admin, mantenimiento]
+    @GetMapping("/role/{role}") //role must be either: [usuario, admin, mantenimiento]
     public ResponseEntity<List<Object>> getUsersByRole(@PathVariable("role") String r) {
         List<Object> acc = adminService.getUsersByRole(r);
         return ResponseEntity.status(200).body(acc);

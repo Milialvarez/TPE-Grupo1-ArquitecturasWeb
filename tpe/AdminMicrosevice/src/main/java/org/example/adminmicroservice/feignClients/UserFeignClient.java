@@ -14,7 +14,7 @@ public interface UserFeignClient {
     @GetMapping
     ResponseEntity<List<User>> getAllUsers();
 
-    @GetMapping("/{role}")
+    @GetMapping("/role/{role}")
     ResponseEntity<Account> getUsersByRole(@PathVariable("role") String role);
 
     @GetMapping("/{id}")

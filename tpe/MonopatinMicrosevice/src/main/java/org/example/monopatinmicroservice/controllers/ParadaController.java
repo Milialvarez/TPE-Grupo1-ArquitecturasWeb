@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/paradas")
+@RequestMapping("/parada")
 public class ParadaController {
     @Autowired
     private ParadaService paradaService;

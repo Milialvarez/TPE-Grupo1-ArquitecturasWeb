@@ -46,7 +46,7 @@ public class UserController {
         return ResponseEntity.status(200).body(this.userService.getClosestMonopatins(posx, posy));
     }
 
-    @GetMapping("/{role}")
+    @GetMapping("/role/{role}")
     public ResponseEntity<?> getUsersByRole(@PathVariable("role") String role){
         List<User> users = this.userService.getUsersByRole(role);
         if (users.isEmpty()) {
