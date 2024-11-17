@@ -4,6 +4,7 @@ import org.example.usermicroservice.entities.User;
 import org.example.usermicroservice.feignClients.MonopatinFeignClient;
 import org.example.usermicroservice.repositories.UserRepository;
 import org.example.usermicroservice.utils.HelperUsers;
+import org.example.usermicroservice.utils.UserRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<User> getUsersByRole(String r){
-        HelperUsers h = new HelperUsers();
-        ArrayList enumOfRoles = h.getEnumRoles();
-        if (enumOfRoles.contains(r)) return this.userRepository.getUsersByRole(r);
-        else return new ArrayList<>();
+    public List<User> getUsersByRole(String role) {
+        try {
+            UserRoles userRole = UserRoles.valueOf(role.toLowerCase());
+            return this.userRepository.getUsersByRole(userRole.name());
+        } catch (IllegalArgumentException e) {
+            return new ArrayList<>();
+        }
     }
 
     public User save(User user){
