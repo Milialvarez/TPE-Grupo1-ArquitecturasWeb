@@ -1,5 +1,6 @@
 package org.example.monopatinmicroservice.entities;
 
+import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,14 +18,18 @@ public class Viaje {
     private Long id;
 
     @Column
+    @CsvBindByName
     private Date fecha;
 
     @Column
+    @CsvBindByName
     private Integer duracion;
 
     @Column
+    @CsvBindByName
     private Long id_usuario;
 
     @OneToOne
+    @CsvBindByName
     private Monopatin monopatin;
 }

@@ -2,6 +2,7 @@ package org.example.monopatinmicroservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,21 +18,28 @@ public class Monopatin {
     private Long id;
 
     @Column
+    @CsvBindByName
     private Float kmRecorridos;
 
     @Column
+    @CsvBindByName
     private Float tiempoUso;
 
     @Column
+    @CsvBindByName
     private Float tiempoUsoConPausas;
 
     @OneToOne
     @JoinColumn(nullable = true)
     @JsonManagedReference
+    @CsvBindByName
     private Parada parada;
 
     @Column
+    @CsvBindByName
     private int posX;
+
     @Column
+    @CsvBindByName
     private int posY;
 }

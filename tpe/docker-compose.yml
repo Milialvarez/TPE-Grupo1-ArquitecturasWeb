@@ -38,6 +38,16 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
 
+  phpmyadminmonopatin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"                 # phpMyAdmin disponible en localhost:8081
+    environment:
+      PMA_HOST: monopatin                # Nombre del servicio MySQL (monopatin)
+      #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
   reports:
     image: mysql
     ports:
@@ -56,7 +66,7 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
 
-  phpmyadmin:
+  phpmyadminuser:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
@@ -65,4 +75,5 @@ services:
       PMA_HOST: user                # Nombre del servicio MySQL (user)
       #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
 ## docker run -d --name mysqlUsuarios -e MYSQL_ROOT_PASSWORD=admin -p 3307:3306 mysql

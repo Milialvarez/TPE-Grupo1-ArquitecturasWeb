@@ -1,6 +1,7 @@
 package org.example.monopatinmicroservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class Parada {
     @OneToOne(mappedBy = "parada")
     @JoinColumn(nullable = true)
     @JsonBackReference
+    @CsvBindByName
     private Monopatin monopatin;
 
     public boolean isHabilitada() {
