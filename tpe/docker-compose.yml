@@ -24,7 +24,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8082:80"                 # phpMyAdmin disponible en localhost:8082
+      - "8087:80"                 # phpMyAdmin disponible en localhost:8087
     environment:
       PMA_HOST: billing                # Nombre del servicio MySQL (billing)
       #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
@@ -43,7 +43,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8083:80"                 # phpMyAdmin disponible en localhost:8083
+      - "8088:80"                 # phpMyAdmin disponible en localhost:8088
     environment:
       PMA_HOST: maintenance                # Nombre del servicio MySQL (maintenance)
       #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
@@ -62,7 +62,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8081:80"                 # phpMyAdmin disponible en localhost:8081
+      - "8089:80"                 # phpMyAdmin disponible en localhost:8089
     environment:
       PMA_HOST: monopatin                # Nombre del servicio MySQL (monopatin)
       #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
@@ -90,7 +90,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8080:80"                 # phpMyAdmin disponible en localhost:8080
+      - "8091:80"                 # phpMyAdmin disponible en localhost:8091
     environment:
       PMA_HOST: user                # Nombre del servicio MySQL (user)
       #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
