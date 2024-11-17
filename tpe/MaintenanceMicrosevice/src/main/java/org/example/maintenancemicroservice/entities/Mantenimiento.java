@@ -8,7 +8,7 @@ import lombok.Data;
 public class Mantenimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private Long id_monopatin;

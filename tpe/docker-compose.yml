@@ -20,6 +20,16 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
 
+  phpmyadminbilling:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8082:80"                 # phpMyAdmin disponible en localhost:8082
+    environment:
+      PMA_HOST: billing                # Nombre del servicio MySQL (billing)
+      #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
   maintenance:
     image: mysql
     ports:
@@ -28,6 +38,16 @@ services:
     restart: always
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
+
+  phpmyadminmaintenance:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8083:80"                 # phpMyAdmin disponible en localhost:8083
+    environment:
+      PMA_HOST: maintenance                # Nombre del servicio MySQL (maintenance)
+      #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   monopatin:
     image: mysql
