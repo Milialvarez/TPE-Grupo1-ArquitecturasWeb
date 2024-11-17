@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +64,7 @@
     "Spring Boot.BillingMicroserviceApplication.executor": "Run",
     "Spring Boot.MaintenanceMicroserviceApplication.executor": "Run",
     "Spring Boot.MonopatinMicroserviceApplication.executor": "Run",
+    "Spring Boot.ReportsMicroserviceApplication.executor": "Run",
     "Spring Boot.UserMicroserviceApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",

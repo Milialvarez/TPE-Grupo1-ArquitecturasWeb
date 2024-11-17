@@ -1,11 +1,9 @@
 version: '3.1'
-## ejecutar
-## docker compose up -d
 services:
   admin:
     image: mysql
     ports:
-      - "3306:3306"
+      - "3306:3306" # puerto para las solicitudes HTTP= 8006
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -14,7 +12,7 @@ services:
   billing:
     image: mysql
     ports:
-      - "3307:3306"
+      - "3307:3306" # puerto para las solicitudes HTTP= 8007
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -33,7 +31,7 @@ services:
   maintenance:
     image: mysql
     ports:
-      - "3308:3306"
+      - "3308:3306" # puerto para las solicitudes HTTP= 8008
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -52,7 +50,7 @@ services:
   monopatin:
     image: mysql
     ports:
-      - "3309:3306"
+      - "3309:3306" # puerto para las solicitudes HTTP= 8009
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -71,7 +69,7 @@ services:
   reports:
     image: mysql
     ports:
-      - "3310:3306"
+      - "3310:3306" # puerto para las solicitudes HTTP= 8010
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -80,7 +78,7 @@ services:
   user:
     image: mysql
     ports:
-      - "3311:3306"
+      - "3311:3306" # puerto para las solicitudes HTTP= 8011
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -95,5 +93,3 @@ services:
       PMA_HOST: user                # Nombre del servicio MySQL (user)
       #MYSQL_ROOT_PASSWORD:   # La contraseña root para acceder a MySQL desde phpMyAdmin
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-
-## docker run -d --name mysqlUsuarios -e MYSQL_ROOT_PASSWORD=admin -p 3307:3306 mysql
