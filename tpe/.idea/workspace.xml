@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/controllers/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ParadaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ParadaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
