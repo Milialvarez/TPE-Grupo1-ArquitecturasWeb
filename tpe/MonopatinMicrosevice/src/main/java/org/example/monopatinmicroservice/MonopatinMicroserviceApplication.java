@@ -19,10 +19,10 @@ public class MonopatinMicroserviceApplication {
 	}
 
 	@PostConstruct
-	public void init() {
+	public void init() throws ParseException {
 		dataLoaderHelper.loadParadas();
-//		dataLoaderHelper.loadMonopatines();
-//		dataLoaderHelper.loadViajes();
-//		dataLoaderHelper.loadPausas();
+		dataLoaderHelper.loadMonopatines();
+		dataLoaderHelper.loadViajes();
+		dataLoaderHelper.loadPausas();
 	}
 }
