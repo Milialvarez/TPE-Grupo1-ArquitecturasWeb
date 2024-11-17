@@ -33,6 +33,7 @@ public class MonopatinController {
         }
     }
 
+    //TEST: un monopatin con id que no existe retorna 404
     @GetMapping("/{id_monopatin}")
     public ResponseEntity<?> getMonopatin(@PathVariable("id_monopatin") Long id) {
         try {
