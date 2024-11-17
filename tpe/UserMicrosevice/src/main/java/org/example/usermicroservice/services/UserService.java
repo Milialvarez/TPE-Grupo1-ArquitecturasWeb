@@ -3,7 +3,6 @@ package org.example.usermicroservice.services;
 import org.example.usermicroservice.entities.User;
 import org.example.usermicroservice.feignClients.MonopatinFeignClient;
 import org.example.usermicroservice.repositories.UserRepository;
-import org.example.usermicroservice.utils.HelperUsers;
 import org.example.usermicroservice.utils.UserRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
