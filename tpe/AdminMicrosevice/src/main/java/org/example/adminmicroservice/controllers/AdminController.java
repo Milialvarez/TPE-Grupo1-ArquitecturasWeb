@@ -68,7 +68,7 @@ public class AdminController {
             float pExtra = tarifaDTO.getPrecioExtra();
             Object result = this.adminService.setNewBill(fechaVigencia, pFijo, pExtra);
             if (result != null) return ResponseEntity.status(201).body("Tarifa agregada con exito");
-            else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Hubo un problema con el payload");
+            else return ResponseEntity.status(400).body("Hubo un problema con el payload");
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }

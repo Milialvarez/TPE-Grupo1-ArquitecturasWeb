@@ -29,8 +29,8 @@ public class MonopatinTest {
     public void testMonopatinNotFound(){
         Long inexistentId = (long) -1;
         ResponseEntity<?> response = monopatinController.getMonopatin(inexistentId);
-        int statusCode = response.getStatusCodeValue();
-        assertEquals(404, statusCode);
+        String statusCode = response.getStatusCode().toString();
+        assertEquals("404", statusCode);
     }
 
 

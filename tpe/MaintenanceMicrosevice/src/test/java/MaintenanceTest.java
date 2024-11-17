@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,6 +22,6 @@ public class MaintenanceTest {
         LinkedHashMap<?, ?> l = (LinkedHashMap<?, ?>) response.getBody();
         assert l != null;
         Long idMonopatinMantenimiento = (Long) l.get("id_monopatin");
-        assertTrue(idMonopatinMantenimiento == idMonopatin, "el id monopatin del mantenimiento debería ser el mismo que se le asignó");
+        assertTrue(Objects.equals(idMonopatinMantenimiento, idMonopatin), "el id monopatin del mantenimiento debería ser el mismo que se le asignó");
     }
 }
