@@ -28,17 +28,26 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        User user = userService.getUserById(id);
-        if (user == null) {
-            return  ResponseEntity.notFound().build();
+        try{
+            User user = userService.getUserById(id);
+            if (user == null) {
+                return  ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(user);
+        }catch(Exception e){
+            return  ResponseEntity.status(500).build();
         }
-        return ResponseEntity.ok(user);
+
     }
 
     @PostMapping
     public ResponseEntity<User> save(@RequestBody User user) {
-        User userNew = userService.save(user);
-        return ResponseEntity.ok(userNew);
+        try{
+            User userNew = userService.save(user);
+            return ResponseEntity.ok(userNew);
+        }catch(Exception e){
+            return  ResponseEntity.status(500).build();
+        }
     }
 
     @GetMapping("/monopatins/location/{posx}/{posy}")
