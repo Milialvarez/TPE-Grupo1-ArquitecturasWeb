@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -25,7 +26,7 @@ public class DataLoaderHelper {
 
         for (String[] bill : billings.subList(1, billings.size())) {
             Bill b = new Bill();
-            b.setFecha(dateFormat.parse(bill[1]));
+            b.setFecha(LocalDate.parse(bill[1]));
             b.setPrice(Float.parseFloat(bill[2]));
             b.setAdditionalPrice(Float.parseFloat(bill[3]));
             billRepository.save(b);

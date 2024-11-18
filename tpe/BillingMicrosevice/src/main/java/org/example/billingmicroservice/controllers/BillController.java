@@ -44,8 +44,14 @@ public class BillController{
     public ResponseEntity<?> setNewBill(@RequestBody BillDTO bill){ //Definir precio y 3 F
         try{
             Bill b = billService.setNewBill(bill.getFechaInicioFacturacionNueva(), bill.getPrecioFijo(), bill.getPrecioExtra());
-            return ResponseEntity.status(201).body(b);
+            if(b != null){
+                return ResponseEntity.status(201).body(b);
+            } else{
+                System.out.println("else de controller billing");
+                return ResponseEntity.status(400).body("Fecha inválida");
+            }
         } catch (Exception e) {
+            System.out.println("controller bbilling");
             return ResponseEntity.status(500).body("Server Error");
         }
     }

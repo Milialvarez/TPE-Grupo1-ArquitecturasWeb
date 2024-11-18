@@ -64,10 +64,13 @@ public class AdminController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> setNewBill(@RequestBody BillDTO bill){ //NO ANDA
+    public ResponseEntity<?> setNewBill(@RequestBody BillDTO bill){ //no se pudo determinar por qué cuando la fecha es menor a la valida se va al catch
         try {
-            return this.adminService.setNewBill(bill);
+            ResponseEntity<?> response = this.adminService.setNewBill(bill);
+            System.out.println(response.getBody());
+            return ResponseEntity.ok(response.getBody());
         } catch (Exception e) {
+            System.out.println("entré al catch de admin");
             return ResponseEntity.status(500).build();
         }
     }

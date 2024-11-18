@@ -57,13 +57,13 @@ public class AdminService {
     public ResponseEntity<?> setNewBill(BillDTO b){
         ResponseEntity<?> response = this.billingFeignClient.setNewBill(b);
         try {
-            if (Objects.equals(response.getStatusCode().toString(), "201")){
+            if (Objects.equals(response.getStatusCode().toString(), "201 CREATED")){
                 return response;
-            } else {
-                //CHEQUEAR EN BILLCONTROLLER POR QUE ENTRA ACA
-                return ResponseEntity.status(500).body("Wasn't possible to set a new bill");
+            } else{
+                return ResponseEntity.status(500).body("Wasn't possible to set a new bill, wrong date");
             }
         } catch (FeignException.FeignClientException exception){
+            System.out.println("catch de admin service");
             throw new RuntimeException("Fallo al comunicarse con el otro servicio: " + exception.getMessage(), exception);
         }
     }

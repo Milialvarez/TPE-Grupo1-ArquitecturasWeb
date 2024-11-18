@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Repository
 public interface BillRepository extends JpaRepository<Bill,Long> {
@@ -19,4 +19,6 @@ public interface BillRepository extends JpaRepository<Bill,Long> {
     @Query("UPDATE Bill b SET b.price =:price WHERE b.id =:id")
     void setNewPrice(Long id, double price);
 
+    @Query("SELECT b.fecha FROM Bill b WHERE b.fecha = (SELECT MAX(b2.fecha) FROM Bill b2)")
+    LocalDate getLastOne();
 }

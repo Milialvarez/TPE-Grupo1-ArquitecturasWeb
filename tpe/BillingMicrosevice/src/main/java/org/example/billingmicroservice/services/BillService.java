@@ -79,7 +79,12 @@ public class BillService {
 
     }
 
-    public Bill setNewBill(Date f, float pFijo, float pEx) {
+    public Bill setNewBill(LocalDate f, float pFijo, float pEx) {
+        LocalDate lastBillDate = this.billRepository.getLastOne();
+        if (lastBillDate == null || f.isBefore(lastBillDate)){
+            System.out.println("if de billing service");
+            return null;
+        }
         Bill b = new Bill();
         b.setFecha(f);
         b.setPrice(pFijo);
