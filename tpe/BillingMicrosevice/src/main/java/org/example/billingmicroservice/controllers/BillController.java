@@ -19,7 +19,7 @@ public class BillController{
     @Autowired
     private BillService billService;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<?> getAllBills(){
         ArrayList<Bill> bills = (ArrayList<Bill>) billService.getAll();
         return ResponseEntity.ok(bills);

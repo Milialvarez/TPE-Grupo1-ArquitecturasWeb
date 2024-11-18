@@ -16,7 +16,7 @@ public class MantenimientoController {
     @Autowired
     private MantenimientoService ms;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<?> getMantenimientos() {
         try{
             ArrayList<Mantenimiento> m = this.ms.getAllManteinances();
@@ -49,7 +49,7 @@ public class MantenimientoController {
         }
     }
 
-    @GetMapping("/unvailable")
+    @GetMapping("/unvailable") //Andando
     public ResponseEntity<?> getAllManteinanceUnvailable(){
         try{
             ArrayList<Mantenimiento> manteinances = this.ms.getAll("no disponible");
@@ -59,7 +59,7 @@ public class MantenimientoController {
         }
     }
 
-    @GetMapping("/active")
+    @GetMapping("/active") //Andando
     public ResponseEntity<?> getAllManteinanceActive(){
         try{
             ArrayList<Mantenimiento> manteinances = this.ms.getAll("activo");
@@ -91,7 +91,7 @@ public class MantenimientoController {
         }
     }
 
-    @GetMapping("/{id_monopatin}")
+    @GetMapping("id/{id_monopatin}") //No anda
     public ResponseEntity<?> getManteinanceByMonopatinId(@PathVariable Long id_monopatin){
         try{
             Mantenimiento mantenimiento = this.ms.findByMonopatinId(id_monopatin);

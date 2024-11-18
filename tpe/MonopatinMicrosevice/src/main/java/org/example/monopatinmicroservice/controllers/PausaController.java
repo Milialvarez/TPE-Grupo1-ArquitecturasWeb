@@ -21,7 +21,7 @@ public class PausaController {
     @Autowired
     private ViajeService viajeService;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<?> getPausas() {
         try {
             List<Pausa> result = this.pausaService.getAll();
@@ -31,7 +31,7 @@ public class PausaController {
         }
     }
 
-    @GetMapping("/{id_pausa}")
+    @GetMapping("/{id_pausa}") //Andando
     public ResponseEntity<?> getPausa(@PathVariable("id_pausa") Long id) {
         try {
             Pausa result = this.pausaService.getById(id);
