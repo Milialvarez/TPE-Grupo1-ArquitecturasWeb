@@ -35,10 +35,11 @@ public class AdminController {
         return ResponseEntity.ok(admins);
     }
 
-    @PutMapping("/null/{id_acc}") //NO ANDA
+    @PutMapping("/null/{id_acc}") //ANDA PERO CON DELAY, la primera vez que se manda parece que no cambió nada, pero si lo volvés a llamar se ven los cambios
     public ResponseEntity<?> anullateAccount(@PathVariable("id_acc") Integer id_acc) {
        return ResponseEntity.ok(adminService.anullateAccount(id_acc));
     }
+
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){

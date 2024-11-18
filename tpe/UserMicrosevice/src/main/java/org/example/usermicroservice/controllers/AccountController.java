@@ -1,5 +1,6 @@
 package org.example.usermicroservice.controllers;
 
+import org.example.usermicroservice.config.RestTemplateConfig;
 import org.example.usermicroservice.entities.Account;
 import org.example.usermicroservice.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.List;
 public class AccountController {
     @Autowired
     AccountService accountservice;
+    private RestTemplateConfig restTemplateConfig;
 
     @GetMapping //Andando
     public ResponseEntity<List<Account>> getAllAccounts() {
@@ -40,12 +42,15 @@ public class AccountController {
 
     //modificar metodo para que sea desanulable :)
     @PutMapping("/null/{id_acc}")
-    public int anullateAccount(@PathVariable("id_acc") Long id_acc ){//Anular cuenta
-        if(this.accountservice.getAccountById(id_acc) == null){
-            return -1;
+    public ResponseEntity<?> anullateAccount(@PathVariable("id_acc") int id_acc ){//Anular cuenta
+        Integer aux = id_acc;
+        Long longId = aux.longValue();
+        if(this.accountservice.getAccountById(longId) == null){
+            return ResponseEntity.notFound().build();
         } else{
-            accountservice.setAccountAnullated(id_acc, true);
-            return 1;
+            System.out.println("entré al else de account controller");
+            accountservice.setAccountAnullated(longId, true);
+            return ResponseEntity.status(201).body(accountservice.getAccountById(longId));
         }
     }
 

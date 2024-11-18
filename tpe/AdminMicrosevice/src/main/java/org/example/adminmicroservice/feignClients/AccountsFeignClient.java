@@ -20,5 +20,5 @@ public interface AccountsFeignClient {
     ResponseEntity<Account> save(@RequestBody Account acc);
 
     @PutMapping("/null/{id_acc}")
-    int anullateAccount(@PathVariable("id_acc") Long id_acc );
+    ResponseEntity<?> anullateAccount(@PathVariable("id_acc") int id_acc );
 }

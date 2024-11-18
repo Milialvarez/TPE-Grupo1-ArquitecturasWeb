@@ -32,13 +32,8 @@ public class AdminService {
     }
 
     public ResponseEntity<?> anullateAccount(Integer id){
-        Long id_acc = id.longValue();
-        int result = this.accountsFeignClient.anullateAccount(id_acc);
-        if(result <0){
-            return ResponseEntity.status(404).body("id not found");
-        } else{
-            return ResponseEntity.status(200).body(id);
-        }
+        ResponseEntity<?> result = this.accountsFeignClient.anullateAccount(id);
+        return result;
     }
 
     public Optional<Object[]> getTotalBilled(LocalDate origin, LocalDate end){
@@ -60,7 +55,7 @@ public class AdminService {
             if (Objects.equals(response.getStatusCode().toString(), "201 CREATED")){
                 return response;
             } else{
-                return ResponseEntity.status(500).body("Wasn't possible to set a new bill, wrong date");
+                return ResponseEntity.status(404).body("Wasn't possible to set a new bill, wrong date");
             }
         } catch (FeignException.FeignClientException exception){
             System.out.println("catch de admin service");
