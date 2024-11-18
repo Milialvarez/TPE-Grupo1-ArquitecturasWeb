@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAll();
         if (users.isEmpty()) {
@@ -26,7 +26,7 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //Andando
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
         try{
             User user = userService.getUserById(id);
@@ -55,7 +55,7 @@ public class UserController {
         return ResponseEntity.status(200).body(this.userService.getClosestMonopatins(posx, posy));
     }
 
-    @GetMapping("/role/{role}")
+    @GetMapping("/role/{role}") //Andando
     public ResponseEntity<?> getUsersByRole(@PathVariable("role") String role){
         List<User> users = this.userService.getUsersByRole(role);
         if (users.isEmpty()) {

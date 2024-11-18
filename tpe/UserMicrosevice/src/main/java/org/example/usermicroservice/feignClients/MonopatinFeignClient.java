@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 
-@FeignClient(name="MonopatinMicroservice", url="http://localhost:8003/monopatin")
+@FeignClient(name="MonopatinMicroservice", url="http://localhost:8009/monopatin")
 public interface MonopatinFeignClient {
 
     @GetMapping("/location/{posx}/{posy}")

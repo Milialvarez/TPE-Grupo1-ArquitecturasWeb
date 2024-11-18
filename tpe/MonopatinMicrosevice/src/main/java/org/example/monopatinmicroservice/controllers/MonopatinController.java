@@ -23,17 +23,27 @@ public class MonopatinController {
     @Autowired
     private ParadaService paradaService;
 
-    @GetMapping({"/", "/{km}", "/{tiempo}/{pausa}"})
-    public ResponseEntity<?> getMonopatines(@PathVariable(value = "km", required = false) float maxKmRecorridos, @PathVariable(value = "tiempo", required = false) float tiempoMaxUso, @PathVariable(value = "pausa", required = false) boolean p) {
+    @GetMapping
+    public ResponseEntity<?> getAll() {
         try {
-            List<Monopatin> result = this.monopatinService.getAll(maxKmRecorridos, tiempoMaxUso, p);
+            List<Monopatin> result = this.monopatinService.getAll();
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }
     }
 
-    @GetMapping("/{id_monopatin}")
+    @GetMapping({ "/km/{km}", "/t/p/{tiempo}/{pausa}"})
+    public ResponseEntity<?> getMonopatines(@PathVariable(value = "km", required = false) float maxKmRecorridos, @PathVariable(value = "tiempo", required = false) float tiempoMaxUso, @PathVariable(value = "pausa", required = false) boolean p) {
+        try {
+            List<Monopatin> result = this.monopatinService.getAllBy(maxKmRecorridos, tiempoMaxUso, p);
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/id/{id_monopatin}") //Andando
     public ResponseEntity<?> getMonopatin(@PathVariable("id_monopatin") Long id) {
         try {
             Monopatin result = this.monopatinService.getById(id);
@@ -122,20 +132,20 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping("/mantenimiento")
+    @GetMapping("/mantenimiento") //No anda
     public ResponseEntity<?> getMonopatinesEnMantenimiento(){
         try{
-            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinesEnMantenimiento();
+            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("no disponible");
             return ResponseEntity.ok().body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();
         }
     }
 
-    @GetMapping("/estado/{status}")
-    public ResponseEntity<?> getMonopatinsByStatus(@PathVariable("status") String status){
+    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable //No anda
+    public ResponseEntity<?> getMonopatinesActivos(){
         try{
-            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus(status);
+            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("activo");
             return ResponseEntity.ok().body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();

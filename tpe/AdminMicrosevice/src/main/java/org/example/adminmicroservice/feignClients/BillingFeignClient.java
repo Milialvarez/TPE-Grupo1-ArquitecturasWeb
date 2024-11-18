@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
 
-@FeignClient(name="BillingMicroservice", url="http://localhost:8005/bills")
+@FeignClient(name="BillingMicroservice", url="http://localhost:8007/bills")
 public interface BillingFeignClient {
     @PostMapping
     ResponseEntity<?> setNewBill(Date fechaVigencia, float pFijo, float pExtra);

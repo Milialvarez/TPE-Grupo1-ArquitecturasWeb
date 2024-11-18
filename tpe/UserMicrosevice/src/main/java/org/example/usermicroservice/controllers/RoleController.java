@@ -15,7 +15,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<List<Role>> getAllRoles() {
         List<Role> users = roleService.getAll();
         if (users.isEmpty()) {
@@ -24,7 +24,7 @@ public class RoleController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //Andando
     public ResponseEntity<Role> getUserById(@PathVariable("id") Long id) {
         Role role = roleService.getRoleById(id);
         if (role == null) {
