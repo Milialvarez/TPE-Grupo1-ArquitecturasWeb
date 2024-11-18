@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/java/org/example/maintenancemicroservice/controllers/MantenimientoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/java/org/example/maintenancemicroservice/controllers/MantenimientoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/feignClients/ManteinanceFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/feignClients/ManteinanceFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +271,7 @@
       <workItem from="1731341351078" duration="1119000" />
       <workItem from="1731341351078" duration="2699000" />
       <workItem from="1731885707234" duration="1346000" />
-      <workItem from="1731931420568" duration="3589000" />
+      <workItem from="1731931420568" duration="3896000" />
     </task>
     <servers />
   </component>
