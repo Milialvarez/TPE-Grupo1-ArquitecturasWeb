@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
 
-@FeignClient(name="BillingMicroservice", url="http://localhost:8005/bills")
+@FeignClient(name="BillingMicroservice", url="http://localhost:8007/bills")
 public interface BillingFeignClient {
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")

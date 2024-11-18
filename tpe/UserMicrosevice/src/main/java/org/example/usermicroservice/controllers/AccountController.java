@@ -14,7 +14,7 @@ public class AccountController {
     @Autowired
     AccountService accountservice;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<List<Account>> getAllAccounts() {
         List<Account> accounts = accountservice.getAll();
         if (accounts.isEmpty()) {
@@ -23,7 +23,7 @@ public class AccountController {
         return ResponseEntity.ok(accounts);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //Andando
     public ResponseEntity<Account> getAccountById(@PathVariable("id") Long id) {
         Account account = accountservice.getAccountById(id);
         if (account == null) {

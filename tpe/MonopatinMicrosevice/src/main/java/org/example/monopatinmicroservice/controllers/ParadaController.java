@@ -15,7 +15,7 @@ public class ParadaController {
     @Autowired
     private ParadaService paradaService;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<?> getParadas() {
         try {
             List<Parada> result = this.paradaService.getAll();
@@ -25,7 +25,7 @@ public class ParadaController {
         }
     }
 
-    @GetMapping("/{id_parada}")
+    @GetMapping("/{id_parada}") //Andando
     public ResponseEntity<?> getParada(@PathVariable("id_parada") Long id) {
         try {
             Parada result = this.paradaService.getById(id);

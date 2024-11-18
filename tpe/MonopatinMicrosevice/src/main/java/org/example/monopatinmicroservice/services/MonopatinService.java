@@ -17,13 +17,16 @@ public class MonopatinService {
     @Autowired
     private ManteinanceFeignClient mfc;
 
-    public List<Monopatin> getAll(float maxKm, float tMax, boolean conPausa) { //esta logica se puede mejorar luego
+    public List<Monopatin> getAll(){
+        return monopatinRepository.findAll();
+    }
+    public List<Monopatin> getAllBy(float maxKm, float tMax, boolean conPausa) { //esta logica se puede mejorar luego
         if (maxKm > 0.0) return monopatinRepository.getAllByMaxKm(maxKm);
         if (tMax > 0.0) return monopatinRepository.getAllByMaxTime(tMax);
         if (tMax > 0.0 && maxKm > 0.0) return monopatinRepository.getAllByMaxTimeAndKm(tMax, maxKm);
         if (tMax > 0.0 && conPausa) return  monopatinRepository.getAllByMaxTimeWithPauses(tMax);
         if (tMax > 0.0 && maxKm > 0.0 && conPausa) return monopatinRepository.getAllByMaxTimeWithPausesAndKm(tMax, maxKm);
-        return monopatinRepository.findAll();
+        return new ArrayList<>();
     }
 
     public Monopatin add(Monopatin monopatin) {
@@ -61,27 +64,9 @@ public class MonopatinService {
         }
     }
 
-
-    public ArrayList<Monopatin> getMonopatinesEnMantenimiento() {
-        ResponseEntity<?> mantenimientos = this.mfc.getAllManteinanceUnvailable();
-        ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) mantenimientos.getBody();
-        ArrayList<Monopatin> result = new ArrayList<>();
-        for(LinkedHashMap<?, ?> l: response){
-            Integer aux = (Integer) l.get("id_monopatin");
-            Long id_monopatin = aux.longValue();
-
-            Monopatin m = this.monopatinRepository.findById(id_monopatin).orElse(null);
-            System.out.println(id_monopatin);
-            if(m != null){
-                result.add(m);
-            }
-        }
-        return result;
-    }
-
-    public ArrayList<Monopatin> getMonopatinesActivos() {
-        ResponseEntity<?> activos = this.mfc.getAllManteinanceActive();
-        ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) activos.getBody();
+    public ArrayList<Monopatin> getMonopatinsByStatus(String status) {
+        ResponseEntity<?> monopatins = this.mfc.getAllManteinanceByStatus(status);
+        ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) monopatins.getBody();
         ArrayList<Monopatin> result = new ArrayList<>();
 
         for(LinkedHashMap<?, ?> l: response){
@@ -98,6 +83,7 @@ public class MonopatinService {
         return result;
     }
 
+    //FUNCIONA, ARREGLADO
     public ResponseEntity<?> enviarMonopatinAMantenimiento(Integer monopatin) {
         Long id_monopatin = monopatin.longValue();
         int limiteKm = 40000; //limite de km a partir del cual llevar a mantener
@@ -112,7 +98,7 @@ public class MonopatinService {
             return ResponseEntity.ok().body(response);
         } else{
             ResponseEntity<?> alreadyExists = this.mfc.getManteinanceByMonopatinId(id_monopatin);
-            if(alreadyExists == null){
+            if(alreadyExists.getBody() == null){
                 ResponseEntity<?> result = this.mfc.saveManteinance(id_monopatin);
                 LinkedHashMap<?, ?> l = (LinkedHashMap<?, ?>) result.getBody();
                 Integer auxId = (Integer) l.get("id");
@@ -123,7 +109,7 @@ public class MonopatinService {
                 Mantenimiento mant = new Mantenimiento(id, idMonopatin, l.get("estado").toString());
                 return ResponseEntity.ok().body(mant);
             } else {
-                this.mfc.updateStatus(id_monopatin, "no disponible");
+                this.mfc.updateStatus(monopatin, "no disponible");
                 response.put("success", "monopatin enviado a mantenimiento");
                 return ResponseEntity.ok().body(response);
             }
@@ -131,16 +117,16 @@ public class MonopatinService {
     }
 
     public ResponseEntity<?> cambiarEstadoMonopatin(Integer id_monopatin, String estado) {
-        Long long_monopatin = id_monopatin.longValue();
+        int idInt = id_monopatin;
         Map<String, String> response = new HashMap<>();
         if(estado == null || (!estado.equals("activo") && !estado.equals("no disponible"))){
             response.put("error", "estado invalido o nulo");
             return ResponseEntity.badRequest().body(response);
-        } else if(this.mfc.getManteinanceByMonopatinId(long_monopatin) == null){
+        } else if(this.mfc.getManteinanceByMonopatinId(id_monopatin.longValue()) == null){
             response.put("error", "monopatin no encontrado");
             return ResponseEntity.badRequest().body(response);
         } else{
-            this.mfc.updateStatus(long_monopatin, estado);
+            this.mfc.updateStatus(idInt, estado);
             response.put("success", "estado del monopatin cambiado");
             return ResponseEntity.ok().body(response);
         }

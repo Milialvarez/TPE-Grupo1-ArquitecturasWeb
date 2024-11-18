@@ -22,7 +22,7 @@ public class ViajeController {
     @Autowired
     private MonopatinService monopatinService;
 
-    @GetMapping
+    @GetMapping //Andando
     public ResponseEntity<?> getViajes() {
         try {
             List<Viaje> result = this.viajeService.getAll();
@@ -32,7 +32,7 @@ public class ViajeController {
         }
     }
 
-    @GetMapping("/{id_viaje}")
+    @GetMapping("/{id_viaje}") //Andando
     public ResponseEntity<?> getViaje(@PathVariable("id_viaje") Long id) {
         try {
             Viaje result = this.viajeService.getById(id);

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,18 +22,27 @@ public class MonopatinController {
     @Autowired
     private ParadaService paradaService;
 
-    @GetMapping({"/", "/{km}", "/{tiempo}/{pausa}"})
-    public ResponseEntity<?> getMonopatines(@PathVariable(value = "km", required = false) float maxKmRecorridos, @PathVariable(value = "tiempo", required = false) float tiempoMaxUso, @PathVariable(value = "pausa", required = false) boolean p) {
+    @GetMapping
+    public ResponseEntity<?> getAll() {
         try {
-            List<Monopatin> result = this.monopatinService.getAll(maxKmRecorridos, tiempoMaxUso, p);
+            List<Monopatin> result = this.monopatinService.getAll();
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }
     }
 
-    //TEST: un monopatin con id que no existe retorna 404
-    @GetMapping("/{id_monopatin}")
+    @GetMapping({ "/km/{km}", "/t/p/{tiempo}/{pausa}"})
+    public ResponseEntity<?> getMonopatines(@PathVariable(value = "km", required = false) float maxKmRecorridos, @PathVariable(value = "tiempo", required = false) float tiempoMaxUso, @PathVariable(value = "pausa", required = false) boolean p) {
+        try {
+            List<Monopatin> result = this.monopatinService.getAllBy(maxKmRecorridos, tiempoMaxUso, p);
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/id/{id_monopatin}") //Andando
     public ResponseEntity<?> getMonopatin(@PathVariable("id_monopatin") Long id) {
         try {
             Monopatin result = this.monopatinService.getById(id);
@@ -126,17 +134,17 @@ public class MonopatinController {
     @GetMapping("/mantenimiento")
     public ResponseEntity<?> getMonopatinesEnMantenimiento(){
         try{
-            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinesEnMantenimiento();
+            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("no disponible");
             return ResponseEntity.ok().body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();
         }
     }
 
-    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable
+    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable //No anda
     public ResponseEntity<?> getMonopatinesActivos(){
         try{
-            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinesActivos();
+            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("activo");
             return ResponseEntity.ok().body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();
@@ -145,14 +153,12 @@ public class MonopatinController {
 
     @PostMapping("/mantener/{id_monopatin}") //Registrar monopatin en mantenimiento
     public ResponseEntity<?> enviarMonopatinAMantenimiento(@PathVariable("id_monopatin") Integer id_monopatin){
-        ResponseEntity<?> response = this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
-        return response;
+        return this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
     }
 
     @PutMapping("/mantenimiento/id/{id}/estado/{estado}")
     public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @PathVariable("id") Integer id){
-        ResponseEntity<?> response = this.monopatinService.cambiarEstadoMonopatin(id, estado);
-        return response;
+        return this.monopatinService.cambiarEstadoMonopatin(id, estado);
     }
 
 }

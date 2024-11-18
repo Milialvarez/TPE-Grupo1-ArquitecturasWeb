@@ -20,10 +20,15 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+    @GetMapping("")
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.status(200).body("Todo ok andando en admin");
+    }
+
     @GetMapping("/role/{role}") //role must be either: [usuario, admin, mantenimiento]
     public ResponseEntity<List<Object>> getUsersByRole(@PathVariable("role") String r) {
-        List<Object> acc = adminService.getUsersByRole(r);
-        return ResponseEntity.status(200).body(acc);
+        List<Object> users = adminService.getUsersByRole(r);
+        return ResponseEntity.status(200).body(users);
     }
 
     @GetMapping("/xViajes/{xViajes}/anio/{anio}")
