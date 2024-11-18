@@ -39,14 +39,13 @@ public class AccountController {
     }
 
     //modificar metodo para que sea desanulable :)
-    @PutMapping("/null")
-    public ResponseEntity<?> anullateAccount(@RequestBody Account acc){ //Anular cuenta
-        Long id = acc.getId();
-        if(this.accountservice.getAccountById(id) == null){
-            return ResponseEntity.notFound().build();
+    @PutMapping("/null/{id_acc}")
+    public int anullateAccount(@PathVariable("id_acc") Long id_acc ){//Anular cuenta
+        if(this.accountservice.getAccountById(id_acc) == null){
+            return -1;
         } else{
-            accountservice.setAccountAnullated(id, true);
-            return ResponseEntity.status(201).body("user anullated succesfully");
+            accountservice.setAccountAnullated(id_acc, true);
+            return 1;
         }
     }
 

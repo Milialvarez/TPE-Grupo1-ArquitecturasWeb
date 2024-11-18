@@ -40,9 +40,9 @@ public class BillController{
     }
 
     @PostMapping()
-    public ResponseEntity<?> setNewBill(Date fechaVigencia, float pFijo, float pExtra){ //Definir precio y 3 F
+    public ResponseEntity<?> setNewBill(@RequestBody Bill bill){ //Definir precio y 3 F
         try{
-            Bill b = billService.setNewBill(fechaVigencia, pFijo, pExtra);
+            Bill b = billService.setNewBill(bill.getFecha(), bill.getPrice(), bill.getAdditionalPrice());
             return ResponseEntity.status(201).body(b);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();

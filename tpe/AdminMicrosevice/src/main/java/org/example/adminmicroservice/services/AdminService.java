@@ -4,6 +4,7 @@ import feign.FeignException;
 import org.example.adminmicroservice.dtos.BillDTO;
 import org.example.adminmicroservice.feignClients.*;
 import org.example.adminmicroservice.models.Account;
+import org.example.adminmicroservice.models.Bill;
 import org.example.adminmicroservice.models.Monopatin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +22,14 @@ import java.util.Optional;
 @Service
 public class AdminService {
     @Autowired
-    RestTemplate restTemplate;
-    @Autowired
     UserFeignClient usersFeignClient;
     @Autowired
     MonopatinFeignClient monopatinFeignClient;
+    @Autowired
     ReportsFeignClient reportsFeignClient;
+    @Autowired
     BillingFeignClient billingFeignClient;
+    @Autowired
     AccountsFeignClient accountsFeignClient;
 
     public List<Monopatin> getMonopatinesPorViajesPorAnio(Integer anio, Integer xViajes) {
@@ -35,12 +37,17 @@ public class AdminService {
         return (List<Monopatin>) monopatins;
     }
 
-    @PutMapping("/null")
-    public ResponseEntity<?> anullateAccount(@RequestBody Account ac){
-        return this.accountsFeignClient.anullateAccount(ac);
+    public ResponseEntity<?> anullateAccount(Integer id){
+        Long id_acc = id.longValue();
+        int result = this.accountsFeignClient.anullateAccount(id_acc);
+        if(result <0){
+            return ResponseEntity.status(404).body("id not found");
+        } else{
+            return ResponseEntity.status(200).body(id);
+        }
     }
 
-    public Optional<Object[]> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
+    public Optional<Object[]> getTotalBilled(LocalDate origin, LocalDate end){
         Optional<Object[]> reporte = (Optional<Object[]>) this.reportsFeignClient.getTotalBilled(origin, end).getBody();
         return reporte;
     }
@@ -50,11 +57,11 @@ public class AdminService {
     }
 
     public Object getReporteMonopatinesSegunEstado(){
-        return this.reportsFeignClient.getReporteMonopatinesSegunEstado();
+        return this.reportsFeignClient.getReporteMonopatinesActivosVsMantenidos();
     }
 
-    public Object setNewBill(Date fecha, float pFijo, float pExtra){
-        ResponseEntity<?> response = this.billingFeignClient.setNewBill(fecha, pFijo, pExtra);
+    public Object setNewBill(Bill b){
+        ResponseEntity<?> response = this.billingFeignClient.setNewBill(b);
         try {
             if (response.getStatusCode().is2xxSuccessful()){
                 Object bill = response.getBody();

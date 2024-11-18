@@ -2,6 +2,7 @@ package org.example.adminmicroservice.controllers;
 
 import org.example.adminmicroservice.dtos.BillDTO;
 import org.example.adminmicroservice.models.Account;
+import org.example.adminmicroservice.models.Bill;
 import org.example.adminmicroservice.models.Monopatin;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,9 @@ public class AdminController {
         return ResponseEntity.ok(admins);
     }
 
-    @PutMapping("/null")
-    public ResponseEntity<?> anullateAccount(@RequestBody Account ac){
-       return ResponseEntity.ok(adminService.anullateAccount(ac));
+    @PutMapping("/null/{id_acc}") //NO ANDA
+    public ResponseEntity<?> anullateAccount(@PathVariable("id_acc") Integer id_acc) {
+       return ResponseEntity.ok(adminService.anullateAccount(id_acc));
     }
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
@@ -66,12 +67,9 @@ public class AdminController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> setNewBill(@RequestBody BillDTO tarifaDTO){
+    public ResponseEntity<?> setNewBill(@RequestBody Bill bill){ //NO ANDA
         try {
-            Date fechaVigencia = tarifaDTO.getFechaInicioFacturacionNueva();
-            float pFijo = tarifaDTO.getPrecioFijo();
-            float pExtra = tarifaDTO.getPrecioExtra();
-            Object result = this.adminService.setNewBill(fechaVigencia, pFijo, pExtra);
+            Object result = this.adminService.setNewBill(bill);
             if (result != null) return ResponseEntity.status(201).body("Tarifa agregada con exito");
             else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Hubo un problema con el payload");
         } catch (Exception e) {

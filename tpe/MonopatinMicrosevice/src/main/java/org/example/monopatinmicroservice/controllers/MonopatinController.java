@@ -141,7 +141,7 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable //No anda
+    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable
     public ResponseEntity<?> getMonopatinesActivos(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("activo");

@@ -14,5 +14,4 @@ public class Account {
     private long id;
     private Date creation_date;
     private Integer balance;
-    private List<User> users;
 }
