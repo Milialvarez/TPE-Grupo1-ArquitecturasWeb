@@ -1,5 +1,6 @@
 package org.example.usermicroservice.controllers;
 
+import lombok.AllArgsConstructor;
 import org.example.usermicroservice.entities.Account;
 import org.example.usermicroservice.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/accounts")
 public class AccountController {
+
     @Autowired
     AccountService accountservice;
 
@@ -34,7 +37,7 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<Account> save(@RequestBody Account account) {
-        Account newAccount = accountservice.save(account);
+        Account newAccount = this.accountservice.save(account);
         return ResponseEntity.ok(newAccount);
     }
 
@@ -42,7 +45,7 @@ public class AccountController {
     @PutMapping("/null")
     public ResponseEntity<?> anullateAccount(@RequestBody Account acc){ //Anular cuenta
         Long id = acc.getId();
-        if(this.accountservice.getAccountById(id) == null){
+        if(accountservice.getAccountById(id) == null){
             return ResponseEntity.notFound().build();
         } else{
             accountservice.setAccountAnullated(id, true);
