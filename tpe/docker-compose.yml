@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   admin:
-    image: mysql
+    image: mysql:8.0
     ports:
       - "3306:3306" # puerto para las solicitudes HTTP= 8006
     command: --default-authentication-plugin=mysql_native_password
@@ -10,7 +10,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
 
   billing:
-    image: mysql
+    image: mysql:8.0
     ports:
       - "3307:3306" # puerto para las solicitudes HTTP= 8007
     command: --default-authentication-plugin=mysql_native_password
@@ -29,7 +29,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   maintenance:
-    image: mysql
+    image: mysql:8.0
     ports:
       - "3308:3306" # puerto para las solicitudes HTTP= 8008
     command: --default-authentication-plugin=mysql_native_password
@@ -48,7 +48,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   monopatin:
-    image: mysql
+    image: mysql:8.0
     ports:
       - "3309:3306" # puerto para las solicitudes HTTP= 8009
     command: --default-authentication-plugin=mysql_native_password
@@ -67,7 +67,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   reports:
-    image: mysql
+    image: mysql:8.0
     ports:
       - "3310:3306" # puerto para las solicitudes HTTP= 8010
     command: --default-authentication-plugin=mysql_native_password
@@ -76,7 +76,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # hacer contraseña vacía
 
   user:
-    image: mysql
+    image: mysql:8.0
     ports:
       - "3311:3306" # puerto para las solicitudes HTTP= 8011
     command: --default-authentication-plugin=mysql_native_password
