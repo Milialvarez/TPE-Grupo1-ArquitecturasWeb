@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@FeignClient(name="MaintenanceMicroservice", url="http://localhost:8004/mantenimiento")
+@FeignClient(name="MaintenanceMicroservice", url="http://localhost:8008/mantenimiento")
 public interface ManteinanceFeignClient {
 
     @GetMapping("/unvailable")
