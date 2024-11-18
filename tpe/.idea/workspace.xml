@@ -30,23 +30,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+    &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;FacuuBravo&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Milialvarez/TPE-Grupo1-ArquitecturasWeb&quot;,
     &quot;accountId&quot;: &quot;5c03e182-21bc-443b-934d-8513971d0b55&quot;
-  }
-}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
+    }
+    }</component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
+    &quot;associatedIndex&quot;: 4
+    }</component>
   <component name="ProjectId" id="2oDOZyjDB9pUkF6NKwwkVtbdXsh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -241,8 +241,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
       </set>
     </attachedChunks>
   </component>
@@ -270,12 +269,7 @@
       <workItem from="1731279674199" duration="9860000" />
       <workItem from="1731341351078" duration="1119000" />
       <workItem from="1731341351078" duration="2699000" />
-<<<<<<< HEAD
-      <workItem from="1731885707234" duration="1346000" />
-      <workItem from="1731931420568" duration="3896000" />
-=======
       <workItem from="1731885707234" duration="17136000" />
->>>>>>> df716e49585d30ea16f6d9249decc5aa8a52cca4
     </task>
     <servers />
   </component>

@@ -17,7 +17,7 @@ public interface ManteinanceFeignClient {
     ResponseEntity<?> saveManteinance(@PathVariable Long id_monopatin);
 
     @PutMapping("id/{id}/estado/{status}")
-    ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @PathVariable String status);
+    ResponseEntity<?> updateStatus(@PathVariable("id") int id, @PathVariable String status);
 
     @GetMapping("/{id_monopatin}")
     ResponseEntity<?> getManteinanceByMonopatinId(@PathVariable Long id_monopatin);

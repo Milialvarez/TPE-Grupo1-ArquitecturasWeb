@@ -64,24 +64,6 @@ public class MonopatinService {
         }
     }
 
-
-    public ArrayList<Monopatin> getMonopatinesEnMantenimiento() {
-        ResponseEntity<?> mantenimientos = this.mfc.getAllManteinanceByStatus("no disponible");
-        ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) mantenimientos.getBody();
-        ArrayList<Monopatin> result = new ArrayList<>();
-        for(LinkedHashMap<?, ?> l: response){
-            Integer aux = (Integer) l.get("id_monopatin");
-            Long id_monopatin = aux.longValue();
-
-            Monopatin m = this.monopatinRepository.findById(id_monopatin).orElse(null);
-            System.out.println(id_monopatin);
-            if(m != null){
-                result.add(m);
-            }
-        }
-        return result;
-    }
-
     public ArrayList<Monopatin> getMonopatinsByStatus(String status) {
         ResponseEntity<?> monopatins = this.mfc.getAllManteinanceByStatus(status);
         ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) monopatins.getBody();
@@ -126,7 +108,7 @@ public class MonopatinService {
                 Mantenimiento mant = new Mantenimiento(id, idMonopatin, l.get("estado").toString());
                 return ResponseEntity.ok().body(mant);
             } else {
-                this.mfc.updateStatus(id_monopatin, "no disponible");
+                this.mfc.updateStatus(monopatin, "no disponible");
                 response.put("success", "monopatin enviado a mantenimiento");
                 return ResponseEntity.ok().body(response);
             }
@@ -134,16 +116,16 @@ public class MonopatinService {
     }
 
     public ResponseEntity<?> cambiarEstadoMonopatin(Integer id_monopatin, String estado) {
-        Long long_monopatin = id_monopatin.longValue();
+        int idInt = id_monopatin;
         Map<String, String> response = new HashMap<>();
         if(estado == null || (!estado.equals("activo") && !estado.equals("no disponible"))){
             response.put("error", "estado invalido o nulo");
             return ResponseEntity.badRequest().body(response);
-        } else if(this.mfc.getManteinanceByMonopatinId(long_monopatin) == null){
+        } else if(this.mfc.getManteinanceByMonopatinId(id_monopatin.longValue()) == null){
             response.put("error", "monopatin no encontrado");
             return ResponseEntity.badRequest().body(response);
         } else{
-            this.mfc.updateStatus(long_monopatin, estado);
+            this.mfc.updateStatus(idInt, estado);
             response.put("success", "estado del monopatin cambiado");
             return ResponseEntity.ok().body(response);
         }

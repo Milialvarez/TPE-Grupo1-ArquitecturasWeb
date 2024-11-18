@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -132,7 +131,7 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping("/mantenimiento") //No anda
+    @GetMapping("/mantenimiento")
     public ResponseEntity<?> getMonopatinesEnMantenimiento(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("no disponible");
@@ -154,14 +153,12 @@ public class MonopatinController {
 
     @PostMapping("/mantener/{id_monopatin}") //Registrar monopatin en mantenimiento
     public ResponseEntity<?> enviarMonopatinAMantenimiento(@PathVariable("id_monopatin") Integer id_monopatin){
-        ResponseEntity<?> response = this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
-        return response;
+        return this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
     }
 
     @PutMapping("/mantenimiento/id/{id}/estado/{estado}")
     public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @PathVariable("id") Integer id){
-        ResponseEntity<?> response = this.monopatinService.cambiarEstadoMonopatin(id, estado);
-        return response;
+        return this.monopatinService.cambiarEstadoMonopatin(id, estado);
     }
 
 }
