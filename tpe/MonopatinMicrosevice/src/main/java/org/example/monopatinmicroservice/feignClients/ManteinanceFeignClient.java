@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name="MaintenanceMicroservice", url="http://localhost:8004/mantenimiento")
 public interface ManteinanceFeignClient {
 
-    @GetMapping("/unvailable")
-    ResponseEntity<?> getAllManteinanceUnvailable();
-
-    @GetMapping("/active")
-    ResponseEntity<?> getAllManteinanceActive();
+    @GetMapping("/estado/{status}")
+    ResponseEntity<?> getAllManteinanceByStatus(@PathVariable("status") String status);
 
     @PostMapping("/{id_monopatin}")
     ResponseEntity<?> saveManteinance(@PathVariable Long id_monopatin);

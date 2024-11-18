@@ -132,10 +132,10 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable
-    public ResponseEntity<?> getMonopatinesActivos(){
+    @GetMapping("/estado/{status}")
+    public ResponseEntity<?> getMonopatinsByStatus(@PathVariable("status") String status){
         try{
-            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinesActivos();
+            ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus(status);
             return ResponseEntity.ok().body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();

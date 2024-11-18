@@ -63,7 +63,7 @@ public class MonopatinService {
 
 
     public ArrayList<Monopatin> getMonopatinesEnMantenimiento() {
-        ResponseEntity<?> mantenimientos = this.mfc.getAllManteinanceUnvailable();
+        ResponseEntity<?> mantenimientos = this.mfc.getAllManteinanceByStatus("no disponible");
         ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) mantenimientos.getBody();
         ArrayList<Monopatin> result = new ArrayList<>();
         for(LinkedHashMap<?, ?> l: response){
@@ -79,9 +79,9 @@ public class MonopatinService {
         return result;
     }
 
-    public ArrayList<Monopatin> getMonopatinesActivos() {
-        ResponseEntity<?> activos = this.mfc.getAllManteinanceActive();
-        ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) activos.getBody();
+    public ArrayList<Monopatin> getMonopatinsByStatus(String status) {
+        ResponseEntity<?> monopatins = this.mfc.getAllManteinanceByStatus(status);
+        ArrayList<LinkedHashMap<?, ?>> response = (ArrayList<LinkedHashMap<?, ?>>) monopatins.getBody();
         ArrayList<Monopatin> result = new ArrayList<>();
 
         for(LinkedHashMap<?, ?> l: response){

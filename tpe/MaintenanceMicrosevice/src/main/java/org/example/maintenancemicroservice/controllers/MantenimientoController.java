@@ -22,7 +22,6 @@ public class MantenimientoController {
             ArrayList<Mantenimiento> m = this.ms.getAllManteinances();
             return ResponseEntity.ok(m);
         }catch(Exception e){
-//            return ResponseEntity.notFound().build();
             return ResponseEntity.status(401).body(e.getMessage());
         }
     }
@@ -33,36 +32,24 @@ public class MantenimientoController {
             ArrayList<Monopatin> lista = this.ms.getMonopatinesPorKm(km);
             return ResponseEntity.status(200).body(lista);
         }catch(Exception e){
-//            return ResponseEntity.notFound().build();
             return ResponseEntity.status(401).body(e.getMessage());
         }
     }
 
     @GetMapping("/tiempo/{t}/{p}")
-    public ResponseEntity<?> getMonopatinesPorTiempo(@PathVariable("t") float tiempo, @PathVariable(value = "p", required = false) boolean p) {
+    public ResponseEntity<?> getMonopatinesPorTiempo(@PathVariable("t") float tiempo, @PathVariable(value = "p", required = false) boolean pausa) {
         try{
-            ArrayList<Monopatin> lista = this.ms.getMonopatinesPorTiempo(tiempo, p);
+            ArrayList<Monopatin> lista = this.ms.getMonopatinesPorTiempo(tiempo, pausa);
             return ResponseEntity.status(200).body(lista);
         }catch(Exception e){
-//            return ResponseEntity.notFound().build();
             return ResponseEntity.status(401).body(e.getMessage());
         }
     }
 
-    @GetMapping("/unvailable")
-    public ResponseEntity<?> getAllManteinanceUnvailable(){
+    @GetMapping("/estado/{status}")
+    public ResponseEntity<?> getAllManteinanceByStatus(@PathVariable("status") String status) {
         try{
-            ArrayList<Mantenimiento> manteinances = this.ms.getAll("no disponible");
-            return ResponseEntity.ok(manteinances);
-        }catch(Exception e){
-            return ResponseEntity.noContent().build();
-        }
-    }
-
-    @GetMapping("/active")
-    public ResponseEntity<?> getAllManteinanceActive(){
-        try{
-            ArrayList<Mantenimiento> manteinances = this.ms.getAll("activo");
+            ArrayList<Mantenimiento> manteinances = this.ms.getAll(status);
             return ResponseEntity.ok(manteinances);
         }catch(Exception e){
             return ResponseEntity.noContent().build();
@@ -71,7 +58,7 @@ public class MantenimientoController {
 
     //el estado por defecto va a ser no disponible, se supone que si recién se lo está agregando es porque hay que arreglarlo
     @PostMapping("/{id_monopatin}")
-    public ResponseEntity<?> saveManteinance(@PathVariable Long id_monopatin){
+    public ResponseEntity<?> saveManteinance(@PathVariable("id_monopatin") Long id_monopatin){
         try{
             Mantenimiento m = this.ms.save(id_monopatin);
             return ResponseEntity.ok(m);
@@ -80,10 +67,12 @@ public class MantenimientoController {
         }
     }
 
-    @PutMapping("id/{id}/estado/{status}") //Registrar fin de mantenimiento
-    public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @PathVariable String status){
+    @PutMapping("id/{id_monopatin}/estado/{status}") //Registrar fin de mantenimiento
+    public ResponseEntity<?> updateStatus(@PathVariable("id_monopatin") int id, @PathVariable("status") String status){
         try{
-            Mantenimiento mantenimiento = this.ms.updateMaintenance(id, status);
+            Integer idInteger = id;
+            Long longId = idInteger.longValue();
+            Mantenimiento mantenimiento = this.ms.updateMaintenance(longId, status);
             System.out.println(mantenimiento);
             return ResponseEntity.ok(mantenimiento);
         }catch(Exception e){
@@ -92,14 +81,16 @@ public class MantenimientoController {
     }
 
     @GetMapping("/{id_monopatin}")
-    public ResponseEntity<?> getManteinanceByMonopatinId(@PathVariable Long id_monopatin){
+    public ResponseEntity<?> getManteinanceByMonopatinId(@PathVariable("id_monopatin") int id_monopatin){
         try{
-            Mantenimiento mantenimiento = this.ms.findByMonopatinId(id_monopatin);
+            Integer idInteger = id_monopatin;
+            Long longId = idInteger.longValue();
+            Mantenimiento mantenimiento = this.ms.findByMonopatinId(longId);
             if(mantenimiento != null) {
                 return ResponseEntity.ok(mantenimiento);
             }else {
                 HashMap<String, String> notFound = new HashMap<>();
-                notFound.put("error", "El monopatin con el id " + id_monopatin + " no existe.");
+                notFound.put("error", "El monopatin con el id_monopatin " + longId + " no existe.");
                 return ResponseEntity.status(404).body(notFound);
             }
         }catch(Exception e){
