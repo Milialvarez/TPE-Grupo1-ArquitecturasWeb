@@ -1,5 +1,6 @@
 package org.example.billingmicroservice.controllers;
 
+import org.example.billingmicroservice.dtos.BillDTO;
 import org.example.billingmicroservice.entities.Bill;
 import org.example.billingmicroservice.services.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +41,12 @@ public class BillController{
     }
 
     @PostMapping()
-    public ResponseEntity<?> setNewBill(@RequestBody Bill bill){ //Definir precio y 3 F
+    public ResponseEntity<?> setNewBill(@RequestBody BillDTO bill){ //Definir precio y 3 F
         try{
-            Bill b = billService.setNewBill(bill.getFecha(), bill.getPrice(), bill.getAdditionalPrice());
+            Bill b = billService.setNewBill(bill.getFechaInicioFacturacionNueva(), bill.getPrecioFijo(), bill.getPrecioExtra());
             return ResponseEntity.status(201).body(b);
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.status(500).body("Server Error");
         }
     }
 }

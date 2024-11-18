@@ -80,8 +80,6 @@ public class BillService {
     }
 
     public Bill setNewBill(Date f, float pFijo, float pEx) {
-        Date lastBillDate = this.billRepository.getLastOne();
-        if (f.before(lastBillDate)) return null;
         Bill b = new Bill();
         b.setFecha(f);
         b.setPrice(pFijo);

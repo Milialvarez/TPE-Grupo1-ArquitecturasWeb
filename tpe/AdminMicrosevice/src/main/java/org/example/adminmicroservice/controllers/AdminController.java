@@ -1,8 +1,6 @@
 package org.example.adminmicroservice.controllers;
 
 import org.example.adminmicroservice.dtos.BillDTO;
-import org.example.adminmicroservice.models.Account;
-import org.example.adminmicroservice.models.Bill;
 import org.example.adminmicroservice.models.Monopatin;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,11 +64,9 @@ public class AdminController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> setNewBill(@RequestBody Bill bill){ //NO ANDA
+    public ResponseEntity<?> setNewBill(@RequestBody BillDTO bill){ //NO ANDA
         try {
-            Object result = this.adminService.setNewBill(bill);
-            if (result != null) return ResponseEntity.status(201).body("Tarifa agregada con exito");
-            else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Hubo un problema con el payload");
+            return this.adminService.setNewBill(bill);
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }
