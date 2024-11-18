@@ -23,7 +23,7 @@ public class MonopatinController {
     @Autowired
     private ParadaService paradaService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> getAll() {
         try {
             List<Monopatin> result = this.monopatinService.getAll();
@@ -33,7 +33,7 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping({ "/{km}", "/{tiempo}/{pausa}"})
+    @GetMapping({ "/km/{km}", "/t/p/{tiempo}/{pausa}"})
     public ResponseEntity<?> getMonopatines(@PathVariable(value = "km", required = false) float maxKmRecorridos, @PathVariable(value = "tiempo", required = false) float tiempoMaxUso, @PathVariable(value = "pausa", required = false) boolean p) {
         try {
             List<Monopatin> result = this.monopatinService.getAllBy(maxKmRecorridos, tiempoMaxUso, p);
