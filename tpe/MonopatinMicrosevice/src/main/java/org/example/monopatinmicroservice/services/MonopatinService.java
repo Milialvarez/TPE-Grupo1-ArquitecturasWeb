@@ -83,6 +83,7 @@ public class MonopatinService {
         return result;
     }
 
+    //FUNCIONA, ARREGLADO
     public ResponseEntity<?> enviarMonopatinAMantenimiento(Integer monopatin) {
         Long id_monopatin = monopatin.longValue();
         int limiteKm = 40000; //limite de km a partir del cual llevar a mantener
@@ -97,7 +98,7 @@ public class MonopatinService {
             return ResponseEntity.ok().body(response);
         } else{
             ResponseEntity<?> alreadyExists = this.mfc.getManteinanceByMonopatinId(id_monopatin);
-            if(alreadyExists == null){
+            if(alreadyExists.getBody() == null){
                 ResponseEntity<?> result = this.mfc.saveManteinance(id_monopatin);
                 LinkedHashMap<?, ?> l = (LinkedHashMap<?, ?>) result.getBody();
                 Integer auxId = (Integer) l.get("id");

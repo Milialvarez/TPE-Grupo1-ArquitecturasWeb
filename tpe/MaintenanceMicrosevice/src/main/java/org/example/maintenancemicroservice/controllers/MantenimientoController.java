@@ -87,11 +87,9 @@ public class MantenimientoController {
             Long longId = idInteger.longValue();
             Mantenimiento mantenimiento = this.ms.findByMonopatinId(longId);
             if(mantenimiento != null) {
-                return ResponseEntity.ok(mantenimiento);
+                return ResponseEntity.status(200).body(mantenimiento);
             }else {
-                HashMap<String, String> notFound = new HashMap<>();
-                notFound.put("error", "El monopatin con el id_monopatin " + longId + " no existe.");
-                return ResponseEntity.status(404).body(notFound);
+                return null;
             }
         }catch(Exception e){
             return ResponseEntity.status(500).build();
