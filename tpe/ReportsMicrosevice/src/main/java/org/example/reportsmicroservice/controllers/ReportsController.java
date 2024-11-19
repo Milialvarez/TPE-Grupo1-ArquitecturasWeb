@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/reports")
@@ -39,6 +36,7 @@ public class ReportsController {
          }
      }
 
+     //VER
      @GetMapping("/usoMonopatinesKm/{kilometros}") //reporte de uso de monopatines con un max de km
      public ResponseEntity<?> getReporteUsoMonopatinKm(@PathVariable("kilometros") float maxKm){
          try{
@@ -49,6 +47,7 @@ public class ReportsController {
          }
      }
 
+     //VER
     @GetMapping({"/usoMonopatinesTiempo/{tiempo}/{pausa}"}) //reporte de uso de monopatines con un max de tiempo y un isPausa
      public ResponseEntity<?> getReporteUsoMonopatinPausa(@PathVariable(value = "tiempo") float tiempo, @PathVariable(value = "pausa", required = false) boolean p){
         try {

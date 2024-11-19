@@ -39,7 +39,7 @@ public class AdminController {
        return ResponseEntity.ok(adminService.anullateAccount(id_acc));
     }
 
-
+//no anda
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String o, @PathVariable("fechaFin") String e) {
         try {

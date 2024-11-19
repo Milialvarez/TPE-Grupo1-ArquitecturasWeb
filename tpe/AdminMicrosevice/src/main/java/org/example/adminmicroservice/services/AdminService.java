@@ -36,7 +36,6 @@ public class AdminService {
     }
 
     public ResponseEntity<?> getTotalBilled(LocalDate origin, LocalDate end){
-        System.out.println("admin service");
         return this.reportsFeignClient.getTotalBilled(origin, end);
     }
 
