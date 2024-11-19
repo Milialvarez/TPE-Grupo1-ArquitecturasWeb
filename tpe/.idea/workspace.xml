@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/dtos/MonopatinDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/dtos/ParadaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/dtos/ViajeDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/ViajeConIdMonopatinDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/ViajeConIdMonopatinDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Viaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Viaje.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ViajeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ViajeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/DataLoaderHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/DataLoaderHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/feignClient/ViajeFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/feignClient/ViajeFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ViajeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/ViajeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
