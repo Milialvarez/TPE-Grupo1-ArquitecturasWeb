@@ -87,6 +87,7 @@ public class MonopatinController {
         }
     }
 
+    //ANDA
     @GetMapping("/xViajes/{xViajes}/anio/{anio}")
     public ResponseEntity<?> getMonopatinesPorViajesPorAnio(@PathVariable("anio") Integer anio, @PathVariable("xViajes") Integer xViajes) {
         try {
@@ -122,6 +123,7 @@ public class MonopatinController {
         }
     }
 
+    //ANDA
     @GetMapping("/location/{posx}/{posy}")
     public ResponseEntity<?> getClosestMonopatins(@PathVariable("posx") int posx, @PathVariable("posy") int posy){
         try{
@@ -131,6 +133,7 @@ public class MonopatinController {
         }
     }
 
+    //ANDA
     @GetMapping("/mantenimiento")
     public ResponseEntity<?> getMonopatinesEnMantenimiento(){
         try{
@@ -141,7 +144,8 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable
+    //ANDA
+    @GetMapping("/activos")
     public ResponseEntity<?> getMonopatinesActivos(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("activo");
@@ -151,11 +155,14 @@ public class MonopatinController {
         }
     }
 
+    //ANDA
     @PostMapping("/mantener/{id_monopatin}") //Registrar monopatin en mantenimiento
     public ResponseEntity<?> enviarMonopatinAMantenimiento(@PathVariable("id_monopatin") Integer id_monopatin){
         return this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
     }
 
+
+    //ANDA
     @PutMapping("/mantenimiento/id/{id}/estado/{estado}")
     public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @PathVariable("id") Integer id){
         return this.monopatinService.cambiarEstadoMonopatin(id, estado);

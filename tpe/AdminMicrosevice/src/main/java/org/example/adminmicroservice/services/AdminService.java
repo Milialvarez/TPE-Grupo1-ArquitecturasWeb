@@ -3,6 +3,7 @@ package org.example.adminmicroservice.services;
 import feign.FeignException;
 import org.example.adminmicroservice.dtos.BillDTO;
 import org.example.adminmicroservice.feignClients.*;
+import org.example.adminmicroservice.models.Account;
 import org.example.adminmicroservice.models.Monopatin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,23 +27,21 @@ public class AdminService {
     @Autowired
     AccountsFeignClient accountsFeignClient;
 
-    public List<Monopatin> getMonopatinesPorViajesPorAnio(Integer anio, Integer xViajes) {
-        ResponseEntity<?> monopatins = this.monopatinFeignClient.getMonopatinesPorViajesPorAnio(anio, xViajes);
-        return (List<Monopatin>) monopatins;
+    public ResponseEntity<?> getMonopatinesPorViajesPorAnio(Integer anio, Integer xViajes) {
+        return this.monopatinFeignClient.getMonopatinesPorViajesPorAnio(anio, xViajes);
     }
 
     public ResponseEntity<?> anullateAccount(Integer id){
-        ResponseEntity<?> result = this.accountsFeignClient.anullateAccount(id);
-        return result;
+        return this.accountsFeignClient.anullateAccount(id);
     }
 
-    public Optional<Object[]> getTotalBilled(LocalDate origin, LocalDate end){
-        Optional<Object[]> reporte = (Optional<Object[]>) this.reportsFeignClient.getTotalBilled(origin, end).getBody();
-        return reporte;
+    public ResponseEntity<?> getTotalBilled(LocalDate origin, LocalDate end){
+        System.out.println("admin service");
+        return this.reportsFeignClient.getTotalBilled(origin, end);
     }
 
-    public List<Object> getUsersByRole(String r){
-        return (List<Object>) this.usersFeignClient.getUsersByRole(r);
+    public ResponseEntity<?> getUsersByRole(String r){
+        return this.usersFeignClient.getUsersByRole(r);
     }
 
     public Object getReporteMonopatinesSegunEstado(){

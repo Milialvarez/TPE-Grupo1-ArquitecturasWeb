@@ -24,15 +24,14 @@ public class AdminController {
     }
 
     @GetMapping("/role/{role}") //role must be either: [usuario, admin, mantenimiento]
-    public ResponseEntity<List<Object>> getUsersByRole(@PathVariable("role") String r) {
-        List<Object> users = adminService.getUsersByRole(r);
-        return ResponseEntity.status(200).body(users);
+    public ResponseEntity<?> getUsersByRole(@PathVariable("role") String r) {
+        return ResponseEntity.status(200).body(this.adminService.getUsersByRole(r).getBody());
     }
 
-    @GetMapping("/xViajes/{xViajes}/anio/{anio}")
+    @GetMapping("/xViajes/{xViajes}/anio/{anio}") //ANDA
     public ResponseEntity<?> getMonopatinesPorViajesPorAnio(@PathVariable("anio") Integer anio, @PathVariable("xViajes") Integer xViajes){
-        List<Monopatin> admins = adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
-        return ResponseEntity.ok(admins);
+        ResponseEntity<?> reportViajes = adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
+        return ResponseEntity.ok(reportViajes.getBody());
     }
 
     @PutMapping("/null/{id_acc}") //ANDA PERO CON DELAY, la primera vez que se manda parece que no cambió nada, pero si lo volvés a llamar se ven los cambios
@@ -42,16 +41,19 @@ public class AdminController {
 
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String o, @PathVariable("fechaFin") String e) {
         try {
-            Optional<Object[]> reporteTotalFacturadoEntreFechas = (Optional<Object[]>) adminService.getTotalBilled(origin, end);
-            if (reporteTotalFacturadoEntreFechas.isPresent())
-                return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
-        } catch (Exception e) {
-            if (origin.isAfter(end)) return ResponseEntity.badRequest().body(e.getMessage());
-
+            LocalDate origin = LocalDate.parse(o);
+            LocalDate end = LocalDate.parse(e);
+            if (origin.isAfter(end)) {
+                return ResponseEntity.badRequest().body("wrong dates");
+            }
+            ResponseEntity<?> reporteTotalFacturadoEntreFechas = adminService.getTotalBilled(origin, end);
+            System.out.println("todo un logro");
+            return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
+        } catch (Exception exception) {
+            return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
         }
-        return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
     }
 
     @GetMapping("/activosVsMantenimiento")

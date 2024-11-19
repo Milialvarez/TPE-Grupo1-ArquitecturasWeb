@@ -67,11 +67,14 @@ public class BillService {
     public double getTotalBilled(LocalDate origin, LocalDate end){
         try {
             Bill tarifa = this.getCostos();
+            System.out.println("primer bill service");
             List<Object[]> viajes = (List<Object[]>) this.viajeFeignClient.getViajesBetween(origin, end);
+            System.out.println(viajes);
             double sumatoria = 0;
             for (Object[] v : viajes){
                 sumatoria += this.getCostoViaje(v, tarifa);
             }
+            System.out.println(sumatoria);
             return sumatoria;
         } catch (Exception e) {
             return -1.0;

@@ -28,16 +28,15 @@ public class BillController{
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
-        try {
+            System.out.println("controller bill");
             double reporteTotalFacturadoEntreFechas = billService.getTotalBilled(origin, end);
-            if (reporteTotalFacturadoEntreFechas!= -1)
+            if (reporteTotalFacturadoEntreFechas != -1){
+                System.out.println("bien controller bill");
                 return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
+            }
             else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontro una facturacion para las fechas solicitadas.");
             }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrio un error al realizar la solicitud.");
-        }
     }
 
     @PostMapping()

@@ -6,10 +6,10 @@ import java.util.Date;
 
 public class ReporteFacturacion extends Reporte{
     private double totalFacturado;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
-    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, Date fechaInicio, Date fechaFin) {
+    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, LocalDate fechaInicio, LocalDate fechaFin) {
         super(nombre, descripcion);
         this.totalFacturado = totalFacturado;
         this.fechaInicio = fechaInicio;
@@ -26,11 +26,11 @@ public class ReporteFacturacion extends Reporte{
         return totalFacturado;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 }

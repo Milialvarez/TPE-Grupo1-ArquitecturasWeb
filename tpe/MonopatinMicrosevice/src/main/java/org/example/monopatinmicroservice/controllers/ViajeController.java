@@ -93,6 +93,8 @@ public class ViajeController {
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2){
-        return null;
+        System.out.println("logradisimo en viaje");
+        List<Viaje> result = this.viajeService.getViajesBetween(d1, d2);
+        return ResponseEntity.ok().body(result);
     }
 }

@@ -3,6 +3,8 @@ package org.example.monopatinmicroservice.services;
 import org.example.monopatinmicroservice.entities.Viaje;
 import org.example.monopatinmicroservice.repositories.ViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -37,5 +39,9 @@ public class ViajeService {
 
     public double getTotalBilled(LocalDate origin, LocalDate end) {
         return 0.0;
+    }
+
+    public List<Viaje> getViajesBetween(LocalDate start, LocalDate end) {
+        return viajeRepository.getTotalBilled(start, end);
     }
 }

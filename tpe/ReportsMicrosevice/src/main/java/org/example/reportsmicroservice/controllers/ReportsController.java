@@ -22,18 +22,12 @@ public class ReportsController {
     private ReportsService reportService;
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") Date origin, @PathVariable("fechaFin") Date end) {
-        try {
-            Optional<ReporteFacturacion> reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
-            if (reporteTotalFacturadoEntreFechas.isEmpty())
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end) {
+            System.out.println("primer rep controller");
+            ResponseEntity<?> reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
+            System.out.println("segundo rep controller");
                 return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
-            else
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos invalidos o no existe un reporte.");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrio un error al solicitar el reporte.");
-        }
-
-    }
+            }
 
     @GetMapping("/activosVsMantenimiento")
      public ResponseEntity<?> getReporteMonopatinesActivosVsMantenidos(){

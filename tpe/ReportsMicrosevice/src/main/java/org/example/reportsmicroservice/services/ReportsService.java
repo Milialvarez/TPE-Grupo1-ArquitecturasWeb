@@ -6,29 +6,29 @@ import org.example.reportsmicroservice.entities.ReporteMonopatinesEstado;
 import org.example.reportsmicroservice.entities.ReporteMonopatinesUso;
 import org.example.reportsmicroservice.feignClients.BillingFeignClient;
 import org.example.reportsmicroservice.feignClients.MonopatinFeignClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ReportsService {
+    @Autowired
     BillingFeignClient billingFeignClient;
+    @Autowired
     MonopatinFeignClient monopatinFeignClient;
 
 
-    public Optional<ReporteFacturacion> getTotalBilled(@PathVariable("fechaOrigen") Date origin, @PathVariable("fechaFin") Date end){
+    public ResponseEntity<?> getTotalBilled(LocalDate origin, LocalDate end){
         try {
-            double totalBilled = (Double) this.billingFeignClient.getTotalBilled(origin, end).getBody();
-            return Optional.of(new ReporteFacturacion("Reporte de facturacion", "Ganancias hechas en los viajes entre fechas.", totalBilled, origin, end));
+            ResponseEntity<?> totalBilled = this.billingFeignClient.getTotalBilled(origin, end);
+            Double total = (Double) totalBilled.getBody();
+            return ResponseEntity.status(200).body(new ReporteFacturacion("Reporte de facturacion", "Ganancias hechas en los viajes entre fechas.", total, origin, end));
         } catch (Exception e) {
-            return Optional.empty();
+            return null;
         }
     }
 
