@@ -11,6 +11,10 @@ tags:
   description: Maneja los usuarios y tokens
 - name: admin
   description: Solo los usuarios con rol admin acceden
+- name: facturacion
+  description: Maneja la información acerca de las facturaciones
+- name: monopatines
+  description: Maneja la información acerca de los monopatines
   
 paths:
   /api/users:
@@ -54,6 +58,7 @@ paths:
     get:
       tags:
       - admin
+      - usuarios
       summary: Devuelve los usuarios con determinado rol
       parameters:
       - $ref: "#/components/parameters/token"
@@ -75,6 +80,7 @@ paths:
     put:
       tags:
       - admin
+      - usuarios
       summary: Anula la cuenta de un usuario
       parameters:
       - $ref: "#/components/parameters/token"
@@ -96,6 +102,7 @@ paths:
     get:
       tags:
       - admin
+      - monopatines
       summary: Obtiene monopatines por x viajes por año
       parameters:
       - $ref: "#/components/parameters/token"
@@ -123,6 +130,7 @@ paths:
     get:
       tags:
       - admin
+      - facturacion
       summary: Obtiene el total facturado entre dos fechas
       parameters:
       - $ref: "#/components/parameters/token"
@@ -150,6 +158,7 @@ paths:
     get:
       tags:
       - admin
+      - monopatines
       summary: Provee una comparacion de la cantidad de monopatines activos versus la cantidad en mantenimiento
       parameters:
       - $ref: "#/components/parameters/token"
@@ -166,6 +175,7 @@ paths:
       summary: Setea un nuevo precio fijo y/o extra
       tags:
       - admin
+      - facturacion
       parameters:
       - $ref: "#/components/parameters/token"
       requestBody:
@@ -180,21 +190,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntidadFacturacion'
-  
-  /viaje:
+      
+  /bills:
     get:
-      summary: Obtiene todos los viajes
-      description: Retorna una lista de todos los viajes
+      summary: Obtiene todas las facturaciones
+      tags:
+      - facturacion
+      parameters:
+      - $ref: "#/components/parameters/token"
       responses:
         200:
-          description: (OK) La lista de todos los viajes fue obtenida
+          description: devolvió una lista con las facturaciones
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExitoListaViajes'
-        500:
-          $ref: '#/components/responses/InternalError'
-      
+                $ref: '#/components/schemas/ListaFacturacion'
+  
+  
+  
       
       
       
@@ -230,11 +243,6 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/Monopatin"
-  
-    ExitoListaViajes:
-      type: array
-      items:
-        $ref: '#/components/schemas/Viaje'
         
     CreacionUsuario:
       type: object
@@ -420,7 +428,12 @@ components:
         password:
           type: string
           description: contraseña del usuario
-          
+    
+    ListaFacturacion:
+      type: array
+      items:
+        $ref: "#/components/schemas/EntidadFacturacion"
+        
           
           
           
