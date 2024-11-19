@@ -16,7 +16,7 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<?> getAll() {
         return ResponseEntity.status(200).body("Todo ok andando en admin");
     }
@@ -47,29 +47,25 @@ public class AdminController {
                 return ResponseEntity.badRequest().body("wrong dates");
             }
             ResponseEntity<?> reporteTotalFacturadoEntreFechas = adminService.getTotalBilled(origin, end);
-            System.out.println("todo un logro");
             return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
         } catch (Exception exception) {
             return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
         }
     }
 
-    @GetMapping("/activosVsMantenimiento") //FUNCIONA
+    @GetMapping("/activosVsMantenimiento")
     public ResponseEntity<?> getReporteMonopatinesSegunEstado(){
-            ResponseEntity<?> result = this.adminService.getReporteMonopatinesSegunEstado();
-            String response = Objects.requireNonNull(result.getBody()).toString();
-            System.out.println(response);
-            return ResponseEntity.ok(response);
+        ResponseEntity<?> result = this.adminService.getReporteMonopatinesSegunEstado();
+        String response = Objects.requireNonNull(result.getBody()).toString();
+        return ResponseEntity.ok(response);
     }
 
-    @PostMapping()
+    @PostMapping("/newBilling")
     public ResponseEntity<?> setNewBill(@RequestBody BillDTO bill){ //no se pudo determinar por qué cuando la fecha es menor a la valida se va al catch
         try {
             ResponseEntity<?> response = this.adminService.setNewBill(bill);
-            System.out.println(response.getBody());
             return ResponseEntity.ok(response.getBody());
         } catch (Exception e) {
-            System.out.println("entré al catch de admin");
             return ResponseEntity.status(500).build();
         }
     }

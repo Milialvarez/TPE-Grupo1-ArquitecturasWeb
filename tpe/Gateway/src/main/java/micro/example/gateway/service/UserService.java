@@ -32,9 +32,7 @@ public class UserService {
             user.setPassword( passwordEncoder.encode( usuarioRequestDto.getPassword()));
             return this.usuarioFeignClient.save(user);
         }catch (Exception e){
-            System.out.println("catch de save");
             throw new Exception(e.getMessage());
-
         }
     }
 }

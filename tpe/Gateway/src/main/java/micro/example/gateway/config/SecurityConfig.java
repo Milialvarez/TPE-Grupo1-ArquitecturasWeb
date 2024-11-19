@@ -54,7 +54,6 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
                     .requestMatchers(HttpMethod.GET,"/users").hasAuthority(AuthotityConstant._ADMINISTRADOR)
-                    //hacete uno para admin, monopatin
                     .anyRequest().authenticated()
             )
             .httpBasic( Customizer.withDefaults() )
