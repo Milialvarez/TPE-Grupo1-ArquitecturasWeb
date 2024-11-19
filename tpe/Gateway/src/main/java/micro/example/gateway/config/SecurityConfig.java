@@ -53,7 +53,9 @@ public class SecurityConfig {
             .authorizeHttpRequests( authz -> authz
                     .requestMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
-                    .requestMatchers(HttpMethod.GET,"/users").hasAuthority(AuthotityConstant._ADMINISTRADOR)
+                    .requestMatchers(HttpMethod.GET,"/admin/**").hasAuthority(AuthotityConstant._ADMINISTRADOR)
+                    .requestMatchers(HttpMethod.POST,"/admin/**").hasAuthority(AuthotityConstant._ADMINISTRADOR)
+                    .requestMatchers(HttpMethod.PUT,"/admin/**").hasAuthority(AuthotityConstant._ADMINISTRADOR)
                     .anyRequest().authenticated()
             )
             .httpBasic( Customizer.withDefaults() )
