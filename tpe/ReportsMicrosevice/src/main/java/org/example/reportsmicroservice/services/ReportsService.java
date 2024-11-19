@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,11 +25,15 @@ public class ReportsService {
     MonopatinFeignClient monopatinFeignClient;
 
 
-    public ResponseEntity<?> getTotalBilled(LocalDate origin, LocalDate end){
+    public ReporteFacturacion getTotalBilled(LocalDate origin, LocalDate end){
         try {
-            ResponseEntity<?> totalBilled = this.billingFeignClient.getTotalBilled(origin, end);
-            Double total = (Double) totalBilled.getBody();
-            return ResponseEntity.status(200).body(new ReporteFacturacion("Reporte de facturacion", "Ganancias hechas en los viajes entre fechas.", total, origin, end));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String originFormatted = origin.format(formatter);
+            String endFormatted = end.format(formatter);
+
+            ResponseEntity<?> response = this.billingFeignClient.getTotalBilled(originFormatted, endFormatted);
+            Double totalBilled = (Double) response.getBody();
+            return new ReporteFacturacion("Reporte de facturacion", "Ganancias hechas en los viajes entre fechas.", totalBilled, origin, end);
         } catch (Exception e) {
             return null;
         }

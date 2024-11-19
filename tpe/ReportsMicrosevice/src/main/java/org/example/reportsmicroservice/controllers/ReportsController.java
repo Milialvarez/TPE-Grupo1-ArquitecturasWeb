@@ -19,13 +19,18 @@ public class ReportsController {
     @Autowired
     private ReportsService reportService;
 
+    @GetMapping("")
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.status(200).body("Todo ok andando en reports");
+    }
+
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end) {
             System.out.println("primer rep controller");
-            ResponseEntity<?> reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
+            ReporteFacturacion reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
             System.out.println("segundo rep controller");
-                return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
-            }
+            return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas.toString());
+    }
 
     @GetMapping("/activosVsMantenimiento")
      public ResponseEntity<?> getReporteMonopatinesActivosVsMantenidos(){
