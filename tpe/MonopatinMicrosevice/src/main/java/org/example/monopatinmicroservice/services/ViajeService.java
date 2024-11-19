@@ -37,10 +37,6 @@ public class ViajeService {
         return viaje;
     }
 
-    public double getTotalBilled(LocalDate origin, LocalDate end) {
-        return 0.0;
-    }
-
     public List<Viaje> getViajesBetween(LocalDate start, LocalDate end) {
         return viajeRepository.getTotalBilled(start, end);
     }

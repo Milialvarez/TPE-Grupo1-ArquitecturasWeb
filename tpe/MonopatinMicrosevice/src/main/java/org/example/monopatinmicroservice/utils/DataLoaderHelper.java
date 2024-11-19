@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
@@ -67,11 +69,12 @@ public class DataLoaderHelper {
 
     public void loadViajes() throws ParseException {
         List<String[]> viajes = CSVReaderHelper.readCSV("MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/viajes.csv");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         for (String[] viaje : viajes.subList(1, viajes.size())) {
             Viaje v = new Viaje();
             //v.setId(Long.parseLong(viaje[0]));
-            v.setFecha(dateFormat.parse(viaje[1]));
+            LocalDate fecha = LocalDate.parse(viaje[1], formatter);
+            v.setFecha(fecha);
             v.setDuracion(Integer.parseInt(viaje[2]));
             v.setId_usuario(Long.parseLong(viaje[3]));
             // Set Monopatin
