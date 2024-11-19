@@ -42,7 +42,7 @@ public class ReportsController {
          }
      }
 
-     //VER
+     //ANDAAA
      @GetMapping("/usoMonopatinesKm/pausa/{pausa}") //reporte de uso de monopatines con un max de km
      public ResponseEntity<?> getReporteUsoMonopatinKm(@PathVariable("pausa") boolean pausa){
          try{
