@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -36,9 +38,19 @@ public class ReportsService {
         ResponseEntity<?> responseActivos = this.monopatinFeignClient.getMonopatinesActivos();
         ResponseEntity<?> responseMantenim = this.monopatinFeignClient.getMonopatinesEnMantenimiento();
         try {
-            if (responseActivos.getStatusCode().is2xxSuccessful() && responseMantenim.getStatusCode().is2xxSuccessful()){
-                return new ReporteMonopatinesEstado((Integer) responseActivos.getBody(), (Integer) responseMantenim.getBody());
+            if (Objects.equals(responseActivos.getStatusCode().toString(), "200 OK") && Objects.equals(responseMantenim.getStatusCode().toString(), "200 OK")){
+                ArrayList<Object> mantenimiento = (ArrayList<Object>) responseMantenim.getBody();
+                ArrayList<Object> activos = (ArrayList<Object>) responseActivos.getBody();
+                System.out.println("if de repo service");
+                System.out.println(mantenimiento);
+                System.out.println(activos);
+                assert activos != null;
+                assert mantenimiento != null;
+                System.out.println(activos.size());
+                System.out.println(mantenimiento.size());
+                return new ReporteMonopatinesEstado(activos.size(), mantenimiento.size());
             } else {
+                System.out.println("else del repo service");
                 // Manejar una respuesta no exitosa
                 throw new IllegalStateException("Error al llamar al otro servicio");
             }

@@ -1,7 +1,6 @@
 package org.example.adminmicroservice.controllers;
 
 import org.example.adminmicroservice.dtos.BillDTO;
-import org.example.adminmicroservice.models.Monopatin;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/admin")
@@ -56,14 +54,12 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/activosVsMantenimiento")
+    @GetMapping("/activosVsMantenimiento") //FUNCIONA
     public ResponseEntity<?> getReporteMonopatinesSegunEstado(){
-        try{
-            Object reporte = adminService.getReporteMonopatinesSegunEstado();
-            return ResponseEntity.status(200).body(reporte.toString());
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
+            ResponseEntity<?> result = this.adminService.getReporteMonopatinesSegunEstado();
+            String response = Objects.requireNonNull(result.getBody()).toString();
+            System.out.println(response);
+            return ResponseEntity.ok(response);
     }
 
     @PostMapping()

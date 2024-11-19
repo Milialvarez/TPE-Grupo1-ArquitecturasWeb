@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Service
+@Service("AdminService")
 public class AdminService {
     @Autowired
     UserFeignClient usersFeignClient;
@@ -43,7 +43,7 @@ public class AdminService {
         return this.usersFeignClient.getUsersByRole(r);
     }
 
-    public Object getReporteMonopatinesSegunEstado(){
+    public ResponseEntity<?> getReporteMonopatinesSegunEstado(){
         return this.reportsFeignClient.getReporteMonopatinesActivosVsMantenidos();
     }
 

@@ -138,7 +138,7 @@ public class MonopatinController {
     public ResponseEntity<?> getMonopatinesEnMantenimiento(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("no disponible");
-            return ResponseEntity.ok().body(monopatins);
+            return ResponseEntity.status(200).body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();
         }
@@ -149,7 +149,7 @@ public class MonopatinController {
     public ResponseEntity<?> getMonopatinesActivos(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("activo");
-            return ResponseEntity.ok().body(monopatins);
+            return ResponseEntity.status(200).body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();
         }

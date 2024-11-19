@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/reports")
@@ -29,9 +30,13 @@ public class ReportsController {
     @GetMapping("/activosVsMantenimiento")
      public ResponseEntity<?> getReporteMonopatinesActivosVsMantenidos(){
          try{
+             System.out.println("hola repo controller");
              ReporteMonopatinesEstado reporte = reportService.getReporteMonopatinesEstado();
-             return ResponseEntity.status(200).body(reporte);
+             System.out.println("se obtuvo bien");
+             String response = reporte.toString();
+             return ResponseEntity.status(200).body(Collections.singletonMap("report", response));
          } catch (Exception e) {
+             System.out.println("catch de repo controller");
              return ResponseEntity.internalServerError().build();
          }
      }
