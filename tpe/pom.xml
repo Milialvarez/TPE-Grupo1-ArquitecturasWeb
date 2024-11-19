@@ -25,6 +25,7 @@
         <module>MaintenanceMicrosevice</module>
         <module>BillingMicrosevice</module>
         <module>MonopatinMicrosevice</module>
+        <module>gateway</module>
     </modules>
 
     <properties>

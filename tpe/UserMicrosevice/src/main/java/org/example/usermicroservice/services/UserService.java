@@ -1,7 +1,11 @@
 package org.example.usermicroservice.services;
 
+import org.example.usermicroservice.DTO.UsuarioRequestDto;
+import org.example.usermicroservice.DTO.UsuarioResponseDto;
+import org.example.usermicroservice.entities.Role;
 import org.example.usermicroservice.entities.User;
 import org.example.usermicroservice.feignClients.MonopatinFeignClient;
+import org.example.usermicroservice.repositories.RoleRepository;
 import org.example.usermicroservice.repositories.UserRepository;
 import org.example.usermicroservice.utils.UserRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,8 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
     MonopatinFeignClient monopatinFeignClient;
 
     public List<User> getAll(){
@@ -30,11 +36,46 @@ public class UserService {
         }
     }
 
-    public User save(User user){
-        User userNew;
-        userNew = userRepository.save(user);
-        return userNew;
+    public UsuarioResponseDto save(UsuarioRequestDto user){
+        UsuarioResponseDto responseDto = new UsuarioResponseDto();
+        User usuario = this.mapearDtoAEntididad(user);
+
+        this.userRepository.save(usuario);
+        return this.mapearEntididadADto(usuario);
     }
+
+    private UsuarioResponseDto mapearEntididadADto(User usuario) {
+        UsuarioResponseDto responseDto = new UsuarioResponseDto();
+
+        responseDto.setId(usuario.getId());
+        responseDto.setNombre(usuario.getName());
+        responseDto.setApellido(usuario.getLastname());
+        responseDto.setEmail(usuario.getEmail());
+        responseDto.setNumeroCelular(usuario.getPhoneNumber());
+        responseDto.setPassword(usuario.getPassword());
+
+        // Mapear Rol
+        if (usuario.getRole() != null) {
+            Role rol = new Role();
+            rol.setId(usuario.getRole().getId());
+            rol.setRole(usuario.getRole().getRole());
+            responseDto.setRole(rol);
+        }
+
+        return responseDto;
+    }
+
+    private User mapearDtoAEntididad(UsuarioRequestDto UsuarioRequestDto) {
+        User usuario = new User();
+        usuario.setName(UsuarioRequestDto.getNombre());
+        usuario.setLastname(UsuarioRequestDto.getApellido());
+        usuario.setEmail(UsuarioRequestDto.getEmail());
+        usuario.setPassword(UsuarioRequestDto.getPassword());
+        usuario.setPhoneNumber(UsuarioRequestDto.getNumeroCelular());
+        usuario.setRole(this.roleRepository.getById(UsuarioRequestDto.getId_rol()));
+        return usuario;
+    }
+
     public void delete(User user){
 
         userRepository.delete(user);
@@ -47,5 +88,13 @@ public class UserService {
     public ResponseEntity<?> getClosestMonopatins(int posx, int posy) {
         ResponseEntity<?> monopatins = this.monopatinFeignClient.getClosestMonopatins(posx, posy);
         return monopatins;
+    }
+
+    public User getUserByEmail(String email) {
+        ArrayList<User> result = this.userRepository.getUserByEmail(email);
+        if(!result.isEmpty()){
+            return result.getFirst();
+        }
+        return null;
     }
 }
