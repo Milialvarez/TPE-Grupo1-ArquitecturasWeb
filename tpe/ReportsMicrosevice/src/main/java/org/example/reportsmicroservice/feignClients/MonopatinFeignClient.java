@@ -1,9 +1,12 @@
 package org.example.reportsmicroservice.feignClients;
 
+import org.example.reportsmicroservice.dtos.MonopatinKmDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.ArrayList;
 
 @FeignClient(name="MonopatinMicroservice", url="http://localhost:8009/monopatin")
 public interface MonopatinFeignClient {
@@ -13,9 +16,6 @@ public interface MonopatinFeignClient {
    @GetMapping("/mantenimiento")
    ResponseEntity<?> getMonopatinesEnMantenimiento();
 
-   @GetMapping( "/{km}")
-   ResponseEntity<?> getMonopatinesPorKm(@PathVariable(value = "km") float maxKmRecorridos);
-
-   @GetMapping( "/{t}/{pausa}")
-   ResponseEntity<?> getMonopatinesPorTiempo(@PathVariable(value = "t") float t, @PathVariable(value = "pausa", required = false) boolean pausa);
+   @GetMapping("/tiemposDePausa/{pausa}")
+   ResponseEntity<ArrayList<MonopatinKmDTO>> getMonopatinesPorKM(@PathVariable("pausa") boolean pausa);
 }

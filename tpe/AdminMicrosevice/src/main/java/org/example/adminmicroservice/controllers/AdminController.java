@@ -1,8 +1,6 @@
 package org.example.adminmicroservice.controllers;
 
 import org.example.adminmicroservice.dtos.BillDTO;
-import org.example.adminmicroservice.models.Account;
-import org.example.adminmicroservice.models.Monopatin;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/admin")
@@ -26,55 +22,54 @@ public class AdminController {
     }
 
     @GetMapping("/role/{role}") //role must be either: [usuario, admin, mantenimiento]
-    public ResponseEntity<List<Object>> getUsersByRole(@PathVariable("role") String r) {
-        List<Object> users = adminService.getUsersByRole(r);
-        return ResponseEntity.status(200).body(users);
+    public ResponseEntity<?> getUsersByRole(@PathVariable("role") String r) {
+        return ResponseEntity.status(200).body(this.adminService.getUsersByRole(r).getBody());
     }
 
-    @GetMapping("/xViajes/{xViajes}/anio/{anio}")
+    @GetMapping("/xViajes/{xViajes}/anio/{anio}") //ANDA
     public ResponseEntity<?> getMonopatinesPorViajesPorAnio(@PathVariable("anio") Integer anio, @PathVariable("xViajes") Integer xViajes){
-        List<Monopatin> admins = adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
-        return ResponseEntity.ok(admins);
+        ResponseEntity<?> reportViajes = adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
+        return ResponseEntity.ok(reportViajes.getBody());
     }
 
-    @PutMapping("/null")
-    public ResponseEntity<?> anullateAccount(@RequestBody Account ac){
-       return ResponseEntity.ok(adminService.anullateAccount(ac));
+    @PutMapping("/null/{id_acc}") //ANDA PERO CON DELAY, la primera vez que se manda parece que no cambió nada, pero si lo volvés a llamar se ven los cambios
+    public ResponseEntity<?> anullateAccount(@PathVariable("id_acc") Integer id_acc) {
+       return ResponseEntity.ok(adminService.anullateAccount(id_acc));
     }
 
+//no anda
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String o, @PathVariable("fechaFin") String e) {
         try {
-            Optional<Object[]> reporteTotalFacturadoEntreFechas = (Optional<Object[]>) adminService.getTotalBilled(origin, end);
-            if (reporteTotalFacturadoEntreFechas.isPresent())
-                return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
-        } catch (Exception e) {
-            if (origin.isAfter(end)) return ResponseEntity.badRequest().body(e.getMessage());
-
+            LocalDate origin = LocalDate.parse(o);
+            LocalDate end = LocalDate.parse(e);
+            if (origin.isAfter(end)) {
+                return ResponseEntity.badRequest().body("wrong dates");
+            }
+            ResponseEntity<?> reporteTotalFacturadoEntreFechas = adminService.getTotalBilled(origin, end);
+            System.out.println("todo un logro");
+            return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
+        } catch (Exception exception) {
+            return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
         }
-        return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
     }
 
-    @GetMapping("/activosVsMantenimiento")
+    @GetMapping("/activosVsMantenimiento") //FUNCIONA
     public ResponseEntity<?> getReporteMonopatinesSegunEstado(){
-        try{
-            Object reporte = adminService.getReporteMonopatinesSegunEstado();
-            return ResponseEntity.status(200).body(reporte.toString());
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
+            ResponseEntity<?> result = this.adminService.getReporteMonopatinesSegunEstado();
+            String response = Objects.requireNonNull(result.getBody()).toString();
+            System.out.println(response);
+            return ResponseEntity.ok(response);
     }
 
     @PostMapping()
-    public ResponseEntity<?> setNewBill(@RequestBody BillDTO tarifaDTO){
+    public ResponseEntity<?> setNewBill(@RequestBody BillDTO bill){ //no se pudo determinar por qué cuando la fecha es menor a la valida se va al catch
         try {
-            Date fechaVigencia = tarifaDTO.getFechaInicioFacturacionNueva();
-            float pFijo = tarifaDTO.getPrecioFijo();
-            float pExtra = tarifaDTO.getPrecioExtra();
-            Object result = this.adminService.setNewBill(fechaVigencia, pFijo, pExtra);
-            if (result != null) return ResponseEntity.status(201).body("Tarifa agregada con exito");
-            else return ResponseEntity.status(400).body("Hubo un problema con el payload");
+            ResponseEntity<?> response = this.adminService.setNewBill(bill);
+            System.out.println(response.getBody());
+            return ResponseEntity.ok(response.getBody());
         } catch (Exception e) {
+            System.out.println("entré al catch de admin");
             return ResponseEntity.status(500).build();
         }
     }

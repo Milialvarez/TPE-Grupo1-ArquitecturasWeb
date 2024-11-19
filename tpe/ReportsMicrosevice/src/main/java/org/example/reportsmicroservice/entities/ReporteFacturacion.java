@@ -4,13 +4,16 @@ import java.time.LocalDate;
 import java.util.Date;
 
 
-public class ReporteFacturacion extends Reporte{
+public class ReporteFacturacion{
+    private String nombre;
+    private String descripcion;
     private double totalFacturado;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
-    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, Date fechaInicio, Date fechaFin) {
-        super(nombre, descripcion);
+    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, LocalDate fechaInicio, LocalDate fechaFin) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.totalFacturado = totalFacturado;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -18,7 +21,7 @@ public class ReporteFacturacion extends Reporte{
 
     @Override
     public String toString() {
-        return "Nombre del reporte: " + super.getNombre() + " Descripcion: " + super.getDescripcion() +
+        return "Nombre del reporte: " + this.nombre + " Descripcion: " + this.descripcion +
                 " Total facturado: " + this.totalFacturado + " Desde: " + this.fechaInicio + " Hasta: " + this.fechaFin;
     }
 
@@ -26,11 +29,11 @@ public class ReporteFacturacion extends Reporte{
         return totalFacturado;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 }

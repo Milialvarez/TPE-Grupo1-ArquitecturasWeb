@@ -6,6 +6,7 @@ import org.example.monopatinmicroservice.entities.Viaje;
 import org.example.monopatinmicroservice.services.MonopatinService;
 import org.example.monopatinmicroservice.services.ViajeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -92,7 +93,8 @@ public class ViajeController {
     }
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2){
-        return null;
+    public ResponseEntity<?> getViajesBetween(@PathVariable("fechaOrigen")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate d1, @PathVariable("fechaFin")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate d2){
+        List<Viaje> result = this.viajeService.getViajesBetween(d1, d2);
+        return ResponseEntity.ok().body(result);
     }
 }

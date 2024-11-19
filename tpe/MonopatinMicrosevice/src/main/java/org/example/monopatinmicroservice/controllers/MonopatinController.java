@@ -1,6 +1,7 @@
 package org.example.monopatinmicroservice.controllers;
 
 import org.example.monopatinmicroservice.dtos.MonopatinConIdParadaDTO;
+import org.example.monopatinmicroservice.dtos.MonopatinKmDTO;
 import org.example.monopatinmicroservice.entities.Monopatin;
 import org.example.monopatinmicroservice.entities.Parada;
 import org.example.monopatinmicroservice.services.MonopatinService;
@@ -87,6 +88,7 @@ public class MonopatinController {
         }
     }
 
+    //ANDA
     @GetMapping("/xViajes/{xViajes}/anio/{anio}")
     public ResponseEntity<?> getMonopatinesPorViajesPorAnio(@PathVariable("anio") Integer anio, @PathVariable("xViajes") Integer xViajes) {
         try {
@@ -122,6 +124,7 @@ public class MonopatinController {
         }
     }
 
+    //ANDA
     @GetMapping("/location/{posx}/{posy}")
     public ResponseEntity<?> getClosestMonopatins(@PathVariable("posx") int posx, @PathVariable("posy") int posy){
         try{
@@ -131,34 +134,52 @@ public class MonopatinController {
         }
     }
 
+    //ANDA
     @GetMapping("/mantenimiento")
     public ResponseEntity<?> getMonopatinesEnMantenimiento(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("no disponible");
-            return ResponseEntity.ok().body(monopatins);
+            return ResponseEntity.status(200).body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();
         }
     }
 
-    @GetMapping("/activos") //esto se puede mejorar haciendolo parametrizable //No anda
+    //ANDA
+    @GetMapping("/activos")
     public ResponseEntity<?> getMonopatinesActivos(){
         try{
             ArrayList<Monopatin> monopatins = this.monopatinService.getMonopatinsByStatus("activo");
-            return ResponseEntity.ok().body(monopatins);
+            return ResponseEntity.status(200).body(monopatins);
         }catch(Exception e){
             return ResponseEntity.status(500).build();
         }
     }
 
+    //ANDA
     @PostMapping("/mantener/{id_monopatin}") //Registrar monopatin en mantenimiento
     public ResponseEntity<?> enviarMonopatinAMantenimiento(@PathVariable("id_monopatin") Integer id_monopatin){
         return this.monopatinService.enviarMonopatinAMantenimiento(id_monopatin);
     }
 
+
+    //ANDA
     @PutMapping("/mantenimiento/id/{id}/estado/{estado}")
     public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @PathVariable("id") Integer id){
         return this.monopatinService.cambiarEstadoMonopatin(id, estado);
+    }
+
+    @GetMapping("/tiemposDePausa/{pausa}")
+    public ResponseEntity<ArrayList<MonopatinKmDTO>> getMonopatinesPorKM(@PathVariable("pausa") boolean pausa){
+        try{
+            System.out.println("hola monop controller");
+            ArrayList<MonopatinKmDTO> monopatins = this.monopatinService.getMonopatinesPorKM(pausa);
+            System.out.println("god mono controller");
+            return ResponseEntity.status(200).body(monopatins);
+        }catch(Exception e){
+            System.out.println("fuck controller");
+            return ResponseEntity.status(500).build();
+        }
     }
 
 }

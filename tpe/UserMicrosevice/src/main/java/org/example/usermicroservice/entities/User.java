@@ -17,10 +17,16 @@ public class User {
     private String name;
 
     @Column
+    private String lastname;
+
+    @Column
     private String phoneNumber;
 
     @Column
     private String email;
+
+    @Column
+    private String password;
 
     @ManyToMany
     private List<Account> accounts;

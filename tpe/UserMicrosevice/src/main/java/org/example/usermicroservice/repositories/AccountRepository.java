@@ -13,6 +13,6 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Account c SET c.anullated = :s WHERE c.id = :id")
-    Account setAccountAnullated(@Param("id") Long id);
+    @Query("UPDATE Account c SET c.anullated = :status WHERE c.id = :id")
+    void setAccountAnullated(@Param("id") Long id, @Param("status") boolean status);
 }

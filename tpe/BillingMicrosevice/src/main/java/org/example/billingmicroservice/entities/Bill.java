@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +17,7 @@ public class Bill {
     private long id;
 
     @Column(name="fecha_vigencia")
-    private Date fecha;
+    private LocalDate fecha;
 
     @Column
     private float price;

@@ -14,7 +14,11 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import static jakarta.xml.bind.DatatypeConverter.parseInteger;
 
 @Component
 public class DataLoaderHelper {
@@ -54,8 +58,8 @@ public class DataLoaderHelper {
             Monopatin m = new Monopatin();
             //m.setId((long) Long.parseLong(mono[0]));
             m.setKmRecorridos(Float.parseFloat(mono[1]));
-            m.setTiempoUso(Float.parseFloat(mono[2]));
-            m.setTiempoUsoConPausas(Float.parseFloat(mono[3]));
+            m.setTiempoUso(parseInteger(mono[2], 0));
+            m.setTiempoUsoConPausas(parseInteger(mono[2], 0));
             // Set Parada
             Parada p = paradaRepository.findById(Long.parseLong(mono[4])).orElseThrow();
             m.setParada(p);
@@ -67,11 +71,12 @@ public class DataLoaderHelper {
 
     public void loadViajes() throws ParseException {
         List<String[]> viajes = CSVReaderHelper.readCSV("MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/viajes.csv");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         for (String[] viaje : viajes.subList(1, viajes.size())) {
             Viaje v = new Viaje();
             //v.setId(Long.parseLong(viaje[0]));
-            v.setFecha(dateFormat.parse(viaje[1]));
+            LocalDate fecha = LocalDate.parse(viaje[1], formatter);
+            v.setFecha(fecha);
             v.setDuracion(Integer.parseInt(viaje[2]));
             v.setId_usuario(Long.parseLong(viaje[3]));
             // Set Monopatin
@@ -91,6 +96,14 @@ public class DataLoaderHelper {
             Viaje v = viajeRepository.findById(Long.parseLong(pausa[2])).orElseThrow();
             p.setViaje(v);
             pausaRepository.save(p);
+        }
+    }
+
+    private Integer parseInteger(String value, int defaultValue) {
+        try {
+            return Integer.valueOf(value);
+        } catch (NumberFormatException e) {
+            return defaultValue; // Retorna un valor predeterminado si hay un error
         }
     }
 }
