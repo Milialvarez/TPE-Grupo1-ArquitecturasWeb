@@ -1,6 +1,9 @@
 package org.example.monopatinmicroservice.services;
 
+import org.example.monopatinmicroservice.dtos.MonopatinKmDTO;
 import org.example.monopatinmicroservice.entities.Monopatin;
+import org.example.monopatinmicroservice.entities.Pausa;
+import org.example.monopatinmicroservice.entities.Viaje;
 import org.example.monopatinmicroservice.feignClients.ManteinanceFeignClient;
 import org.example.monopatinmicroservice.models.Mantenimiento;
 import org.example.monopatinmicroservice.repositories.MonopatinRepository;
@@ -14,6 +17,10 @@ import java.util.*;
 public class MonopatinService {
     @Autowired
     private MonopatinRepository monopatinRepository;
+    @Autowired
+    private ViajeService viajeService;
+    @Autowired
+    private PausaService pausaService;
     @Autowired
     private ManteinanceFeignClient mfc;
 
@@ -132,4 +139,31 @@ public class MonopatinService {
         }
     }
 
+    public ArrayList<MonopatinKmDTO> getMonopatinesPorKM(boolean pausa) {
+        System.out.println("entré al service");
+        ArrayList<Monopatin> m = this.monopatinRepository.getMonopatinesPorKM();
+        if(pausa){
+            for(Monopatin m1 : m){
+                ArrayList<Viaje> viajes = this.viajeService.getViajesByIdMonopatin(m1.getId());
+                int tiempo = 0;
+                int duracionViaje = 0;
+                System.out.println(viajes);
+                for(Viaje v : viajes){
+                    System.out.println("rompe acá?");
+                    duracionViaje += v.getDuracion();
+                    tiempo += (this.pausaService.getPausasByViajeId(v.getId()) + duracionViaje);
+                    System.out.println("o no rompe?");
+                }
+                m1.setTiempoUsoConPausas(tiempo);
+                m1.setTiempoUso(duracionViaje);
+            }
+        }
+
+        ArrayList<MonopatinKmDTO> response = new ArrayList<>();
+        for(Monopatin m1 : m){
+            response.add(new MonopatinKmDTO(m1.getId(), m1.getKmRecorridos(), m1.getTiempoUso(), m1.getTiempoUsoConPausas()));
+        }
+        System.out.println("logradisimo");
+        return response;
+    }
 }

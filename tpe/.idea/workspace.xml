@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/MonopatinKmDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/dtos/MonopatinKmDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/entities/ReporteMonopatinesSinPausa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/MonopatinMicroserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/MonopatinMicroserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Monopatin.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/entities/Monopatin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/MonopatinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/MonopatinRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/PausaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/PausaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/ViajeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/repositories/ViajeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/MonopatinService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/PausaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/PausaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ViajeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/services/ViajeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/DataLoaderHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/DataLoaderHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/monopatines.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/utils/monopatines.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/controllers/ReportsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/controllers/ReportsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/entities/ReporteMonopatinesUso.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/entities/ReporteMonopatinesUso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/feignClients/MonopatinFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/feignClients/MonopatinFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/services/ReportsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/services/ReportsService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,11 +122,11 @@
       <recent name="D:\Predeterminado\Documentos\Facu\Facultad\Segundo\Arquitecturas\Proyectos\integradores\TPE-Grupo1-ArquitecturasWeb\tpe\UserMicrosevice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.reportsmicroservice.dtos" />
       <recent name="org.example.monopatinmicroservice.utils" />
       <recent name="org.example.usermicroservice.models" />
       <recent name="org.example.monopatinmicroservice.controllers" />
       <recent name="org.example.monopatinmicroservice.repositories" />
-      <recent name="org.example.monopatinmicroservice.services" />
     </key>
   </component>
   <component name="RunDashboard">

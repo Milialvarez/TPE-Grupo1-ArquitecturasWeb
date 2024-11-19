@@ -1,8 +1,10 @@
 package org.example.reportsmicroservice.services;
 
 import feign.FeignException;
+import org.example.reportsmicroservice.dtos.MonopatinKmDTO;
 import org.example.reportsmicroservice.entities.ReporteFacturacion;
 import org.example.reportsmicroservice.entities.ReporteMonopatinesEstado;
+import org.example.reportsmicroservice.entities.ReporteMonopatinesSinPausa;
 import org.example.reportsmicroservice.entities.ReporteMonopatinesUso;
 import org.example.reportsmicroservice.feignClients.BillingFeignClient;
 import org.example.reportsmicroservice.feignClients.MonopatinFeignClient;
@@ -59,53 +61,48 @@ public class ReportsService {
         }
     }
 
-
-    public ArrayList<ReporteMonopatinesUso> getReporteUsoMonopatinPorTiempo(float maxT, boolean p){
-        ResponseEntity<?> responsePorTiempo = this.monopatinFeignClient.getMonopatinesPorTiempo(maxT, p);
+    public ArrayList<Object> getReporteUsoMonopatinKm(boolean pausa){
         try {
-            if (responsePorTiempo.getStatusCode().is2xxSuccessful()){
-                ArrayList<ReporteMonopatinesUso> listaReportes = new ArrayList<>();
-                ArrayList<Object[]> listaMonopatinesPorT = (ArrayList<Object[]>) responsePorTiempo.getBody();
-                for (Object[] monop : listaMonopatinesPorT){
-                    Long id = (Long) monop[0];
-                    Float kmRecorridos = (Float) monop[1];
-                    Float tiempoUso = (Float) monop[2];
-                    Float tiempoUsoConPausa = (Float) monop[3];
-                    ReporteMonopatinesUso r = new ReporteMonopatinesUso(id, kmRecorridos, tiempoUso, tiempoUsoConPausa);
-                    listaReportes.add(r);
+            System.out.println("hola service");
+            ResponseEntity<ArrayList<MonopatinKmDTO>> result = this.monopatinFeignClient.getMonopatinesPorKM(pausa);
+            System.out.println(result.getBody().getClass());
+            System.out.println("no se rompió");
+            if (Objects.equals(result.getStatusCode().toString(), "200 OK")){
+                System.out.println("entré al if");
+                ArrayList<MonopatinKmDTO> listaMonopatinesPorKm = (ArrayList<MonopatinKmDTO>) result.getBody();
+                System.out.println(listaMonopatinesPorKm);
+                ArrayList<Object> listaReportes = new ArrayList<>();
+                if(pausa){
+                    System.out.println("entré al segundo if");
+                    assert listaMonopatinesPorKm != null;
+                    System.out.println("acá rompe");
+                    for(MonopatinKmDTO monopatinKmDTO : listaMonopatinesPorKm) {
+                        System.out.println(monopatinKmDTO + "            " + monopatinKmDTO.getId());
+                        Long id = monopatinKmDTO.getId();
+                        Float kms = monopatinKmDTO.getKmRecorridos();
+                        Integer tiempo = monopatinKmDTO.getTiempoUso();
+                        Integer pausas = monopatinKmDTO.getTiempoPausas();
+                        listaReportes.add(new ReporteMonopatinesUso(id, kms, tiempo, pausas));
+                        System.out.println("ya se rompió no?");
+                    }
+                    return listaReportes;
+                }else{
+                    System.out.println("sout else de es sin pausa");
+                    assert listaMonopatinesPorKm != null;
+                    for(MonopatinKmDTO monopatinKmDTO : listaMonopatinesPorKm){
+                        Long id = monopatinKmDTO.getId();
+                        Float kms = monopatinKmDTO.getKmRecorridos();
+                        Integer tiempo = monopatinKmDTO.getTiempoUso();
+                        listaReportes.add(new ReporteMonopatinesSinPausa(id, kms, tiempo));
+                    }
+                    return listaReportes;
                 }
-                return listaReportes;
             } else {
-                // Manejar una respuesta no exitosa
-                throw new IllegalStateException("Error al llamar al otro servicio");
+                System.out.println("mal ahi, primer else");
+                return null;
             }
         } catch (FeignException.FeignClientException exception){
-            throw new RuntimeException("Fallo al comunicarse con el otro servicio: " + exception.getMessage(), exception);
-        }
-    }
-
-    public ArrayList<ReporteMonopatinesUso> getReporteUsoMonopatinKm(float maxKm){
-        ResponseEntity<?> responsePorKm = this.monopatinFeignClient.getMonopatinesPorKm(maxKm);
-//        ResponseEntity<?> responsePorTiempoConPausa = this.monopatinFeignClient.getMonopatinesPorTiempoConPausa(maxKm);
-
-        try {
-            if (responsePorKm.getStatusCode().is2xxSuccessful()){
-                ArrayList<ReporteMonopatinesUso> listaReportes = new ArrayList<>();
-                ArrayList<Object[]> listaMonopatinesPorKm = (ArrayList<Object[]>) responsePorKm.getBody();
-                for (Object[] monop : listaMonopatinesPorKm){
-                    Long id = (Long) monop[0];
-                    Float kmRecorridos = (Float) monop[1];
-                    Float tiempoUso = (Float) monop[2];
-                    Float tiempoUsoConPausa = (Float) monop[3];
-                    ReporteMonopatinesUso r = new ReporteMonopatinesUso(id, kmRecorridos, tiempoUso, tiempoUsoConPausa);
-                    listaReportes.add(r);
-                }
-                return listaReportes;
-            } else {
-                // Manejar una respuesta no exitosa
-                throw new IllegalStateException("Error al llamar al otro servicio");
-            }
-        } catch (FeignException.FeignClientException exception){
+            System.out.println("fuck service");
             throw new RuntimeException("Fallo al comunicarse con el otro servicio: " + exception.getMessage(), exception);
         }
     }

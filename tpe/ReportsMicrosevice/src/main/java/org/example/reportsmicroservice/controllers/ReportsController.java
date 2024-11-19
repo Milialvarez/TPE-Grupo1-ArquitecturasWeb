@@ -27,6 +27,7 @@ public class ReportsController {
                 return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
             }
 
+            //ANDA
     @GetMapping("/activosVsMantenimiento")
      public ResponseEntity<?> getReporteMonopatinesActivosVsMantenidos(){
          try{
@@ -42,24 +43,19 @@ public class ReportsController {
      }
 
      //VER
-     @GetMapping("/usoMonopatinesKm/{kilometros}") //reporte de uso de monopatines con un max de km
-     public ResponseEntity<?> getReporteUsoMonopatinKm(@PathVariable("kilometros") float maxKm){
+     @GetMapping("/usoMonopatinesKm/pausa/{pausa}") //reporte de uso de monopatines con un max de km
+     public ResponseEntity<?> getReporteUsoMonopatinKm(@PathVariable("pausa") boolean pausa){
          try{
-             ArrayList<ReporteMonopatinesUso> listaReportes = reportService.getReporteUsoMonopatinKm(maxKm);
-             return ResponseEntity.status(200).body(listaReportes);
+             System.out.println("hola repo controller");
+              ArrayList<Object> reports = this.reportService.getReporteUsoMonopatinKm(pausa);
+             System.out.println("god hasta acá");
+              if(reports == null){
+                  return ResponseEntity.status(404).build();
+              }
+              return ResponseEntity.status(200).body(reports);
          } catch (Exception e) {
+             System.out.println("fuck controller");
              return ResponseEntity.internalServerError().build();
          }
-     }
-
-     //VER
-    @GetMapping({"/usoMonopatinesTiempo/{tiempo}/{pausa}"}) //reporte de uso de monopatines con un max de tiempo y un isPausa
-     public ResponseEntity<?> getReporteUsoMonopatinPausa(@PathVariable(value = "tiempo") float tiempo, @PathVariable(value = "pausa", required = false) boolean p){
-        try {
-            ArrayList<ReporteMonopatinesUso> listaReportes = reportService.getReporteUsoMonopatinPorTiempo(tiempo, p);
-            return ResponseEntity.status(200).body(listaReportes);
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
      }
 }

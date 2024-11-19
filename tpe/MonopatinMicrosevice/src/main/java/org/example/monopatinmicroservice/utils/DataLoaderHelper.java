@@ -18,6 +18,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import static jakarta.xml.bind.DatatypeConverter.parseInteger;
+
 @Component
 public class DataLoaderHelper {
 
@@ -56,8 +58,8 @@ public class DataLoaderHelper {
             Monopatin m = new Monopatin();
             //m.setId((long) Long.parseLong(mono[0]));
             m.setKmRecorridos(Float.parseFloat(mono[1]));
-            m.setTiempoUso(Float.parseFloat(mono[2]));
-            m.setTiempoUsoConPausas(Float.parseFloat(mono[3]));
+            m.setTiempoUso(parseInteger(mono[2], 0));
+            m.setTiempoUsoConPausas(parseInteger(mono[2], 0));
             // Set Parada
             Parada p = paradaRepository.findById(Long.parseLong(mono[4])).orElseThrow();
             m.setParada(p);
@@ -94,6 +96,14 @@ public class DataLoaderHelper {
             Viaje v = viajeRepository.findById(Long.parseLong(pausa[2])).orElseThrow();
             p.setViaje(v);
             pausaRepository.save(p);
+        }
+    }
+
+    private Integer parseInteger(String value, int defaultValue) {
+        try {
+            return Integer.valueOf(value);
+        } catch (NumberFormatException e) {
+            return defaultValue; // Retorna un valor predeterminado si hay un error
         }
     }
 }
