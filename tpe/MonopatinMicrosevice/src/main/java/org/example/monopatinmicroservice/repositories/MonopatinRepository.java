@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -32,4 +33,7 @@ public interface MonopatinRepository extends JpaRepository<Monopatin, Long> {
 
     @Query("SELECT m.id, m.kmRecorridos, m.tiempoUso, m.tiempoUsoConPausas FROM Monopatin m where m.kmRecorridos < :maxKm AND m.tiempoUsoConPausas < :maxTiempo")
     List<Monopatin> getAllByMaxTimeWithPausesAndKm(@PathVariable("maxTiempo") float maxT,@PathVariable("maxKm") float maxKm);
+
+    @Query("SELECT m FROM Monopatin m ORDER BY m.kmRecorridos ASC")
+    ArrayList<Monopatin> getMonopatinesPorKM();
 }

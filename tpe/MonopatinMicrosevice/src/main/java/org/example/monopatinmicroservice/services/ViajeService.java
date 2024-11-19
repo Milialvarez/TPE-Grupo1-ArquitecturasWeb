@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,5 +40,11 @@ public class ViajeService {
 
     public List<Viaje> getViajesBetween(LocalDate start, LocalDate end) {
         return viajeRepository.getTotalBilled(start, end);
+    }
+
+    public ArrayList<Viaje> getViajesByIdMonopatin(Long id) {
+        System.out.println("hola viaje service");
+        ArrayList<Viaje> viajes = this.viajeRepository.getViajesByIdMonopatin(id);
+        return viajes;
     }
 }

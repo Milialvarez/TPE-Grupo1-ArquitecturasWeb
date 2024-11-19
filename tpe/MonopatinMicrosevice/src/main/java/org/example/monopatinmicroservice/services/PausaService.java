@@ -5,6 +5,7 @@ import org.example.monopatinmicroservice.repositories.PausaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,5 +33,15 @@ public class PausaService {
         }
 
         return pausa;
+    }
+
+    public int getPausasByViajeId(Long id) {
+        System.out.println("hola pausa service");
+       int tiempo = 0;
+       ArrayList<Pausa> pausas = this.pausaRepository.getPausasByViajeId(id);
+       for (Pausa pausa : pausas) {
+           tiempo += pausa.getTiempo();
+       }
+       return tiempo;
     }
 }

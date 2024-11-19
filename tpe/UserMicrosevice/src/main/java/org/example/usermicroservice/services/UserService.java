@@ -21,6 +21,7 @@ public class UserService {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
     MonopatinFeignClient monopatinFeignClient;
 
     public List<User> getAll(){
@@ -76,12 +77,12 @@ public class UserService {
         return usuario;
     }
 
-    public void delete(User user){
-
-        userRepository.delete(user);
+    public void delete(Long user_id){
+        userRepository.deleteById(user_id);
     }
 
     public User getUserById(Long id){
+
         return userRepository.findById(id).orElse(null);
     }
 
