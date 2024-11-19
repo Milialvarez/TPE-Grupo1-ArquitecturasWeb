@@ -1,31 +1,44 @@
-import jdk.jfr.Description;
-import org.example.usermicroservice.controllers.AccountController;
+
 import org.example.usermicroservice.entities.Account;
 import org.example.usermicroservice.repositories.AccountRepository;
 import org.example.usermicroservice.services.AccountService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class AccountsTest {
-    private AccountController accountController;
 
-    //AVERIGUAR POR QUE MIERDA NO FUNCIONA Y SIEMPRE DICE QUE EL SERVICE O EL REPO ES NULL
-//    @BeforeEach
-//    public void setUp() throws Exception {
-//        accountController = new AccountController(new AccountService());
-//    }
+        @InjectMocks
+        private AccountService cuentaService;
+        @Mock
+        private AccountRepository cuentaRepository;
 
+        private Account cuenta;
 
-    @Test
-    @Description("Test para validar que una cuenta se anula correctamente")
-    public void testAnullateAccount() {
-        Account a = new Account();
-        accountController.save(a);
-        accountController.anullateAccount(a);
-        Account b = accountController.getAccountById(a.getId()).getBody();
-        assertTrue(b.isAnullated(), "la cuenta no se anuló correctamente");
+        @BeforeEach
+        void setUp() {
+            cuenta = new Account();
+            cuenta.setId(1L);
+            cuenta.setAnullated(false);
+            cuentaService.save(cuenta);
+        }
+
+        @Test
+        void TEST_anularCuenta() throws Exception {
+            //Simulo que la cuenta existe
+            when(cuentaRepository.findById(cuenta.getId())).thenReturn(Optional.of(cuenta));
+            cuentaService.setAccountAnullated(cuenta.getId(), true);
+
+            assertTrue(cuenta.isAnullated(), "La cuenta no se anuló correctamente");
+        }
+
     }
-}
