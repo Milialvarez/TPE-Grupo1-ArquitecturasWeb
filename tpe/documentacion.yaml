@@ -34,10 +34,14 @@ paths:
                 
   /api/authenticate:
     post:
+      summary: Devuelve un token
       tags:
       - usuarios
-      summary: Devuelve un token
-      description: Recibe un email y contraseña y devuelve un token JWT para autenticarse
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidarUsuario"
       responses:
         200:
           description: (CREATED) El usuario fue cargado
@@ -249,7 +253,7 @@ components:
           description: email del usuario
         password:
           type: string
-          description: email del usuario
+          description: contraseña del usuario
         id_role:
           type: number
           description: id del rol a asignar
@@ -274,7 +278,7 @@ components:
           description: email del usuario
         password:
           type: string
-          description: email del usuario
+          description: contraseña del usuario
         role:
           $ref: '#/components/schemas/RolUsuario'
         
@@ -406,7 +410,16 @@ components:
         additionalPrice:
           type: number
           description: precio de tarifa extra
-          
+    
+    ValidarUsuario: 
+      type: object
+      properties:
+        email:
+          type: string
+          description: email del usuario
+        password:
+          type: string
+          description: contraseña del usuario
           
           
           
