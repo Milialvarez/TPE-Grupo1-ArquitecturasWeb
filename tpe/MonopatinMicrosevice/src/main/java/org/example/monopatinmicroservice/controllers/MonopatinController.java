@@ -1,6 +1,7 @@
 package org.example.monopatinmicroservice.controllers;
 
 import org.example.monopatinmicroservice.dtos.MonopatinConIdParadaDTO;
+import org.example.monopatinmicroservice.dtos.MonopatinKmDTO;
 import org.example.monopatinmicroservice.entities.Monopatin;
 import org.example.monopatinmicroservice.entities.Parada;
 import org.example.monopatinmicroservice.services.MonopatinService;
@@ -166,6 +167,19 @@ public class MonopatinController {
     @PutMapping("/mantenimiento/id/{id}/estado/{estado}")
     public ResponseEntity<?> cambiarEstadoMonopatin(@PathVariable("estado") String estado, @PathVariable("id") Integer id){
         return this.monopatinService.cambiarEstadoMonopatin(id, estado);
+    }
+
+    @GetMapping("/tiemposDePausa/{pausa}")
+    public ResponseEntity<ArrayList<MonopatinKmDTO>> getMonopatinesPorKM(@PathVariable("pausa") boolean pausa){
+        try{
+            System.out.println("hola monop controller");
+            ArrayList<MonopatinKmDTO> monopatins = this.monopatinService.getMonopatinesPorKM(pausa);
+            System.out.println("god mono controller");
+            return ResponseEntity.status(200).body(monopatins);
+        }catch(Exception e){
+            System.out.println("fuck controller");
+            return ResponseEntity.status(500).build();
+        }
     }
 
 }

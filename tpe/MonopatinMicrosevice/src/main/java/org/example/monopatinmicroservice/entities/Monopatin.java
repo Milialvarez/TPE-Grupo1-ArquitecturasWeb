@@ -23,11 +23,11 @@ public class Monopatin {
 
     @Column
     @CsvBindByName
-    private Float tiempoUso;
+    private Integer tiempoUso;
 
     @Column
     @CsvBindByName
-    private Float tiempoUsoConPausas;
+    private Integer tiempoUsoConPausas;
 
     @OneToOne
     @JoinColumn(nullable = true)
@@ -42,4 +42,9 @@ public class Monopatin {
     @Column
     @CsvBindByName
     private int posY;
+
+    @Override
+    public String toString() {
+        return "Id: "+ this.getId() + ", KmRecorridos: "+ this.getKmRecorridos()+", tiempoUso: "+this.getTiempoUso()+", tiempo con pausas: "+this.getTiempoUsoConPausas()+", posX: "+this.getPosX()+", posY: "+this.getPosY();
+    }
 }

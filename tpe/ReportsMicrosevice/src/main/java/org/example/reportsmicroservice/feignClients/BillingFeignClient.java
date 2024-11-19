@@ -13,6 +13,6 @@ import java.util.Date;
 public interface BillingFeignClient {
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate d1, @PathVariable("fechaFin") LocalDate d2);
+    ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String d1, @PathVariable("fechaFin") String d2);
 
 }

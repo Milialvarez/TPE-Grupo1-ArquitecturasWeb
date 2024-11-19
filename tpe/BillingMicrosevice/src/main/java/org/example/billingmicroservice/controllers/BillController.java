@@ -4,6 +4,7 @@ import org.example.billingmicroservice.dtos.BillDTO;
 import org.example.billingmicroservice.entities.Bill;
 import org.example.billingmicroservice.services.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class BillController{
     }
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end){
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate origin, @PathVariable("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end){
             System.out.println("controller bill");
             double reporteTotalFacturadoEntreFechas = billService.getTotalBilled(origin, end);
             if (reporteTotalFacturadoEntreFechas != -1){
