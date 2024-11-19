@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface ViajeRepository extends JpaRepository<Viaje, Long> {
 
-    @Query("SELECT v FROM Viaje v WHERE v.fecha <=:origin AND v.fecha >=:end")
+    @Query("SELECT v FROM Viaje v WHERE v.fecha >=:origin AND v.fecha <=:end")
     public List<Viaje> getTotalBilled(@PathVariable("origin") LocalDate origin, @PathVariable("end") LocalDate end);
 }

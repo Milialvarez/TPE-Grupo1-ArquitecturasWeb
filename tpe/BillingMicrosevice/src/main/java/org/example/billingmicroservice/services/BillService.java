@@ -1,15 +1,18 @@
 package org.example.billingmicroservice.services;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.example.billingmicroservice.dtos.MonopatinDTO;
+import org.example.billingmicroservice.dtos.ViajeDTO;
 import org.example.billingmicroservice.entities.Bill;
 import org.example.billingmicroservice.feignClient.ViajeFeignClient;
 import org.example.billingmicroservice.repositories.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -44,11 +47,13 @@ public class BillService {
         return b;
     }
 //hace falta cambiar el calculo del costo. El precio adicinal deberia ser por cada precio fijo.
-    private double getCostoViaje(Object[] viaje, Bill tarifa){
+    private double getCostoViaje(ViajeDTO viaje, Bill tarifa){
         double sumatoria = 0;
-        Integer duracionViaje = (Integer) viaje[2];
-        Object[] pausa = (Object[]) viaje[3];
-        if (pausa != null && (Integer) pausa[1] > 15){
+        System.out.println("Entrando a calcular costo viaje bill service");
+        Integer duracionViaje = viaje.getDuracion();
+        MonopatinDTO m = viaje.getMonopatin();
+        Float tiempoPausas = m.getTiempoUsoConPausas();
+        if (tiempoPausas > 15){
             sumatoria += tarifa.getAdditionalPrice();
         }
         sumatoria += duracionViaje * tarifa.getPrice();
@@ -64,23 +69,49 @@ public class BillService {
     //El credito comienza a consumirse cuando se activa el viaje (es decir en t == 0)
     // Si el viaje tuvo un tiempo de pausa asociado mayor a 15 minutos, se debe calcular
     // un costo adicional que se suma al fijo por el resto del viaje
-    public double getTotalBilled(LocalDate origin, LocalDate end){
+
+    public double getTotalBilled(LocalDate origin, LocalDate end) {
         try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String originFormatted = origin.format(formatter);
+            String endFormatted = end.format(formatter);
+
+            System.out.println(originFormatted);
+            System.out.println(endFormatted);
+
             Bill tarifa = this.getCostos();
             System.out.println("primer bill service");
-            List<Object[]> viajes = (List<Object[]>) this.viajeFeignClient.getViajesBetween(origin, end);
-            System.out.println(viajes);
+
+            // Obtener la respuesta como lista genérica
+            List<?> body = this.viajeFeignClient.getViajesBetween(originFormatted, endFormatted).getBody();
+            System.out.println("Response body: " + body);
+
+            // Crear un ObjectMapper y registrar el módulo de Java Time
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+
+            // Convertir cada elemento de la lista a ViajeDTO
+            List<ViajeDTO> viajes = body.stream()
+                    .map(obj -> mapper.convertValue(obj, ViajeDTO.class))
+                    .toList();
+
+            System.out.println("Viajes convertidos: " + viajes);
+
+            // Realizar la sumatoria
             double sumatoria = 0;
-            for (Object[] v : viajes){
+            for (ViajeDTO v : viajes) {
+                System.out.println(v);
                 sumatoria += this.getCostoViaje(v, tarifa);
             }
             System.out.println(sumatoria);
             return sumatoria;
         } catch (Exception e) {
+            System.out.println("Error en getTotalBilled: " + e.getMessage());
+            e.printStackTrace();
             return -1.0;
         }
-
     }
+
 
     public Bill setNewBill(LocalDate f, float pFijo, float pEx) {
         LocalDate lastBillDate = this.billRepository.getLastOne();
