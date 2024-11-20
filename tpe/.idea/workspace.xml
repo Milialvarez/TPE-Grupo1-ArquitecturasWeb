@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/test/java/AccountsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/test/java/AccountsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +58,9 @@
     "Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.user: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.AccountsTest.Test_getAccountInexistent.executor": "Run",
     "JUnit.AccountsTest.executor": "Run",
+    "JUnit.ReporteMonopatinTest.testIncorrectResponse.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -123,7 +125,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AccountsTest.Test_getAccountInexistent">
+  <component name="RunManager" selected="JUnit.ReporteMonopatinTest.testIncorrectResponse">
     <configuration name="AccountsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UserMicrosevice" />
       <option name="PACKAGE_NAME" value="" />
@@ -138,6 +140,16 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="AccountsTest" />
       <option name="METHOD_NAME" value="Test_getAccountInexistent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReporteMonopatinTest.testIncorrectResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ReportsMicrosevice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ReporteMonopatinTest" />
+      <option name="METHOD_NAME" value="testIncorrectResponse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -219,14 +231,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yml.admin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -256,9 +260,9 @@
     <list>
       <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="JUnit.AccountsTest" />
       <item itemvalue="JUnit.AccountsTest.Test_getAccountInexistent" />
+      <item itemvalue="JUnit.ReporteMonopatinTest.testIncorrectResponse" />
       <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
       <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
@@ -270,11 +274,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReporteMonopatinTest.testIncorrectResponse" />
         <item itemvalue="JUnit.AccountsTest.Test_getAccountInexistent" />
         <item itemvalue="JUnit.AccountsTest" />
         <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
