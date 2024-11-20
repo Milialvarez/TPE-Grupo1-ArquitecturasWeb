@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/test/java/AccountsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/test/java/AccountsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/AccountService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,9 @@
     "Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.user: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "JUnit.AccountsTest.TEST_anularCuenta.executor": "Run",
+    "JUnit.AccountsTest (1).executor": "Run",
+    "JUnit.AccountsTest.TEST_anularCuenta.executor": "Debug",
+    "JUnit.AccountsTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -122,7 +126,27 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AccountsTest.TEST_anularCuenta">
+  <component name="RunManager" selected="JUnit.AccountsTest (1)">
+    <configuration name="AccountsTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserMicrosevice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AccountsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserMicrosevice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AccountsTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -XX:+EnableDynamicAgentLoading " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AccountsTest.TEST_anularCuenta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UserMicrosevice" />
       <option name="PACKAGE_NAME" value="" />
@@ -217,32 +241,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.admin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="admin" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.phpmyadminmonopatin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="phpmyadminmonopatin" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yml.user: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -256,13 +254,28 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="JUnit.AccountsTest (1)" />
+      <item itemvalue="JUnit.AccountsTest" />
+      <item itemvalue="JUnit.AccountsTest.TEST_anularCuenta" />
+      <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
+      <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication (1)" />
+      <item itemvalue="Spring Boot.MaintenanceMicroserviceApplication" />
+      <item itemvalue="Spring Boot.MonopatinMicroserviceApplication" />
+      <item itemvalue="Spring Boot.ReportsMicroserviceApplication" />
+      <item itemvalue="Spring Boot.UserMicroserviceApplication" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AccountsTest (1)" />
+        <item itemvalue="JUnit.AccountsTest" />
         <item itemvalue="JUnit.AccountsTest.TEST_anularCuenta" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -301,6 +314,7 @@
       <workItem from="1731885707234" duration="17136000" />
       <workItem from="1732018860908" duration="1509000" />
       <workItem from="1732020537608" duration="10264000" />
+      <workItem from="1732104575630" duration="1180000" />
     </task>
     <servers />
   </component>

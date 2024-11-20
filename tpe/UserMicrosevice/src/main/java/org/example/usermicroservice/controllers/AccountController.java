@@ -49,8 +49,8 @@ public class AccountController {
             return ResponseEntity.notFound().build();
         } else{
             System.out.println("entré al else de account controller");
-            accountservice.setAccountAnullated(longId, true);
-            return ResponseEntity.status(201).body(accountservice.getAccountById(longId));
+            Account a = accountservice.setAccountAnullated(longId, true);
+            return ResponseEntity.status(201).body(a);
         }
     }
 
