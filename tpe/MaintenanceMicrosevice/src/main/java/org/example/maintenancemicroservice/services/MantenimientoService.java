@@ -2,7 +2,6 @@ package org.example.maintenancemicroservice.services;
 
 import jakarta.transaction.Transactional;
 import org.example.maintenancemicroservice.entities.Mantenimiento;
-import org.example.maintenancemicroservice.feignClients.ReportsFeignClient;
 import org.example.maintenancemicroservice.models.Monopatin;
 import org.example.maintenancemicroservice.repositories.MantenimientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ public class MantenimientoService {
     public ArrayList<Mantenimiento> getAll(String status) {
         return this.mantenimientoRepository.findAllByStatus(status);
     }
-
 
     public Mantenimiento save(Long idMonopatin) {
         Mantenimiento mantenimiento = new Mantenimiento(idMonopatin, "no disponible");
