@@ -26,6 +26,7 @@ public class DataLoaderHelper {
 
         for (String[] bill : billings.subList(1, billings.size())) {
             Bill b = new Bill();
+            b.setId(bill[0]);
             b.setFecha(LocalDate.parse(bill[1]));
             b.setPrice(Float.parseFloat(bill[2]));
             b.setAdditionalPrice(Float.parseFloat(bill[3]));
