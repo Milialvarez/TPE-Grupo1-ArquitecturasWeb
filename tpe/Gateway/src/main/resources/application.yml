@@ -11,6 +11,10 @@ spring:
             uri: http://localhost:8006
             predicates:
               - Path=/admin/**
+          - id: mantenimiento
+            uri: http://localhost:8008
+            predicates:
+              - Path=/mantenimiento/**
         default-filters:
           - RemoveRequestHeader=Cookie
 logging:

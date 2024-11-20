@@ -41,7 +41,7 @@ public class MantenimientoController {
     public ResponseEntity<?> saveManteinance(@PathVariable("id_monopatin") Long id_monopatin){
         try{
             Mantenimiento m = this.ms.save(id_monopatin);
-            return ResponseEntity.ok(m);
+            return ResponseEntity.status(201).body(m);
         }catch(Exception e){
             return ResponseEntity.noContent().build();
         }
