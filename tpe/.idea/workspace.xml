@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/DTO/userRoleDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/services/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,18 +247,18 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
       <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
-      <item itemvalue="Spring Boot.GatewayApplication" />
       <item itemvalue="Spring Boot.GatewayApplication (1)" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
       <item itemvalue="Spring Boot.MaintenanceMicroserviceApplication" />
       <item itemvalue="Spring Boot.MonopatinMicroserviceApplication" />
       <item itemvalue="Spring Boot.ReportsMicroserviceApplication" />
       <item itemvalue="Spring Boot.UserMicroserviceApplication" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
     </list>
     <recent_temporary>
       <list>
