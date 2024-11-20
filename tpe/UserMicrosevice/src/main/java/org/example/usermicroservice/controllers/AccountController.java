@@ -29,7 +29,7 @@ public class AccountController {
     public ResponseEntity<Account> getAccountById(@PathVariable("id") Long id) {
         Account account = accountservice.getAccountById(id);
         if (account == null) {
-            return  ResponseEntity.notFound().build();
+            return  ResponseEntity.status(404).build();
         }
         return ResponseEntity.ok(account);
     }
