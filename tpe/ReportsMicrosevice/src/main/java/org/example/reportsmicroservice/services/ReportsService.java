@@ -70,7 +70,7 @@ public class ReportsService {
         try {
             System.out.println("hola service");
             ResponseEntity<ArrayList<MonopatinKmDTO>> result = this.monopatinFeignClient.getMonopatinesPorKM(pausa);
-            System.out.println(result.getBody().getClass());
+            System.out.println(result.getBody());
             System.out.println("no se rompió");
             if (Objects.equals(result.getStatusCode().toString(), "200 OK")){
                 System.out.println("entré al if");
