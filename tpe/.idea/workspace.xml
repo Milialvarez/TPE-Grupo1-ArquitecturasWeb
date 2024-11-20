@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/test/java/MonopatinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/test/java/MonopatinTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,7 @@
     "Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.user: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "JUnit.MonopatinTest.testMonopatinNotFound.executor": "Run",
     "JUnit.ReporteMonopatinTest.testCorrectResponse.executor": "Run",
     "JUnit.ReporteMonopatinTest.testIncorrectResponse.executor": "Run",
     "JUnit.ReporteMonopatinTest.testServiceCorrectObject.executor": "Run",
@@ -125,7 +125,17 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ReporteMonopatinTest.testServiceCorrectObject">
+  <component name="RunManager" selected="JUnit.MonopatinTest.testMonopatinNotFound">
+    <configuration name="MonopatinTest.testMonopatinNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MonopatinMicrosevice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MonopatinTest" />
+      <option name="METHOD_NAME" value="testMonopatinNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ReporteMonopatinTest.testCorrectResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ReportsMicrosevice" />
       <option name="PACKAGE_NAME" value="" />
@@ -232,19 +242,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.admin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="admin" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yml.user: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -259,8 +256,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
+      <item itemvalue="JUnit.MonopatinTest.testMonopatinNotFound" />
       <item itemvalue="JUnit.ReporteMonopatinTest.testCorrectResponse" />
       <item itemvalue="JUnit.ReporteMonopatinTest.testIncorrectResponse" />
       <item itemvalue="JUnit.ReporteMonopatinTest.testServiceCorrectObject" />
@@ -275,11 +272,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MonopatinTest.testMonopatinNotFound" />
         <item itemvalue="JUnit.ReporteMonopatinTest.testServiceCorrectObject" />
         <item itemvalue="JUnit.ReporteMonopatinTest.testCorrectResponse" />
         <item itemvalue="JUnit.ReporteMonopatinTest.testIncorrectResponse" />
         <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
