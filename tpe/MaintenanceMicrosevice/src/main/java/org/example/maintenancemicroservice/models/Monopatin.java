@@ -2,8 +2,10 @@ package org.example.maintenancemicroservice.models;
 
 
 import jakarta.persistence.Column;
+import lombok.Data;
 import lombok.Getter;
 
+@Data
 public class Monopatin {
     @Getter
     private Long id;
