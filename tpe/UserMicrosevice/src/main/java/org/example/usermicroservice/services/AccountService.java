@@ -34,7 +34,8 @@ public class AccountService {
     @Transactional
     public Account setAccountAnullated(Long id, boolean status) {
         Account ac = this.getAccountById(id);
-        if (ac!=null) this.accountRepository.setAccountAnullated(id, status);
-        return this.getAccountById(id);
+        this.accountRepository.setAccountAnullated(id, status);
+        ac.setAnullated(true);
+        return ac;
     }
 }

@@ -139,7 +139,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Docker.docker-compose.yml.admin: Compose Deployment">
     <configuration name="AdminMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="AdminMicrosevice" />
@@ -263,6 +263,20 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
+      <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication (1)" />
+      <item itemvalue="Spring Boot.MaintenanceMicroserviceApplication" />
+      <item itemvalue="Spring Boot.MonopatinMicroserviceApplication" />
+      <item itemvalue="Spring Boot.ReportsMicroserviceApplication" />
+      <item itemvalue="Spring Boot.UserMicroserviceApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
