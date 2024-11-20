@@ -4,25 +4,24 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Document(collection = "billing")
 public class Bill {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private String id;
 
-    @Column(name="fecha_vigencia")
-    private LocalDate fecha;
+    @Field("fecha_vigencia")
+    private LocalDate fecha; // MongoDB almacenará esto con el nombre "fecha_vigencia"
 
-    @Column
     private float price;
 
-    @Column(name="additional_price")
-    private float additionalPrice;
-
+    @Field("additional_price")
+    private float additionalPrice; // Se almacenará como "additional_price"
 }

@@ -5,11 +5,12 @@ import org.example.billingmicroservice.utils.DataLoaderHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import java.text.ParseException;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 @EnableFeignClients
 public class BillingMicroserviceApplication {
 	@Autowired

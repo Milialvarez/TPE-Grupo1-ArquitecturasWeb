@@ -41,11 +41,6 @@ public class BillService {
         return billRepository.findById(id).orElse(null);
     }
 
-    public Bill setNewPrice(Long id, double price) {
-        Bill b = this.getBillById(id);
-        if (b != null) this.billRepository.setNewPrice(id, price);
-        return b;
-    }
 //hace falta cambiar el calculo del costo. El precio adicinal deberia ser por cada precio fijo.
     private double getCostoViaje(ViajeDTO viaje, Bill tarifa){
         double sumatoria = 0;
