@@ -56,7 +56,6 @@ public class AdminService {
                 return ResponseEntity.status(404).body("Wasn't possible to set a new bill, wrong date");
             }
         } catch (FeignException.FeignClientException exception){
-            System.out.println("catch de admin service");
             throw new RuntimeException("Fallo al comunicarse con el otro servicio: " + exception.getMessage(), exception);
         }
     }

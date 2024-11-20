@@ -22,7 +22,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody @Valid UsuarioRequestDto usuarioRequestDto) throws Exception {
-        final var id = userService.saveUser( usuarioRequestDto );
-        return new ResponseEntity<>( id, HttpStatus.CREATED );
+        return ResponseEntity.status(201).body(userService.saveUser(usuarioRequestDto));
     }
 }
