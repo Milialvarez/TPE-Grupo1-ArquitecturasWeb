@@ -5,34 +5,317 @@ info:
   title: TPE Arquitecturas Web TUDAI - GRUPO 1
   description: API de Aplicación para Monopatines Eléctricos
 servers:
-- url: http://localhost:8003
+- url: http://localhost:8080
+tags:
+- name: usuarios
+  description: Maneja los usuarios y tokens
+- name: admin
+  description: Solo los usuarios con rol admin acceden
+- name: facturacion
+  description: Maneja la información acerca de las facturaciones
+- name: monopatines
+  description: Maneja la información acerca de los monopatines
   
-paths: 
-  /viaje:
-    get:
-      summary: Obtiene todos los viajes
-      description: Retorna una lista de todos los viajes
+paths:
+  /api/users:
+    post:
+      tags:
+      - usuarios
+      summary: Crea un usuario
+      description: Crea un usuario sin necesidad de token y devuelve el usuario cargado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreacionUsuario"
       responses:
-        200:
-          description: (OK) La lista de todos los viajes fue obtenida
+        201:
+          description: El usuario fue cargado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExitoListaViajes'
-        500:
-          $ref: '#/components/responses/InternalError'
+                $ref: '#/components/schemas/Usuario'
+                
+  /api/authenticate:
+    post:
+      summary: Devuelve un token
+      tags:
+      - usuarios
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidarUsuario"
+      responses:
+        200:
+          description: (CREATED) El usuario fue cargado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+                
+  /admin/role/{role}:
+    get:
+      tags:
+      - admin
+      - usuarios
+      summary: Devuelve los usuarios con determinado rol
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: role
+        in: path
+        description: filtro de rol
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: devolvió una lista de los usuarios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaUsuarios'
+                
+  /admin/null/{id_acc}:
+    put:
+      tags:
+      - admin
+      - usuarios
+      summary: Anula la cuenta de un usuario
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: id_acc
+        in: path
+        description: id de la cuenta a anular
+        required: true
+        schema:
+          type: number
+      responses:
+        201:
+          description: se anuló la cuenta indicada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cuenta'
+                
+  /admin/xViajes/{xViajes}/anio/{anio}:
+    get:
+      tags:
+      - admin
+      - monopatines
+      summary: Obtiene monopatines por x viajes por año
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: xViajes
+        in: path
+        description: filtro de cantidad de viajes
+        required: true
+        schema:
+          type: number
+      - name: anio
+        in: path
+        description: filtro de año
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: devolvió una lista de los monopatines con los filtros indicados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaMonopatines'
+                
+  /admin/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}:
+    get:
+      tags:
+      - admin
+      - facturacion
+      summary: Obtiene el total facturado entre dos fechas
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: fechaOrigen
+        in: path
+        description: fecha inicio
+        required: true
+        schema:
+          type: string
+      - name: fechaFin
+        in: path
+        description: fecha fin
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: devolvió el reporte con los datos necesarios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReporteFacturacion'
+  
+  /admin/activosVsMantenimiento:
+    get:
+      tags:
+      - admin
+      - monopatines
+      summary: Provee una comparacion de la cantidad de monopatines activos versus la cantidad en mantenimiento
+      parameters:
+      - $ref: "#/components/parameters/token"
+      responses:
+        200:
+          description: devolvió el reporte con la comparación
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReporteMonopatinesEstado'
+                
+  /admin/newBilling:
+    post:
+      summary: Setea un nuevo precio fijo y/o extra
+      tags:
+      - admin
+      - facturacion
+      parameters:
+      - $ref: "#/components/parameters/token"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Facturacion"
+      responses:
+        201:
+          description: devolvió la nueva facturacion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntidadFacturacion'
+      
+  /bills:
+    get:
+      summary: Obtiene todas las facturaciones
+      tags:
+      - facturacion
+      parameters:
+      - $ref: "#/components/parameters/token"
+      responses:
+        200:
+          description: devolvió una lista con las facturaciones
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaFacturacion'
+  
+  
+  
+      
+      
       
 components:
   responses:
     InternalError:
       description: El sistema falló
   
+  parameters:
+    token:
+      name: token
+      in: header
+      description: Token de autorización para acceder a los recursos
+      required: true
+      schema:
+        type: string
+  
   schemas:
-    ExitoListaViajes:
+    token:
+      type: object
+      description: token JWT para autenticar las llamadas a endpoints
+      properties:
+        token_id:
+          type: string
+          description: token JWT
+          
+    ListaUsuarios:
       type: array
       items:
-        $ref: '#/components/schemas/Viaje'
+        $ref: "#/components/schemas/Usuario"
+  
+    ListaMonopatines:
+      type: array
+      items:
+        $ref: "#/components/schemas/Monopatin"
         
+    CreacionUsuario:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: nombre del usuario
+        apellido:
+          type: string
+          description: apellido del usuario
+        numeroCelular:
+          type: number
+          description: celular del usuario
+        email:
+          type: string
+          description: email del usuario
+        password:
+          type: string
+          description: contraseña del usuario
+        id_role:
+          type: number
+          description: id del rol a asignar
+          
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: number
+          description: id del usuario
+        nombre:
+          type: string
+          description: nombre del usuario
+        apellido:
+          type: string
+          description: apellido del usuario
+        numeroCelular:
+          type: number
+          description: celular del usuario
+        email:
+          type: string
+          description: email del usuario
+        password:
+          type: string
+          description: contraseña del usuario
+        role:
+          $ref: '#/components/schemas/RolUsuario'
+        
+    RolUsuario:
+      type: object
+      properties:
+        id:
+          type: number
+          description: id del rol
+        role:
+          type: string
+          description: tipo de rol
+          
+    Cuenta:
+      type: object
+      properties:
+        id:
+          type: number
+          description: id de la cuenta
+        creatin_date:
+          type: string
+          description: fecha de creacion de la cuenta
+        balance:
+          type: number
+          description: balance de la cuenta
+        anullated:
+          type: boolean
+          description: marca si la cuenta está anulada o no
+    
     Viaje:
         properties:
           id:
@@ -71,3 +354,96 @@ components:
         isHabilitada:
           type: boolean
           description: true si está libre false si está ocupada
+          
+    ReporteFacturacion:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: nombre del reporte
+        descripcion:
+          type: string
+          description: descripcion del reporte
+        totalFacturado:
+          type: number
+          description: valor final de la facturacion
+        fechaInicio:
+          type: string
+          description: fecha de inicio del reporte
+        fechaFin:
+          type: string
+          description: fecha de fin del reporte
+          
+    ReporteMonopatinesEstado:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: nombre del reporte
+        descripcion:
+          type: string
+          description: descripcion del reporte
+        cantActivos:
+          type: number
+          description: cantidad de monopatines activos
+        cantMantenimiento:
+          type: number
+          description: cantidad de monopatines en mantenimiento
+          
+    Facturacion:
+      type: object
+      properties:
+        fechaInicioFacturacionNueva:
+          type: string
+          description: a partir de que fecha serán validos los nuevos precios
+        precioFijo:
+          type: number
+          description: precio de tarifa fijo
+        precioExtra:
+          type: number
+          description: precio de tarifa extra
+          
+    EntidadFacturacion:
+      type: object
+      properties:
+        id:
+          type: number
+          description: id de la facturacion
+        fecha:
+          type: string
+          description: fecha de vigencia de la facturacion
+        price:
+          type: number
+          description: precio de tarifa fijo
+        additionalPrice:
+          type: number
+          description: precio de tarifa extra
+    
+    ValidarUsuario: 
+      type: object
+      properties:
+        email:
+          type: string
+          description: email del usuario
+        password:
+          type: string
+          description: contraseña del usuario
+    
+    ListaFacturacion:
+      type: array
+      items:
+        $ref: "#/components/schemas/EntidadFacturacion"
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      

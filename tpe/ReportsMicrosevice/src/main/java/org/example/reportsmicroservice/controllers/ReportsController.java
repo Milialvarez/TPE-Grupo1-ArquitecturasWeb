@@ -19,25 +19,27 @@ public class ReportsController {
     @Autowired
     private ReportsService reportService;
 
+    @GetMapping("")
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.status(200).body("Todo ok andando en reports");
+    }
+
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end) {
             System.out.println("primer rep controller");
-            ResponseEntity<?> reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
+            ReporteFacturacion reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
             System.out.println("segundo rep controller");
-                return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
-            }
+            return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas.toString());
+    }
 
             //ANDA
     @GetMapping("/activosVsMantenimiento")
      public ResponseEntity<?> getReporteMonopatinesActivosVsMantenidos(){
          try{
-             System.out.println("hola repo controller");
              ReporteMonopatinesEstado reporte = reportService.getReporteMonopatinesEstado();
-             System.out.println("se obtuvo bien");
              String response = reporte.toString();
              return ResponseEntity.status(200).body(Collections.singletonMap("report", response));
          } catch (Exception e) {
-             System.out.println("catch de repo controller");
              return ResponseEntity.internalServerError().build();
          }
      }
