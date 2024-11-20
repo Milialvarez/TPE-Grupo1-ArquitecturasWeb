@@ -27,7 +27,7 @@ public class AccountsTest {
         @BeforeEach
         void setUp() {
             cuenta = new Account();
-            cuenta.setId(1L);
+            cuenta.setId(8L);
             cuenta.setAnullated(false);
             cuentaService.save(cuenta);
         }
@@ -35,6 +35,7 @@ public class AccountsTest {
         @Test
         void TEST_anularCuenta() throws Exception {
             //Simulo que la cuenta existe
+            System.out.println(cuenta.getId());
             when(cuentaRepository.findById(cuenta.getId())).thenReturn(Optional.of(cuenta));
             cuentaService.setAccountAnullated(cuenta.getId(), true);
 
