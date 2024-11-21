@@ -25,7 +25,7 @@ public class RoleController {
     }
 
     @GetMapping("/{id}") //Andando
-    public ResponseEntity<Role> getUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<Role> getRoleById(@PathVariable("id") Long id) {
         Role role = roleService.getRoleById(id);
         if (role == null) {
             return  ResponseEntity.notFound().build();
