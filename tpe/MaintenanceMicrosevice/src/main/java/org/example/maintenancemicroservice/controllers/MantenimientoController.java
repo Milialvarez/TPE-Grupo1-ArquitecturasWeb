@@ -75,4 +75,15 @@ public class MantenimientoController {
             return ResponseEntity.status(500).build();
         }
     }
+
+    @GetMapping("/monopatinesKm/pausa/{pausa}")
+    public ResponseEntity<?> getMonopatinesPorKm(@PathVariable("pausa") boolean pausa) {
+        try {
+            System.out.println("hola mant controller");
+            return this.ms.getMonopatinesPorKm(pausa);
+        } catch (Exception e) {
+            System.out.println("fuck mant controller");
+            return ResponseEntity.status(500).build();
+        }
+    }
 }

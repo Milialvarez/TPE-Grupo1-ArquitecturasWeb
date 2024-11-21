@@ -310,10 +310,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mantenimiento'
-      
-      
-      
-      
+  /monopatinesKm/pausa/{pausa}:
+    get:
+      summary: obtener un reporte de monopatines ordenado por kilometros, con o sin tiempos de pausa
+      tags:
+        - mantenimiento
+      parameters:
+        - $ref: "#/components/parameters/token"
+        - name: pausa
+          in: path
+          description: boolean que indica si se incluyen o no los tiempos de pausa
+          type: boolean
+          required: true
+      responses:
+        200:
+          description: se devolvió un listado de reportes
+          content:
+            application/json:
+              schema:
+                type: array
+        500:
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: string
       
 components:
   responses:

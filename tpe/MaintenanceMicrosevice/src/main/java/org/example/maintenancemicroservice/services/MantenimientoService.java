@@ -2,6 +2,7 @@ package org.example.maintenancemicroservice.services;
 
 import jakarta.transaction.Transactional;
 import org.example.maintenancemicroservice.entities.Mantenimiento;
+import org.example.maintenancemicroservice.feignClients.ReportsFeignClient;
 import org.example.maintenancemicroservice.models.Monopatin;
 import org.example.maintenancemicroservice.repositories.MantenimientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 public class MantenimientoService {
     @Autowired
     private MantenimientoRepository mantenimientoRepository;
+
+    @Autowired
+    private ReportsFeignClient reportsFeignClient;
 
     public ArrayList<Mantenimiento> getAll(String status) {
         return this.mantenimientoRepository.findAllByStatus(status);
@@ -43,5 +47,10 @@ public class MantenimientoService {
     public ArrayList<Mantenimiento> getAllManteinances() {
         ArrayList<Mantenimiento> m = (ArrayList<Mantenimiento>) this.mantenimientoRepository.findAll();
         return m;
+    }
+
+    public ResponseEntity<?> getMonopatinesPorKm(boolean pausa) {
+        System.out.println("hola service");
+        return this.reportsFeignClient.getReporteUsoMonopatinKm(pausa);
     }
 }
