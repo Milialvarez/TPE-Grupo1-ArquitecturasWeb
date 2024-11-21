@@ -33,4 +33,7 @@ public class Viaje {
     @OneToOne
     @CsvBindByName
     private Monopatin monopatin;
+
+    @Column
+    private Float kilometros;
 }

@@ -44,13 +44,13 @@ public class BillService {
 //hace falta cambiar el calculo del costo. El precio adicinal deberia ser por cada precio fijo.
     private double getCostoViaje(ViajeDTO viaje, Bill tarifa){
         double sumatoria = 0;
-        Integer duracionViaje = viaje.getDuracion();
+        Float kilometros = viaje.getKilometros();
         MonopatinDTO m = viaje.getMonopatin();
         Float tiempoPausas = m.getTiempoUsoConPausas();
         if (tiempoPausas > 15){
             sumatoria += tarifa.getAdditionalPrice();
         }
-        sumatoria += duracionViaje * tarifa.getPrice();
+        sumatoria += kilometros * tarifa.getPrice();
         return sumatoria;
     }
 

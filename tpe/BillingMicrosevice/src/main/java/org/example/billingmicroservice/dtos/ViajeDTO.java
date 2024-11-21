@@ -15,4 +15,5 @@ public class ViajeDTO {
     private Integer duracion;
     private Long id_usuario;
     private MonopatinDTO monopatin;
+    private Float kilometros;
 }

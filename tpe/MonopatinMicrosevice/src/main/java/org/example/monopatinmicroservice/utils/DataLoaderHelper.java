@@ -82,6 +82,7 @@ public class DataLoaderHelper {
             // Set Monopatin
             Monopatin m = monopatinRepository.findById(Long.parseLong(viaje[4])).orElseThrow();
             v.setMonopatin(m);
+            v.setKilometros(Float.parseFloat(viaje[5]));
             viajeRepository.save(v);
         }
     }
