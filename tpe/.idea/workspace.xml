@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/test/java/BillTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/test/java/BillTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +59,8 @@
     "Docker.docker-compose.yml.user: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "JUnit.AdminTest.executor": "Run",
+    "JUnit.BillTest.TEST_SetNewBill.executor": "Run",
+    "JUnit.BillTest.executor": "Run",
     "JUnit.MaintenanceTest.executor": "Run",
     "JUnit.MaintenanceTest.testCorrectPost.executor": "Run",
     "JUnit.MaintenanceTest.testResponseactivos.executor": "Run",
@@ -134,12 +134,22 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AdminTest.correctResponse">
+  <component name="RunManager" selected="JUnit.BillTest.TEST_SetNewBill">
     <configuration name="AdminTest.correctResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AdminMicrosevice" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="AdminTest" />
       <option name="METHOD_NAME" value="correctResponse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BillTest.TEST_SetNewBill" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BillingMicrosevice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BillTest" />
+      <option name="METHOD_NAME" value="TEST_SetNewBill" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,16 +180,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MonopatinTest" />
       <option name="METHOD_NAME" value="deleteMonopatin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MonopatinTest.testCorrectPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MonopatinMicrosevice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MonopatinTest" />
-      <option name="METHOD_NAME" value="testCorrectPost" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -262,11 +262,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.BillTest.TEST_SetNewBill" />
       <item itemvalue="JUnit.AdminTest.correctResponse" />
       <item itemvalue="JUnit.MaintenanceTest.testCorrectPost" />
       <item itemvalue="JUnit.MaintenanceTest.testResponseactivos" />
       <item itemvalue="JUnit.MonopatinTest.deleteMonopatin" />
-      <item itemvalue="JUnit.MonopatinTest.testCorrectPost" />
       <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
       <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
@@ -278,11 +278,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BillTest.TEST_SetNewBill" />
         <item itemvalue="JUnit.AdminTest.correctResponse" />
         <item itemvalue="JUnit.MaintenanceTest.testCorrectPost" />
         <item itemvalue="JUnit.MaintenanceTest.testResponseactivos" />
         <item itemvalue="JUnit.MonopatinTest.deleteMonopatin" />
-        <item itemvalue="JUnit.MonopatinTest.testCorrectPost" />
       </list>
     </recent_temporary>
   </component>
