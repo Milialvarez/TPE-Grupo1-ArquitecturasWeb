@@ -36,5 +36,10 @@ public class User {
     @JsonBackReference
     private Role role;
 
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", role=" + role.getRole();
+    }
+
 
 }

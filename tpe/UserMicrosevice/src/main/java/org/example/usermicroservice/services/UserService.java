@@ -2,6 +2,7 @@ package org.example.usermicroservice.services;
 
 import org.example.usermicroservice.DTO.UsuarioRequestDto;
 import org.example.usermicroservice.DTO.UsuarioResponseDto;
+import org.example.usermicroservice.DTO.userRoleDTO;
 import org.example.usermicroservice.entities.Role;
 import org.example.usermicroservice.entities.User;
 import org.example.usermicroservice.feignClients.MonopatinFeignClient;
@@ -28,10 +29,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<User> getUsersByRole(String role) {
+    public List<userRoleDTO> getUsersByRole(String role) {
         try {
             UserRoles userRole = UserRoles.valueOf(role.toLowerCase());
-            return this.userRepository.getUsersByRole(userRole.name());
+            List<User> result = this.userRepository.getUsersByRole(userRole.name());
+            List<userRoleDTO> users = new ArrayList<>();
+            for(User u : result){
+                users.add(new userRoleDTO(u.getId(), u.getName(), u.getLastname(), u.getRole().getRole()));
+            }
+            return users;
         } catch (IllegalArgumentException e) {
             return new ArrayList<>();
         }

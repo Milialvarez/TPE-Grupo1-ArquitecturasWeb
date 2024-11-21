@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/DTO/userRoleDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/test/java/BillTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/test/java/BillTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/feignClients/UserFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/services/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,55 +58,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker-compose.yml.admin: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.user: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "JUnit.AdminTest.executor": "Run",
-    "JUnit.BillTest.TEST_SetNewBill.executor": "Run",
-    "JUnit.BillTest.executor": "Run",
-    "JUnit.MaintenanceTest.executor": "Run",
-    "JUnit.MaintenanceTest.testCorrectPost.executor": "Run",
-    "JUnit.MaintenanceTest.testResponseactivos.executor": "Run",
-    "JUnit.MonopatinTest.deleteMonopatin.executor": "Run",
-    "JUnit.MonopatinTest.testCorrectPost.executor": "Run",
-    "JUnit.MonopatinTest.testMonopatinNotFound.executor": "Run",
-    "JUnit.ReporteMonopatinTest.testCorrectResponse.executor": "Run",
-    "JUnit.ReporteMonopatinTest.testIncorrectResponse.executor": "Run",
-    "JUnit.ReporteMonopatinTest.testServiceCorrectObject.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AdminMicroserviceApplication.executor": "Run",
-    "Spring Boot.BillingMicroserviceApplication.executor": "Run",
-    "Spring Boot.GatewayApplication.executor": "Run",
-    "Spring Boot.MaintenanceMicroserviceApplication.executor": "Run",
-    "Spring Boot.MonopatinMicroserviceApplication.executor": "Run",
-    "Spring Boot.ReportsMicroserviceApplication.executor": "Run",
-    "Spring Boot.UserMicroserviceApplication.executor": "Run",
-    "git-widget-placeholder": "testsBranch",
-    "jdk.selected.JAVA_MODULE": "openjdk-22",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Usuario/IdeaProjects/integradores/tpe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.admin: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.user: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdminMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.BillingMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MaintenanceMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MonopatinMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ReportsMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-22&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/IdeaProjects/integradores/tpe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.example.adminmicroservice.models" />
@@ -134,57 +129,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BillTest.TEST_SetNewBill">
-    <configuration name="AdminTest.correctResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AdminMicrosevice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="AdminTest" />
-      <option name="METHOD_NAME" value="correctResponse" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BillTest.TEST_SetNewBill" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BillingMicrosevice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BillTest" />
-      <option name="METHOD_NAME" value="TEST_SetNewBill" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MaintenanceTest.testCorrectPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MaintenanceMicrosevice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MaintenanceTest" />
-      <option name="METHOD_NAME" value="testCorrectPost" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MaintenanceTest.testResponseactivos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MaintenanceMicrosevice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MaintenanceTest" />
-      <option name="METHOD_NAME" value="testResponseactivos" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MonopatinTest.deleteMonopatin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MonopatinMicrosevice" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MonopatinTest" />
-      <option name="METHOD_NAME" value="deleteMonopatin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Docker.docker-compose.yml.admin: Compose Deployment">
     <configuration name="AdminMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="AdminMicrosevice" />
@@ -261,12 +206,58 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.admin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="admin" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.phpmyadminmonopatin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="phpmyadminmonopatin" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.user: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="user" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="JUnit.BillTest.TEST_SetNewBill" />
-      <item itemvalue="JUnit.AdminTest.correctResponse" />
-      <item itemvalue="JUnit.MaintenanceTest.testCorrectPost" />
-      <item itemvalue="JUnit.MaintenanceTest.testResponseactivos" />
-      <item itemvalue="JUnit.MonopatinTest.deleteMonopatin" />
+      <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
       <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
@@ -278,11 +269,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BillTest.TEST_SetNewBill" />
-        <item itemvalue="JUnit.AdminTest.correctResponse" />
-        <item itemvalue="JUnit.MaintenanceTest.testCorrectPost" />
-        <item itemvalue="JUnit.MaintenanceTest.testResponseactivos" />
-        <item itemvalue="JUnit.MonopatinTest.deleteMonopatin" />
+        <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -321,7 +311,6 @@
       <workItem from="1731885707234" duration="17136000" />
       <workItem from="1732018860908" duration="1509000" />
       <workItem from="1732020537608" duration="10264000" />
-      <workItem from="1732130427470" duration="3253000" />
     </task>
     <servers />
   </component>

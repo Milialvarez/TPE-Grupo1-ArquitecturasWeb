@@ -366,7 +366,7 @@ components:
         password:
           type: string
           description: contraseña del usuario
-        id_role:
+        id_rol:
           type: number
           description: id del rol a asignar
           

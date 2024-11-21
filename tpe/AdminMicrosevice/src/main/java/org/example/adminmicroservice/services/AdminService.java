@@ -40,6 +40,9 @@ public class AdminService {
     }
 
     public ResponseEntity<?> getUsersByRole(String r){
+        if(!Objects.equals(r, "admin") && !Objects.equals(r, "usuario") && !Objects.equals(r, "mantenimiento")){
+            return ResponseEntity.badRequest().body("Invalid role");
+        }
         return this.usersFeignClient.getUsersByRole(r);
     }
 
