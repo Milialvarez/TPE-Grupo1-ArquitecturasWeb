@@ -35,6 +35,14 @@ spring:
             uri: http://localhost:8009
             predicates:
               - Path=/parada/**
+          - id: accounts
+            uri: http://localhost:8011
+            predicates:
+              - Path=/accounts/**
+          - id: roles
+            uri: http://localhost:8011
+            predicates:
+              - Path=/roles/**
         default-filters:
           - RemoveRequestHeader=Cookie
 logging:
