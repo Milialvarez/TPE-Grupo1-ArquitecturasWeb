@@ -27,14 +27,6 @@ public class MonopatinService {
     public List<Monopatin> getAll(){
         return monopatinRepository.findAll();
     }
-    public List<Monopatin> getAllBy(float maxKm, float tMax, boolean conPausa) { //esta logica se puede mejorar luego
-        if (maxKm > 0.0) return monopatinRepository.getAllByMaxKm(maxKm);
-        if (tMax > 0.0) return monopatinRepository.getAllByMaxTime(tMax);
-        if (tMax > 0.0 && maxKm > 0.0) return monopatinRepository.getAllByMaxTimeAndKm(tMax, maxKm);
-        if (tMax > 0.0 && conPausa) return  monopatinRepository.getAllByMaxTimeWithPauses(tMax);
-        if (tMax > 0.0 && maxKm > 0.0 && conPausa) return monopatinRepository.getAllByMaxTimeWithPausesAndKm(tMax, maxKm);
-        return new ArrayList<>();
-    }
 
     public Monopatin add(Monopatin monopatin) {
         return monopatinRepository.save(monopatin);
@@ -93,13 +85,14 @@ public class MonopatinService {
     public ResponseEntity<?> enviarMonopatinAMantenimiento(Integer monopatin) {
         Long id_monopatin = monopatin.longValue();
         int limiteKm = 40000; //limite de km a partir del cual llevar a mantener
+        Integer tiempoUso = 4380; //limite, implica 6 meses en horas
         Map<String, String> response = new HashMap<>();
         Monopatin m = this.monopatinRepository.findById(id_monopatin).orElse(null);
         if(m == null){
             response.put("error", "monopatin no encontrado");
             return ResponseEntity.badRequest().body(response);
         }
-        if(m.getKmRecorridos()<limiteKm){
+        if(m.getKmRecorridos()<limiteKm && m.getTiempoUso() < tiempoUso){
             response.put("Inhabilitado", "el monopatín no necesita mantenimiento");
             return ResponseEntity.ok().body(response);
         } else{

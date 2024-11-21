@@ -15,4 +15,9 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
     @Modifying
     @Query("UPDATE Account c SET c.anullated = :status WHERE c.id = :id")
     void setAccountAnullated(@Param("id") Long id, @Param("status") boolean status);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Account a SET a.balance =:monto WHERE a.id =:idCuenta")
+    void setNuevoMonto(@Param("idCuenta") Long idCuenta, @Param("monto") int monto);
 }

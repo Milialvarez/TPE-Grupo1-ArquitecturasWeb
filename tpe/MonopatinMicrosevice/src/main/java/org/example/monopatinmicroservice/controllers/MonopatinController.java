@@ -33,16 +33,6 @@ public class MonopatinController {
         }
     }
 
-    @GetMapping({ "/km/{km}", "/t/p/{tiempo}/{pausa}"})
-    public ResponseEntity<?> getMonopatines(@PathVariable(value = "km", required = false) float maxKmRecorridos, @PathVariable(value = "tiempo", required = false) float tiempoMaxUso, @PathVariable(value = "pausa", required = false) boolean p) {
-        try {
-            List<Monopatin> result = this.monopatinService.getAllBy(maxKmRecorridos, tiempoMaxUso, p);
-            return ResponseEntity.ok().body(result);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).build();
-        }
-    }
-
     @GetMapping("/id/{id_monopatin}") //Andando
     public ResponseEntity<?> getMonopatin(@PathVariable("id_monopatin") Long id) {
         try {

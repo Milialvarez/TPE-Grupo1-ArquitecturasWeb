@@ -53,4 +53,13 @@ public class AccountController {
         }
     }
 
+    @PutMapping("/{id_cuenta}/monto/{amount}")
+    public ResponseEntity<?> actualizarMonto(@PathVariable("id_cuenta") Long id_cuenta, @PathVariable("amount") int monto){
+        Account a = accountservice.getAccountById(id_cuenta);
+        if(a == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.status(201).body(this.accountservice.cargarDinero(id_cuenta, monto));
+    }
+
 }
