@@ -32,13 +32,6 @@ public class AdminController {
         try{
             System.out.println("hola controller");
             return this.adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
-//            System.out.println("wow logradisimo");
-//            if(response.getStatusCode() == HttpStatus.OK){
-//                return ResponseEntity.status(200).body(response.getBody());
-//            } else{
-//                System.out.println("impecable");
-//                return ResponseEntity.status(404).body(response.getBody());
-//            }
         }catch(Exception e){
             System.out.println("fuck admin controller");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -47,7 +40,7 @@ public class AdminController {
 
     @PutMapping("/null/{id_acc}") //ANDA PERO CON DELAY, la primera vez que se manda parece que no cambió nada, pero si lo volvés a llamar se ven los cambios
     public ResponseEntity<?> anullateAccount(@PathVariable("id_acc") Integer id_acc) {
-       return ResponseEntity.ok(adminService.anullateAccount(id_acc));
+       return ResponseEntity.ok(adminService.anullateAccount(id_acc).getBody());
     }
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")

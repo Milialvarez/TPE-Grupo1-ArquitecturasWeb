@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/decoders/CustomErrorDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/main/java/org/example/adminmicroservice/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +300,7 @@
       <workItem from="1732054655182" duration="7108000" />
       <workItem from="1732150466362" duration="2025000" />
       <workItem from="1732201643036" duration="2545000" />
-      <workItem from="1732218683034" duration="11574000" />
+      <workItem from="1732218683034" duration="11916000" />
     </task>
     <servers />
   </component>

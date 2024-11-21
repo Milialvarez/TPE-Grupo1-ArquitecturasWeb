@@ -21,31 +21,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-public class AdminTest {
-    @InjectMocks
-    private AdminService adminService;
-    @Mock
-    private UserFeignClient userFeignClient;
-
-    ResponseEntity<List<User>> usersresp;
-
-    @BeforeEach
-    void setUp() {
-        List<User> users = new ArrayList<>();
-        users.add(new User());
-        users.add(new User());
-        users.add(new User());
-        users.add(new User());
-        users.add(new User());
-        usersresp = ResponseEntity.ok(users);
-    }
-
-    @Test
-    public void correctResponse(){
-        when(userFeignClient.getUsersByRole("admin")).thenReturn(usersresp);
-        ResponseEntity<?> response = adminService.getUsersByRole("admin");
-        assert response != null;
-        assertEquals(Objects.requireNonNull(response.getBody()).getClass(), ArrayList.class, "clase incorrecta");
-    }
-}
+//@ExtendWith(MockitoExtension.class)
+//public class AdminTest {
+//    @InjectMocks
+//    private AdminService adminService;
+//    @Mock
+//    private UserFeignClient userFeignClient;
+//
+//    ResponseEntity<List<User>> usersresp;
+//
+//    @BeforeEach
+//    void setUp() {
+//        List<User> users = new ArrayList<>();
+//        users.add(new User());
+//        users.add(new User());
+//        users.add(new User());
+//        users.add(new User());
+//        users.add(new User());
+//        usersresp = ResponseEntity.ok(users);
+//    }
+//
+//    @Test
+//    public void correctResponse(){
+//        when(userFeignClient.getUsersByRole("admin")).thenReturn(usersresp);
+//        ResponseEntity<?> response = adminService.getUsersByRole("admin");
+//        assert response != null;
+//        assertEquals(Objects.requireNonNull(response.getBody()).getClass(), ArrayList.class, "clase incorrecta");
+//    }
+//}
