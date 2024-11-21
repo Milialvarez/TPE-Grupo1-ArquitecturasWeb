@@ -1,5 +1,7 @@
 package org.example.usermicroservice.services;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.example.usermicroservice.entities.Account;
 import org.example.usermicroservice.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@NoArgsConstructor
+@Service("AccountService")
 public class AccountService {
     @Autowired
     AccountRepository accountRepository;
@@ -37,5 +40,5 @@ public class AccountService {
         this.accountRepository.setAccountAnullated(id, status);
         ac.setAnullated(true);
         return ac;
+        }
     }
-}

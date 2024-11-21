@@ -81,7 +81,6 @@ public class MonopatinService {
             Long id_monopatin = aux.longValue();
 
             Monopatin m = this.monopatinRepository.findById(id_monopatin).orElse(null);
-            System.out.println(id_monopatin);
             if(m != null){
                 result.add(m);
             }
@@ -140,19 +139,15 @@ public class MonopatinService {
     }
 
     public ArrayList<MonopatinKmDTO> getMonopatinesPorKM(boolean pausa) {
-        System.out.println("entré al service");
         ArrayList<Monopatin> m = this.monopatinRepository.getMonopatinesPorKM();
         if(pausa){
             for(Monopatin m1 : m){
                 ArrayList<Viaje> viajes = this.viajeService.getViajesByIdMonopatin(m1.getId());
                 int tiempo = 0;
                 int duracionViaje = 0;
-                System.out.println(viajes);
                 for(Viaje v : viajes){
-                    System.out.println("rompe acá?");
                     duracionViaje += v.getDuracion();
                     tiempo += (this.pausaService.getPausasByViajeId(v.getId()) + duracionViaje);
-                    System.out.println("o no rompe?");
                 }
                 m1.setTiempoUsoConPausas(tiempo);
                 m1.setTiempoUso(duracionViaje);
@@ -163,7 +158,6 @@ public class MonopatinService {
         for(Monopatin m1 : m){
             response.add(new MonopatinKmDTO(m1.getId(), m1.getKmRecorridos(), m1.getTiempoUso(), m1.getTiempoUsoConPausas()));
         }
-        System.out.println("logradisimo");
         return response;
     }
 }

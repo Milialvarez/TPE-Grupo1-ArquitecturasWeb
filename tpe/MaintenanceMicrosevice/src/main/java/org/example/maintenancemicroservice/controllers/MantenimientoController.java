@@ -26,26 +26,6 @@ public class MantenimientoController {
         }
     }
 
-    @GetMapping("/km/{km}")
-    public ResponseEntity<?> getMonopatinesReporteUsoKm(@PathVariable("km") float km) {
-        try{
-            ArrayList<Monopatin> lista = this.ms.getMonopatinesPorKm(km);
-            return ResponseEntity.status(200).body(lista);
-        }catch(Exception e){
-            return ResponseEntity.status(401).body(e.getMessage());
-        }
-    }
-
-    @GetMapping("/tiempo/{t}/{p}")
-    public ResponseEntity<?> getMonopatinesPorTiempo(@PathVariable("t") float tiempo, @PathVariable(value = "p", required = false) boolean pausa) {
-        try{
-            ArrayList<Monopatin> lista = this.ms.getMonopatinesPorTiempo(tiempo, pausa);
-            return ResponseEntity.status(200).body(lista);
-        }catch(Exception e){
-            return ResponseEntity.status(401).body(e.getMessage());
-        }
-    }
-
     @GetMapping("/estado/{status}")
     public ResponseEntity<?> getAllManteinanceByStatus(@PathVariable("status") String status) {
         try{
@@ -61,7 +41,7 @@ public class MantenimientoController {
     public ResponseEntity<?> saveManteinance(@PathVariable("id_monopatin") Long id_monopatin){
         try{
             Mantenimiento m = this.ms.save(id_monopatin);
-            return ResponseEntity.ok(m);
+            return ResponseEntity.status(201).body(m);
         }catch(Exception e){
             return ResponseEntity.noContent().build();
         }
@@ -73,7 +53,6 @@ public class MantenimientoController {
             Integer idInteger = id;
             Long longId = idInteger.longValue();
             Mantenimiento mantenimiento = this.ms.updateMaintenance(longId, status);
-            System.out.println(mantenimiento);
             return ResponseEntity.ok(mantenimiento);
         }catch(Exception e){
             return ResponseEntity.noContent().build();
@@ -92,6 +71,17 @@ public class MantenimientoController {
                 return null;
             }
         }catch(Exception e){
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/monopatinesKm/pausa/{pausa}")
+    public ResponseEntity<?> getMonopatinesPorKm(@PathVariable("pausa") boolean pausa) {
+        try {
+            System.out.println("hola mant controller");
+            return this.ms.getMonopatinesPorKm(pausa);
+        } catch (Exception e) {
+            System.out.println("fuck mant controller");
             return ResponseEntity.status(500).build();
         }
     }

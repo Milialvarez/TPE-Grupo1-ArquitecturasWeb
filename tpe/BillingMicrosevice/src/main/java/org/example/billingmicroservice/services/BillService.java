@@ -44,7 +44,6 @@ public class BillService {
 //hace falta cambiar el calculo del costo. El precio adicinal deberia ser por cada precio fijo.
     private double getCostoViaje(ViajeDTO viaje, Bill tarifa){
         double sumatoria = 0;
-        System.out.println("Entrando a calcular costo viaje bill service");
         Integer duracionViaje = viaje.getDuracion();
         MonopatinDTO m = viaje.getMonopatin();
         Float tiempoPausas = m.getTiempoUsoConPausas();
@@ -71,15 +70,10 @@ public class BillService {
             String originFormatted = origin.format(formatter);
             String endFormatted = end.format(formatter);
 
-            System.out.println(originFormatted);
-            System.out.println(endFormatted);
-
             Bill tarifa = this.getCostos();
-            System.out.println("primer bill service");
 
             // Obtener la respuesta como lista genérica
             List<?> body = this.viajeFeignClient.getViajesBetween(originFormatted, endFormatted).getBody();
-            System.out.println("Response body: " + body);
 
             // Crear un ObjectMapper y registrar el módulo de Java Time
             ObjectMapper mapper = new ObjectMapper();
@@ -90,18 +84,13 @@ public class BillService {
                     .map(obj -> mapper.convertValue(obj, ViajeDTO.class))
                     .toList();
 
-            System.out.println("Viajes convertidos: " + viajes);
-
             // Realizar la sumatoria
             double sumatoria = 0;
             for (ViajeDTO v : viajes) {
-                System.out.println(v);
                 sumatoria += this.getCostoViaje(v, tarifa);
             }
-            System.out.println(sumatoria);
             return sumatoria;
         } catch (Exception e) {
-            System.out.println("Error en getTotalBilled: " + e.getMessage());
             e.printStackTrace();
             return -1.0;
         }
@@ -111,7 +100,6 @@ public class BillService {
     public Bill setNewBill(LocalDate f, float pFijo, float pEx) {
         LocalDate lastBillDate = this.billRepository.getLastOne();
         if (lastBillDate == null || f.isBefore(lastBillDate)){
-            System.out.println("if de billing service");
             return null;
         }
         Bill b = new Bill();

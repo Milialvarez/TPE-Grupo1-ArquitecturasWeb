@@ -3,11 +3,14 @@ package org.example.usermicroservice.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.example.usermicroservice.DTO.UsuarioRequestDto;
 import org.example.usermicroservice.DTO.UsuarioResponseDto;
+import org.example.usermicroservice.DTO.userRoleDTO;
 import org.example.usermicroservice.entities.User;
 import org.example.usermicroservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,7 +60,7 @@ public class UserController {
 
     @GetMapping("/role/{role}") //Andando
     public ResponseEntity<?> getUsersByRole(@PathVariable("role") String role){
-        List<User> users = this.userService.getUsersByRole(role);
+        List<userRoleDTO> users = this.userService.getUsersByRole(role);
         if (users.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

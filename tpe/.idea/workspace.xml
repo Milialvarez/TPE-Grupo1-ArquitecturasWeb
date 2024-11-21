@@ -17,6 +17,17 @@
       <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/test/java/BillTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/test/java/MaintenanceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/test/java/MonopatinTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserMicrosevice/src/test/java/AccountsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/java/org/example/maintenancemicroservice/models/Monopatin.java" beforeDir="false" afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/java/org/example/maintenancemicroservice/models/Monopatin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/AccountService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,12 +88,14 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.AdminMicroserviceApplication.executor": "Run",
     "Spring Boot.BillingMicroserviceApplication.executor": "Run",
+    "Spring Boot.GatewayApplication (1).executor": "Run",
     "Spring Boot.GatewayApplication.executor": "Run",
     "Spring Boot.MaintenanceMicroserviceApplication.executor": "Run",
     "Spring Boot.MonopatinMicroserviceApplication.executor": "Run",
     "Spring Boot.ReportsMicroserviceApplication.executor": "Run",
     "Spring Boot.UserMicroserviceApplication.executor": "Run",
     "git-widget-placeholder": "mongoDB__migration",
+    "git-widget-placeholder": "Merging main",
     "jdk.selected.JAVA_MODULE": "openjdk-22",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Manuel/Documents/TUDAI/ArquitecturasWeb/integrador/TPE-Grupo1-ArquitecturasWeb/tpe",
@@ -256,6 +269,20 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
+      <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
+      <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication (1)" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.MaintenanceMicroserviceApplication" />
+      <item itemvalue="Spring Boot.MonopatinMicroserviceApplication" />
+      <item itemvalue="Spring Boot.ReportsMicroserviceApplication" />
+      <item itemvalue="Spring Boot.UserMicroserviceApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
@@ -301,6 +328,7 @@
       <workItem from="1732018860908" duration="1509000" />
       <workItem from="1732020537608" duration="10264000" />
       <workItem from="1732054655182" duration="7108000" />
+      <workItem from="1732150466362" duration="2025000" />
     </task>
     <servers />
   </component>

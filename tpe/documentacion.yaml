@@ -15,6 +15,8 @@ tags:
   description: Maneja la información acerca de las facturaciones
 - name: monopatines
   description: Maneja la información acerca de los monopatines
+- name: mantenimiento
+  description: Maneja la información acerca de los monopatines en mantenimiento y solo se puede acceder siendo de encargado de mantenimiento
   
 paths:
   /api/users:
@@ -205,17 +207,244 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListaFacturacion'
+
+  /monopatin:
+    get:
+      summary: Obtiene todos los monopatines
+      tags:
+        - monopatines
+      parameters:
+        - $ref: "#/components/parameters/token"
+      responses:
+        200:
+          description: se devolvió la lista de monopatines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaMonopatines'
+    post:
+      summary: Agrega un monopatín
+      tags:
+        - monopatines
+        - admin
+      parameters:
+        - $ref: "#/components/parameters/token"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreacionMonopatin'
+      responses:
+        201:
+          description: se devolvió el monopatín creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monopatin'
+
+  /monopatin/id/{id_monopatin}:
+    get:
+      summary: Obtiene un monopatín
+      tags:
+        - monopatines
+      parameters:
+        - $ref: "#/components/parameters/token"
+        - name: id_monopatin
+          in: path
+          description: id del monopatín a obtener
+          required: true
+          schema:
+            type: number
+      responses:
+        200:
+          description: se devolvió el monopatín con la id especificada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monopatin'
+
+  /monopatin/{id_monopatin}:
+    get:
+      summary: Borra un monopatín
+      tags:
+        - monopatines
+        - admin
+      parameters:
+        - $ref: "#/components/parameters/token"
+        - name: id_monopatin
+          in: path
+          description: id del monopatín a borrar
+          required: true
+          schema:
+            type: number
+      responses:
+        200:
+          description: se devolvió el monopatín eliminado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monopatin'
+
+  /monopatin/location/{posx}/{posy}:
+    get:
+      summary: Obtiene los monopatines más cercanos a una posición
+      tags:
+        - monopatines
+      parameters:
+        - $ref: "#/components/parameters/token"
+        - name: posx
+          in: path
+          description: posición x del usuario
+          required: true
+          schema:
+            type: number
+        - name: posy
+          in: path
+          description: posición y del usuario
+          required: true
+          schema:
+            type: number
+      responses:
+        200:
+          description: se devolvió la lista de monopatines cercanos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaMonopatines'
+
   
+  /mantenimiento:
+    get:
+      summary: Obtiene una lista de todos los mantenimientos
+      tags:
+      - mantenimiento
+      parameters:
+      - $ref: "#/components/parameters/token"
+      responses:
+        200:
+          description: se devolvió la lista correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaMantenimientos'
   
-  
+  /mantenimiento/estado/{status}:
+    get:
+      summary: Obtiene mantenimientos por estados
+      tags:
+      - mantenimiento
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: status
+        in: path
+        description: filtro de estado
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: se devolvió la lista de mantenimientos filtrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaMantenimientos'
       
+  /mantenimiento/{id_monopatin}:
+    post:
+      summary: Agrega un monopatín a mantenimiento
+      tags:
+      - mantenimiento
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: id_monopatin
+        in: path
+        description: id del monopatín a agregar a mantenimiento
+        required: true
+        schema:
+          type: number
+      responses:
+        201:
+          description: se devolvió el mantenimiento recién agregado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mantenimiento'
+    get:
+      summary: Obtiene un mantenimiento por el id del monopatín
+      tags:
+      - mantenimiento
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: id_monopatin
+        in: path
+        description: id del monopatín
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: se devolvió el mantenimiento encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mantenimiento'
+      
+  /id/{id_monopatin}/estado/{status}:
+    put:
+      summary: Modifica el estado de un monopatín
+      tags:
+      - mantenimiento
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: id_monopatin
+        in: path
+        description: id del monopatín a modificar
+        required: true
+        schema:
+          type: number
+      - name: status
+        in: path
+        description: nuevo estado del monopatín
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: se devolvió el mantenimiento recién modificado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mantenimiento'
+
+  /monopatinesKm/pausa/{pausa}:
+    get:
+      summary: obtener un reporte de monopatines ordenado por kilometros, con o sin tiempos de pausa
+      tags:
+        - mantenimiento
+      parameters:
+        - $ref: "#/components/parameters/token"
+        - name: pausa
+          in: path
+          description: boolean que indica si se incluyen o no los tiempos de pausa
+          type: boolean
+          required: true
+      responses:
+        200:
+          description: se devolvió un listado de reportes
+          content:
+            application/json:
+              schema:
+                type: array
+        500:
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: string
+
       
       
 components:
-  responses:
-    InternalError:
-      description: El sistema falló
-  
   parameters:
     token:
       name: token
@@ -262,7 +491,7 @@ components:
         password:
           type: string
           description: contraseña del usuario
-        id_role:
+        id_rol:
           type: number
           description: id del rol a asignar
           
@@ -333,16 +562,26 @@ components:
           monopatin:
             $ref: '#/components/schemas/Monopatin'
 
+    CreacionMonopatin:
+      type: object
+      properties:
+        kmRecorridos:
+          type: number
+          description: los km que recorrió el monopatin
+        id_parada:
+          type: number
+          description: id de la parada actual o null
+
     Monopatin:
       type: object
       properties:
         id:
           type: number
           description: id del monopatin
-        "kmRecorridos":
+        kmRecorridos:
           type: number
           description: los km que recorrió el monopatin
-        "parada":
+        parada:
           $ref: '#/components/schemas/Parada'
 
     Parada:
@@ -434,8 +673,23 @@ components:
       items:
         $ref: "#/components/schemas/EntidadFacturacion"
         
-          
-          
+    ListaMantenimientos:
+      type: array
+      items:
+        $ref: '#/components/schemas/Mantenimiento'
+        
+    Mantenimiento:
+      type: object
+      properties:
+        id:
+          type: number
+          description: id del mantenimiento
+        id_monopatin:
+          type: number
+          description: id del monopatin en mantenimiento
+        estado:
+          type: string
+          description: estado del monopatin en mantenimiento
           
           
           

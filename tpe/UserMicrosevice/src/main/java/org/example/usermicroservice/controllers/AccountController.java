@@ -29,7 +29,7 @@ public class AccountController {
     public ResponseEntity<Account> getAccountById(@PathVariable("id") Long id) {
         Account account = accountservice.getAccountById(id);
         if (account == null) {
-            return  ResponseEntity.notFound().build();
+            return  ResponseEntity.status(404).build();
         }
         return ResponseEntity.ok(account);
     }
@@ -48,7 +48,6 @@ public class AccountController {
         if(this.accountservice.getAccountById(longId) == null){
             return ResponseEntity.notFound().build();
         } else{
-            System.out.println("entré al else de account controller");
             Account a = accountservice.setAccountAnullated(longId, true);
             return ResponseEntity.status(201).body(a);
         }

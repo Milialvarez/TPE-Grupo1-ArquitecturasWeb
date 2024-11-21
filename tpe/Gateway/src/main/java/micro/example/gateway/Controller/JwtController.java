@@ -28,8 +28,6 @@ public class JwtController {
 
     @PostMapping()
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDTO request ) {
-        System.out.println(request);
-        System.out.println(request.getEmail());
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword()
