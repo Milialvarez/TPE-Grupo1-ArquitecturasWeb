@@ -37,7 +37,7 @@ public class BillService {
         return true;
     }
 
-    public Bill getBillById(Long id) {
+    public Bill getBillById(String id) {
         return billRepository.findById(id).orElse(null);
     }
 

@@ -22,13 +22,10 @@ services:
     container_name: billing
     image: mongo
     ports:
-      - "27017:27017" # puerto para las solicitudes HTTP= 27017
+      - "27017:27017" # puerto para las solicitudes HTTP= 8007
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: admin
-      MONGO_INITDB_DATABASE: billing
     command: mongod --noauth
+
 
   phpmyadminbilling:
     image: phpmyadmin/phpmyadmin

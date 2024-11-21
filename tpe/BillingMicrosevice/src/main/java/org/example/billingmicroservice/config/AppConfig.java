@@ -18,14 +18,14 @@ public class AppConfig {
     //        return new RestTemplate();
     //    }
 
-//    @Bean
-//    public MongoClient mongo() {
-//        ConnectionString connectionString = new ConnectionString("mongodb://root:admin@localhost:27017/billing?authSource=admin");
-//        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-//                .applyConnectionString(connectionString)
-//                .build();
-//        return MongoClients.create(mongoClientSettings);
-//    }
+    @Bean
+    public MongoClient mongo() {
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/billing");
+        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+        return MongoClients.create(mongoClientSettings);
+    }
 //    @Bean
 //    public MongoTemplate mongoTemplate() throws Exception {
 //        return new MongoTemplate(mongo(), "billing");
