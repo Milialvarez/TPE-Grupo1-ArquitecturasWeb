@@ -43,7 +43,6 @@ public class ViajeService {
     }
 
     public ArrayList<Viaje> getViajesByIdMonopatin(Long id) {
-        System.out.println("hola viaje service");
         ArrayList<Viaje> viajes = this.viajeRepository.getViajesByIdMonopatin(id);
         return viajes;
     }
