@@ -85,13 +85,13 @@ public class MonopatinController {
             List<Monopatin> result = this.monopatinService.getMonopatinesPorViajesPorAnio(anio, xViajes);
 
             if (!result.isEmpty()) {
-                return ResponseEntity.ok().body(result);
+                return ResponseEntity.status(200).body(result);
             } else {
-                HashMap<String, String> notFound = new HashMap<>();
-                notFound.put("error", "No hay ningún monopatin con los parametros año: " + anio + " y xViajes: " + xViajes);
-                return ResponseEntity.status(404).body(notFound);
+                System.out.println("entré acá no?");
+                return ResponseEntity.status(400).body("no existen viajes con esos parámetros");
             }
         } catch (Exception e) {
+            System.out.println("acá no debo entrar");
             return ResponseEntity.status(500).build();
         }
     }

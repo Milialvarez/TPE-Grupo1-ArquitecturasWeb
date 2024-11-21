@@ -1,5 +1,6 @@
 package org.example.adminmicroservice.controllers;
 
+import org.apache.coyote.BadRequestException;
 import org.example.adminmicroservice.dtos.BillDTO;
 import org.example.adminmicroservice.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,20 @@ public class AdminController {
 
     @GetMapping("/xViajes/{xViajes}/anio/{anio}") //ANDA
     public ResponseEntity<?> getMonopatinesPorViajesPorAnio(@PathVariable("anio") Integer anio, @PathVariable("xViajes") Integer xViajes){
-        ResponseEntity<?> reportViajes = adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
-        return ResponseEntity.ok(reportViajes.getBody());
+        try{
+            System.out.println("hola controller");
+            return this.adminService.getMonopatinesPorViajesPorAnio(anio, xViajes);
+//            System.out.println("wow logradisimo");
+//            if(response.getStatusCode() == HttpStatus.OK){
+//                return ResponseEntity.status(200).body(response.getBody());
+//            } else{
+//                System.out.println("impecable");
+//                return ResponseEntity.status(404).body(response.getBody());
+//            }
+        }catch(Exception e){
+            System.out.println("fuck admin controller");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @PutMapping("/null/{id_acc}") //ANDA PERO CON DELAY, la primera vez que se manda parece que no cambió nada, pero si lo volvés a llamar se ven los cambios
