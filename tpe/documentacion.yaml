@@ -311,15 +311,113 @@ paths:
               schema:
                 $ref: '#/components/schemas/Mantenimiento'
       
-      
+  /monopatin:
+    get:
+      summary: Obtiene todos los monopatines
+      tags:
+      - monopatines
+      parameters:
+      - $ref: "#/components/parameters/token"
+      responses:
+        200:
+          description: se devolvió la lista de monopatines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaMonopatines'
+    post:
+      summary: Agrega un monopatín
+      tags:
+      - monopatines
+      - admin
+      parameters:
+      - $ref: "#/components/parameters/token"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreacionMonopatin'
+      responses:
+        201:
+          description: se devolvió el monopatín creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monopatin'
+  
+  /monopatin/id/{id_monopatin}:
+    get:
+      summary: Obtiene un monopatín
+      tags:
+      - monopatines
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: id_monopatin
+        in: path
+        description: id del monopatín a obtener
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: se devolvió el monopatín con la id especificada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monopatin'
+  
+  /monopatin/{id_monopatin}:
+    get:
+      summary: Borra un monopatín
+      tags:
+      - monopatines
+      - admin
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: id_monopatin
+        in: path
+        description: id del monopatín a borrar
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: se devolvió el monopatín eliminado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monopatin'
+  
+  /monopatin/location/{posx}/{posy}:
+    get:
+      summary: Obtiene los monopatines más cercanos a una posición
+      tags:
+      - monopatines
+      parameters:
+      - $ref: "#/components/parameters/token"
+      - name: posx
+        in: path
+        description: posición x del usuario
+        required: true
+        schema:
+          type: number
+      - name: posy
+        in: path
+        description: posición y del usuario
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: se devolvió la lista de monopatines cercanos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaMonopatines'
       
       
       
 components:
-  responses:
-    InternalError:
-      description: El sistema falló
-  
   parameters:
     token:
       name: token
@@ -437,16 +535,26 @@ components:
           monopatin:
             $ref: '#/components/schemas/Monopatin'
 
+    CreacionMonopatin:
+      type: object
+      properties:
+        kmRecorridos:
+          type: number
+          description: los km que recorrió el monopatin
+        id_parada:
+          type: number
+          description: id de la parada actual o null
+
     Monopatin:
       type: object
       properties:
         id:
           type: number
           description: id del monopatin
-        "kmRecorridos":
+        kmRecorridos:
           type: number
           description: los km que recorrió el monopatin
-        "parada":
+        parada:
           $ref: '#/components/schemas/Parada'
 
     Parada:
