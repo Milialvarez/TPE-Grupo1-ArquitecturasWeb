@@ -64,6 +64,7 @@ public class ViajeController {
             Viaje viaje = new Viaje();
             viaje.setMonopatin(monopatin);
             viaje.setDuracion(viajeDTO.getDuracion());
+            viaje.setKilometros(viajeDTO.getKilometros());
             viaje.setFecha(viajeDTO.getFecha());
             viaje.setId_usuario(viajeDTO.getId_usuario());
 
