@@ -26,9 +26,7 @@ public class ReportsController {
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end) {
-            System.out.println("primer rep controller");
             ReporteFacturacion reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
-            System.out.println("segundo rep controller");
             return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas.toString());
     }
 
@@ -48,15 +46,12 @@ public class ReportsController {
      @GetMapping("/usoMonopatinesKm/pausa/{pausa}") //reporte de uso de monopatines con un max de km
      public ResponseEntity<?> getReporteUsoMonopatinKm(@PathVariable("pausa") boolean pausa){
          try{
-             System.out.println("hola repo controller");
               ArrayList<Object> reports = this.reportService.getReporteUsoMonopatinKm(pausa);
-             System.out.println("god hasta acá");
               if(reports == null){
                   return ResponseEntity.status(404).build();
               }
               return ResponseEntity.status(200).body(reports);
          } catch (Exception e) {
-             System.out.println("fuck controller");
              return ResponseEntity.internalServerError().build();
          }
      }

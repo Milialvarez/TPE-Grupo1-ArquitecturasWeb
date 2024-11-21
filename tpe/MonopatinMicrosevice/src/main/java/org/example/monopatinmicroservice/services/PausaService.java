@@ -36,7 +36,6 @@ public class PausaService {
     }
 
     public int getPausasByViajeId(Long id) {
-        System.out.println("hola pausa service");
        int tiempo = 0;
        ArrayList<Pausa> pausas = this.pausaRepository.getPausasByViajeId(id);
        for (Pausa pausa : pausas) {

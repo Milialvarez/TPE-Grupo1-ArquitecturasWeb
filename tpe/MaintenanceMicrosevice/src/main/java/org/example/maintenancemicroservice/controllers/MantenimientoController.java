@@ -53,7 +53,6 @@ public class MantenimientoController {
             Integer idInteger = id;
             Long longId = idInteger.longValue();
             Mantenimiento mantenimiento = this.ms.updateMaintenance(longId, status);
-            System.out.println(mantenimiento);
             return ResponseEntity.ok(mantenimiento);
         }catch(Exception e){
             return ResponseEntity.noContent().build();
