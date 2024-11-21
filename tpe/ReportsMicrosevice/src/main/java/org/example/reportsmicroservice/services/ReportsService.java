@@ -48,16 +48,10 @@ public class ReportsService {
             if (Objects.equals(responseActivos.getStatusCode().toString(), "200 OK") && Objects.equals(responseMantenim.getStatusCode().toString(), "200 OK")){
                 ArrayList<Object> mantenimiento = (ArrayList<Object>) responseMantenim.getBody();
                 ArrayList<Object> activos = (ArrayList<Object>) responseActivos.getBody();
-                System.out.println("if de repo service");
-                System.out.println(mantenimiento);
-                System.out.println(activos);
                 assert activos != null;
                 assert mantenimiento != null;
-                System.out.println(activos.size());
-                System.out.println(mantenimiento.size());
                 return new ReporteMonopatinesEstado(activos.size(), mantenimiento.size());
             } else {
-                System.out.println("else del repo service");
                 // Manejar una respuesta no exitosa
                 throw new IllegalStateException("Error al llamar al otro servicio");
             }
@@ -68,31 +62,21 @@ public class ReportsService {
 
     public ArrayList<Object> getReporteUsoMonopatinKm(boolean pausa){
         try {
-            System.out.println("hola service");
             ResponseEntity<ArrayList<MonopatinKmDTO>> result = this.monopatinFeignClient.getMonopatinesPorKM(pausa);
-            System.out.println(result.getBody());
-            System.out.println("no se rompió");
             if (Objects.equals(result.getStatusCode().toString(), "200 OK")){
-                System.out.println("entré al if");
                 ArrayList<MonopatinKmDTO> listaMonopatinesPorKm = (ArrayList<MonopatinKmDTO>) result.getBody();
-                System.out.println(listaMonopatinesPorKm);
                 ArrayList<Object> listaReportes = new ArrayList<>();
                 if(pausa){
-                    System.out.println("entré al segundo if");
                     assert listaMonopatinesPorKm != null;
-                    System.out.println("acá rompe");
                     for(MonopatinKmDTO monopatinKmDTO : listaMonopatinesPorKm) {
-                        System.out.println(monopatinKmDTO + "            " + monopatinKmDTO.getId());
                         Long id = monopatinKmDTO.getId();
                         Float kms = monopatinKmDTO.getKmRecorridos();
                         Integer tiempo = monopatinKmDTO.getTiempoUso();
                         Integer pausas = monopatinKmDTO.getTiempoPausas();
                         listaReportes.add(new ReporteMonopatinesUso(id, kms, tiempo, pausas));
-                        System.out.println("ya se rompió no?");
                     }
                     return listaReportes;
                 }else{
-                    System.out.println("sout else de es sin pausa");
                     assert listaMonopatinesPorKm != null;
                     for(MonopatinKmDTO monopatinKmDTO : listaMonopatinesPorKm){
                         Long id = monopatinKmDTO.getId();
@@ -103,11 +87,9 @@ public class ReportsService {
                     return listaReportes;
                 }
             } else {
-                System.out.println("mal ahi, primer else");
                 return null;
             }
         } catch (FeignException.FeignClientException exception){
-            System.out.println("fuck service");
             throw new RuntimeException("Fallo al comunicarse con el otro servicio: " + exception.getMessage(), exception);
         }
     }

@@ -53,7 +53,6 @@ public class MantenimientoController {
             Integer idInteger = id;
             Long longId = idInteger.longValue();
             Mantenimiento mantenimiento = this.ms.updateMaintenance(longId, status);
-            System.out.println(mantenimiento);
             return ResponseEntity.ok(mantenimiento);
         }catch(Exception e){
             return ResponseEntity.noContent().build();
@@ -72,6 +71,17 @@ public class MantenimientoController {
                 return null;
             }
         }catch(Exception e){
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/monopatinesKm/pausa/{pausa}")
+    public ResponseEntity<?> getMonopatinesPorKm(@PathVariable("pausa") boolean pausa) {
+        try {
+            System.out.println("hola mant controller");
+            return this.ms.getMonopatinesPorKm(pausa);
+        } catch (Exception e) {
+            System.out.println("fuck mant controller");
             return ResponseEntity.status(500).build();
         }
     }

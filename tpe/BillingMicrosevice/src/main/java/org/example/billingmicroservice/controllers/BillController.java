@@ -29,10 +29,8 @@ public class BillController{
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate origin, @PathVariable("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end){
-            System.out.println("controller bill");
             double reporteTotalFacturadoEntreFechas = billService.getTotalBilled(origin, end);
             if (reporteTotalFacturadoEntreFechas != -1){
-                System.out.println("bien controller bill");
                 return ResponseEntity.ok(reporteTotalFacturadoEntreFechas);
             }
             else {
@@ -47,11 +45,9 @@ public class BillController{
             if(b != null){
                 return ResponseEntity.status(201).body(b);
             } else{
-                System.out.println("else de controller billing");
                 return ResponseEntity.status(400).body("Fecha inválida");
             }
         } catch (Exception e) {
-            System.out.println("controller bbilling");
             return ResponseEntity.status(500).body("Server Error");
         }
     }
