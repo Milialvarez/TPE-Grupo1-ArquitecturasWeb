@@ -15,6 +15,26 @@ spring:
             uri: http://localhost:8008
             predicates:
               - Path=/mantenimiento/**
+          - id: monopatin
+            uri: http://localhost:8009
+            predicates:
+              - Path=/monopatin/**
+          - id: bills
+            uri: http://localhost:8007
+            predicates:
+              - Path=/bills/**
+          - id: pausa
+            uri: http://localhost:8009
+            predicates:
+              - Path=/pausa/**
+          - id: viaje
+            uri: http://localhost:8009
+            predicates:
+              - Path=/viaje/**
+          - id: parada
+            uri: http://localhost:8009
+            predicates:
+              - Path=/parada/**
         default-filters:
           - RemoveRequestHeader=Cookie
 logging:

@@ -1,6 +1,8 @@
 package org.example.monopatinmicroservice.controllers;
 
+import org.example.monopatinmicroservice.entities.Monopatin;
 import org.example.monopatinmicroservice.entities.Parada;
+import org.example.monopatinmicroservice.services.MonopatinService;
 import org.example.monopatinmicroservice.services.ParadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,9 @@ import java.util.List;
 public class ParadaController {
     @Autowired
     private ParadaService paradaService;
+
+    @Autowired
+    private MonopatinService monopatinService;
 
     @GetMapping //Andando
     public ResponseEntity<?> getParadas() {
@@ -44,9 +49,16 @@ public class ParadaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addParada(@RequestBody Parada parada) { //Registrar parada
+    public ResponseEntity<?> addParada(@RequestBody Long id_monopatin) { //Registrar parada
         try {
-            Parada result = this.paradaService.add(parada);
+            Parada p = new Parada();
+
+            if (id_monopatin != null) {
+                Monopatin m = monopatinService.getById(id_monopatin);
+                p.setMonopatin(m);
+            }
+
+            Parada result = this.paradaService.add(p);
             return ResponseEntity.status(201).body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
