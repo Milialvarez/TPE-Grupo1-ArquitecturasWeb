@@ -25,8 +25,12 @@ public class ReportsController {
     }
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end) {
+    public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String origin, @PathVariable("fechaFin") String end) {
+        System.out.println("llego acá??");
             ReporteFacturacion reporteTotalFacturadoEntreFechas = reportService.getTotalBilled(origin, end);
+            if (reporteTotalFacturadoEntreFechas == null) {
+                return ResponseEntity.status(500).build();
+            }
             return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas.toString());
     }
 

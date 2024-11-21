@@ -46,13 +46,8 @@ public class AdminController {
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String o, @PathVariable("fechaFin") String e) {
         try {
-            LocalDate origin = LocalDate.parse(o);
-            LocalDate end = LocalDate.parse(e);
-            if (origin.isAfter(end)) {
-                return ResponseEntity.badRequest().body("wrong dates");
-            }
-            ResponseEntity<?> reporteTotalFacturadoEntreFechas = adminService.getTotalBilled(origin, end);
-            return ResponseEntity.status(HttpStatus.OK).body(reporteTotalFacturadoEntreFechas);
+            System.out.println("holu?");
+            return this.adminService.getTotalBilled(o, e);
         } catch (Exception exception) {
             return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
         }

@@ -35,8 +35,14 @@ public class AdminService {
         return this.accountsFeignClient.anullateAccount(id);
     }
 
-    public ResponseEntity<?> getTotalBilled(LocalDate origin, LocalDate end){
-        return this.reportsFeignClient.getTotalBilled(origin, end);
+    public ResponseEntity<?> getTotalBilled(String o, String e){
+        LocalDate origin = LocalDate.parse(o);
+        LocalDate end = LocalDate.parse(e);
+        if (origin.isAfter(end)) {
+            return ResponseEntity.badRequest().body("wrong dates");
+        }
+        System.out.println("hola??");
+        return this.reportsFeignClient.getTotalBilled(o, e);
     }
 
     public ResponseEntity<?> getUsersByRole(String r){

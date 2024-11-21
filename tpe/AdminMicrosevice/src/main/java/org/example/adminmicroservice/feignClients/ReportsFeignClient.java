@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public interface ReportsFeignClient {
 
     @GetMapping("/totalBilled/origen/{fechaOrigen}/fin/{fechaFin}")
-    ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") LocalDate origin, @PathVariable("fechaFin") LocalDate end);
+    ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String origin, @PathVariable("fechaFin") String end);
 
     @GetMapping("/activosVsMantenimiento")
     ResponseEntity<?> getReporteMonopatinesActivosVsMantenidos();
