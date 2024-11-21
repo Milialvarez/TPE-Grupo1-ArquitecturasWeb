@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/config/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/repositories/BillCustomRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/repositories/BillCustomRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/BillingMicroserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/BillingMicroserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/entities/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/entities/Bill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/repositories/BillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/repositories/BillRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/java/org/example/billingmicroservice/services/BillService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BillingMicrosevice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BillingMicrosevice/src/test/java/BillTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/test/java/MaintenanceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/test/java/MonopatinTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserMicrosevice/src/test/java/AccountsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/java/org/example/maintenancemicroservice/models/Monopatin.java" beforeDir="false" afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/main/java/org/example/maintenancemicroservice/models/Monopatin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/entities/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/repositories/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/repositories/AccountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/services/AccountService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,8 +75,7 @@
     "Spring Boot.MonopatinMicroserviceApplication.executor": "Run",
     "Spring Boot.ReportsMicroserviceApplication.executor": "Run",
     "Spring Boot.UserMicroserviceApplication.executor": "Run",
-    "git-widget-placeholder": "mongoDB__migration",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-22",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Manuel/Documents/TUDAI/ArquitecturasWeb/integrador/TPE-Grupo1-ArquitecturasWeb/tpe",
@@ -296,7 +276,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -329,6 +310,7 @@
       <workItem from="1732020537608" duration="10264000" />
       <workItem from="1732054655182" duration="7108000" />
       <workItem from="1732150466362" duration="2025000" />
+      <workItem from="1732201643036" duration="2545000" />
     </task>
     <servers />
   </component>

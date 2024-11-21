@@ -41,4 +41,12 @@ public class AccountService {
         ac.setAnullated(true);
         return ac;
         }
+
+        @Transactional
+    public Account cargarDinero(Long idCuenta, int monto) {
+        Account ac = this.getAccountById(idCuenta);
+        this.accountRepository.setNuevoMonto(idCuenta, monto);
+        ac.setBalance(ac.getBalance() + monto);
+        return ac;
     }
+}
