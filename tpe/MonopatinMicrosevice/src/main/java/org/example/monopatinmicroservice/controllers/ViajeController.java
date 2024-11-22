@@ -54,22 +54,26 @@ public class ViajeController {
     @PostMapping
     public ResponseEntity<?> addViaje(@RequestBody ViajeConIdMonopatinDTO viajeDTO) {
         try {
-            Integer aux = viajeDTO.getId_monopatin();
-            Long id = aux.longValue();
-            Integer auxUs = viajeDTO.getId_usuario();
-            Long idUs = auxUs.longValue();
+            System.out.println("hola?");
+            Long id = viajeDTO.getId_monopatin().longValue();
+            Long idUs = viajeDTO.getId_usuario().longValue();
 
+            System.out.println("si se pudoo");
             Monopatin monopatin = monopatinService.getById(id);
 
             Viaje viaje = new Viaje();
             viaje.setMonopatin(monopatin);
+            System.out.println("acá");
             viaje.setDuracion(viajeDTO.getDuracion());
+            System.out.println("acá2");
             viaje.setKilometros(viajeDTO.getKilometros());
+            System.out.println("acá3");
             viaje.setFecha(viajeDTO.getFecha());
+            System.out.println("acá4");
             viaje.setId_usuario(idUs);
-
-            Viaje result = this.viajeService.add(viaje);
-            return ResponseEntity.status(201).body(result);
+            System.out.println("donde rompe?");
+            this.viajeService.add(viaje);
+            return ResponseEntity.status(201).body(viaje);
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }

@@ -14,6 +14,6 @@ public class ViajeConIdMonopatinDTO {
     private LocalDate fecha;
     private Integer duracion;
     private Float kilometros;
-    private int id_usuario;
-    private int id_monopatin;
+    private Integer id_usuario;
+    private Integer id_monopatin;
 }
