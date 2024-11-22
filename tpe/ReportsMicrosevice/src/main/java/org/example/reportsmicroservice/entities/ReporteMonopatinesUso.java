@@ -1,7 +1,9 @@
 package org.example.reportsmicroservice.entities;
 
+import lombok.Data;
 import lombok.Getter;
 
+@Data
 @Getter
 public class ReporteMonopatinesUso {
     private String nombre;
@@ -20,7 +22,8 @@ public class ReporteMonopatinesUso {
         this.tiempoConPausas = tP;
     }
 
-    public String getReport(boolean pausa) {
+    @Override
+    public String toString() {
             return "Nombre del reporte: " + this.nombre + "Descripcion: " + this.descripcion + " Id del monopatin: " + this.idMonop + " Cantidad de km recorridos: " + this.maxKm + " Tiempo max de uso: " + this.tiempo + " Tiempo max de uso con pausas: " + this.tiempoConPausas;
 
     }

@@ -80,8 +80,10 @@ public class ReportsService {
                     }
                     return listaReportes;
                 }else{
+                    System.out.println("acá debería");
                     assert listaMonopatinesPorKm != null;
                     for(MonopatinKmDTO monopatinKmDTO : listaMonopatinesPorKm){
+                        System.out.println("entré acá?");
                         Long id = monopatinKmDTO.getId();
                         Float kms = monopatinKmDTO.getKmRecorridos();
                         Integer tiempo = monopatinKmDTO.getTiempoUso();
