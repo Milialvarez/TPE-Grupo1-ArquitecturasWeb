@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PausaConIdViajeDTO {
     private Integer tiempo;
-    private Long id_viaje;
+    private Integer id_viaje;
 }

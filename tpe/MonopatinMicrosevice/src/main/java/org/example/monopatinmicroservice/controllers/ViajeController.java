@@ -54,19 +54,19 @@ public class ViajeController {
     @PostMapping
     public ResponseEntity<?> addViaje(@RequestBody ViajeConIdMonopatinDTO viajeDTO) {
         try {
-            Long monopatinId = viajeDTO.getId_monopatin();
-            Monopatin monopatin = null;
+            Integer aux = viajeDTO.getId_monopatin();
+            Long id = aux.longValue();
+            Integer auxUs = viajeDTO.getId_usuario();
+            Long idUs = auxUs.longValue();
 
-            if (monopatinId != null) {
-                monopatin = monopatinService.getById(monopatinId);
-            }
+            Monopatin monopatin = monopatinService.getById(id);
 
             Viaje viaje = new Viaje();
             viaje.setMonopatin(monopatin);
             viaje.setDuracion(viajeDTO.getDuracion());
             viaje.setKilometros(viajeDTO.getKilometros());
             viaje.setFecha(viajeDTO.getFecha());
-            viaje.setId_usuario(viajeDTO.getId_usuario());
+            viaje.setId_usuario(idUs);
 
             Viaje result = this.viajeService.add(viaje);
             return ResponseEntity.status(201).body(result);
@@ -76,9 +76,9 @@ public class ViajeController {
     }
 
     @DeleteMapping("/{id_viaje}")
-    public ResponseEntity<?> deleteViaje(@PathVariable("id_viaje") Long id) {
+    public ResponseEntity<?> deleteViaje(@PathVariable("id_viaje") Integer id) {
         try {
-            Viaje result = this.viajeService.delete(id);
+            Viaje result = this.viajeService.delete(id.longValue());
 
             if (result != null) {
                 return ResponseEntity.ok().body(result);

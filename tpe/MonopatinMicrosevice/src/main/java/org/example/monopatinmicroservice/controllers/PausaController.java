@@ -52,12 +52,9 @@ public class PausaController {
     @PostMapping
     public ResponseEntity<?> addPausa(@RequestBody PausaConIdViajeDTO pausaDTO) {
         try {
-            Long viajeId = pausaDTO.getId_viaje();
-            Viaje viaje = null;
+            Long viajeId = pausaDTO.getId_viaje().longValue();
 
-            if (viajeId != null) {
-                viaje = viajeService.getById(viajeId);
-            }
+            Viaje viaje = viajeService.getById(viajeId);
 
             Pausa pausa = new Pausa();
             pausa.setViaje(viaje);
@@ -71,9 +68,9 @@ public class PausaController {
     }
 
     @DeleteMapping("/{id_pausa}")
-    public ResponseEntity<?> deletePausa(@PathVariable("id_pausa") Long id) {
+    public ResponseEntity<?> deletePausa(@PathVariable("id_pausa") Integer id) {
         try {
-            Pausa result = this.pausaService.delete(id);
+            Pausa result = this.pausaService.delete(id.longValue());
 
             if (result != null) {
                 return ResponseEntity.ok().body(result);

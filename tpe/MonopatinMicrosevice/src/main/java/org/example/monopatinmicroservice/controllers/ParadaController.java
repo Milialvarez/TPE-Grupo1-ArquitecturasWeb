@@ -1,5 +1,6 @@
 package org.example.monopatinmicroservice.controllers;
 
+import org.example.monopatinmicroservice.dtos.ParadaDTO;
 import org.example.monopatinmicroservice.entities.Monopatin;
 import org.example.monopatinmicroservice.entities.Parada;
 import org.example.monopatinmicroservice.services.MonopatinService;
@@ -49,14 +50,15 @@ public class ParadaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addParada(@RequestBody Long id_monopatin) { //Registrar parada
+    public ResponseEntity<?> addParada(@RequestBody ParadaDTO paradaDTO) { //Registrar parada
         try {
             Parada p = new Parada();
+            Long id = paradaDTO.getId_monopatin().longValue();
+            boolean habilitada = paradaDTO.isHabilitada();
 
-            if (id_monopatin != null) {
-                Monopatin m = monopatinService.getById(id_monopatin);
+                Monopatin m = monopatinService.getById(id);
                 p.setMonopatin(m);
-            }
+                p.setHabilitada(habilitada);
 
             Parada result = this.paradaService.add(p);
             return ResponseEntity.status(201).body(result);

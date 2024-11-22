@@ -5,6 +5,7 @@ import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -22,7 +23,8 @@ public class Parada {
     @CsvBindByName
     private Monopatin monopatin;
 
-    public boolean isHabilitada() {
-        return monopatin == null;
-    }
+    @Getter
+    @Column(nullable = false)
+    private boolean habilitada;
+
 }
