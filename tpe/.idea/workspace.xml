@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/entities/ReporteMonopatinesUso.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/entities/ReporteMonopatinesUso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/services/ReportsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/main/java/org/example/reportsmicroservice/services/ReportsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/controllers/MonopatinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/MonopatinConIdParadaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MonopatinMicrosevice/src/main/java/org/example/monopatinmicroservice/dtos/MonopatinConIdParadaDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

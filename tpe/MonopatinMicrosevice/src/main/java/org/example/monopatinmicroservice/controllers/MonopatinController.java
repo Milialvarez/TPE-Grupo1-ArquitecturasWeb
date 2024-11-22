@@ -68,6 +68,8 @@ public class MonopatinController {
                     monopatin.setParada(parada);
                 }
             }
+            monopatin.setPosX(monopatinDTO.getPosX());
+            monopatin.setPosY(monopatinDTO.getPosY());
 
             monopatin.setKmRecorridos(monopatinDTO.getKmRecorridos());
 

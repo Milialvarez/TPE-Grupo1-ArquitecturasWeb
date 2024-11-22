@@ -12,4 +12,6 @@ import java.util.Date;
 public class MonopatinConIdParadaDTO {
     private Float kmRecorridos;
     private Long id_parada;
+    private int posX;
+    private int posY;
 }
