@@ -7,8 +7,7 @@
     <list default="true" id="15214bca-c0a8-4ab5-a2e7-cdb0cdc6ab61" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdminMicrosevice/src/test/java/AdminTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReportsMicrosevice/src/test/java/ReporteMonopatinTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserMicrosevice/src/main/java/org/example/usermicroservice/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaintenanceMicrosevice/src/test/java/MaintenanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MaintenanceMicrosevice/src/test/java/MaintenanceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +60,10 @@
     "Docker.docker-compose.yml.user: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "JUnit.AccountsTest.executor": "Run",
+    "JUnit.AdminTest.Test_Users_By_Role.executor": "Run",
     "JUnit.AdminTest.executor": "Run",
     "JUnit.MaintenanceTest.executor": "Run",
+    "JUnit.MaintenanceTest.testUpdateMaintenance.executor": "Run",
     "JUnit.MonopatinTest.executor": "Run",
     "JUnit.ReporteMonopatinTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -130,7 +131,27 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.MaintenanceTest.testUpdateMaintenance">
+    <configuration name="AdminTest.Test_Users_By_Role" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AdminMicrosevice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AdminTest" />
+      <option name="METHOD_NAME" value="Test_Users_By_Role" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaintenanceTest.testUpdateMaintenance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MaintenanceMicrosevice" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MaintenanceTest" />
+      <option name="METHOD_NAME" value="testUpdateMaintenance" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AdminMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="AdminMicrosevice" />
@@ -208,19 +229,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.admin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="admin" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yml.phpmyadminmonopatin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -249,9 +257,10 @@
     </configuration>
     <list>
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
+      <item itemvalue="JUnit.AdminTest.Test_Users_By_Role" />
+      <item itemvalue="JUnit.MaintenanceTest.testUpdateMaintenance" />
       <item itemvalue="Spring Boot.AdminMicroserviceApplication" />
       <item itemvalue="Spring Boot.BillingMicroserviceApplication" />
       <item itemvalue="Spring Boot.GatewayApplication (1)" />
@@ -262,11 +271,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MaintenanceTest.testUpdateMaintenance" />
+        <item itemvalue="JUnit.AdminTest.Test_Users_By_Role" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.phpmyadminmonopatin: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.admin: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.user: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -309,7 +318,7 @@
       <workItem from="1732150466362" duration="2025000" />
       <workItem from="1732201643036" duration="2545000" />
       <workItem from="1732218683034" duration="13415000" />
-      <workItem from="1732275995586" duration="1973000" />
+      <workItem from="1732275995586" duration="4585000" />
     </task>
     <servers />
   </component>

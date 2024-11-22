@@ -1,4 +1,5 @@
 import jdk.jfr.Description;
+import org.example.maintenancemicroservice.MaintenanceMicroserviceApplication;
 import org.example.maintenancemicroservice.controllers.MantenimientoController;
 import org.example.maintenancemicroservice.entities.Mantenimiento;
 import org.example.maintenancemicroservice.models.Monopatin;
@@ -11,12 +12,23 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@SpringBootTest(classes = MaintenanceMicroserviceApplication.class)
+@AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
 public class MaintenanceTest {
 
@@ -24,16 +36,18 @@ public class MaintenanceTest {
     private MantenimientoService mantenimientoService;
     @Mock
     private MantenimientoRepository mantenimientoRepository;
+
     ArrayList<Mantenimiento> mantenimientos;
+
     Monopatin monopatin;
     Mantenimiento mantenimiento;
 
     @BeforeEach
     void setUp() {
         monopatin = new Monopatin();
-        mantenimiento = new Mantenimiento();
         monopatin.setId(1L);
-        mantenimiento.setId_monopatin(monopatin.getId());
+        mantenimiento = new Mantenimiento();
+        mantenimiento.setId(mantenimiento.getId());
     }
 
     @Test
@@ -42,6 +56,8 @@ public class MaintenanceTest {
         Mantenimiento m = mantenimientoService.findByMonopatinId(monopatin.getId());
         assertEquals(m.getId_monopatin(), monopatin.getId(), "el mantenimiento no se creó corectamente");
     }
+
+
 
 
 
