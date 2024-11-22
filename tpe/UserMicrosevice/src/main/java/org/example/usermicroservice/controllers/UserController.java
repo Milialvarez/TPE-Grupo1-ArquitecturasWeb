@@ -55,7 +55,7 @@ public class UserController {
     //ANDA, OBTIENE MONOPATINES EN EL RADIO DE UN KILOMETRO
     @GetMapping("/monopatins/location/{posx}/{posy}")
     public ResponseEntity<?> getClosestMonopatins(@PathVariable("posx") int posx, @PathVariable("posy") int posy){
-        return ResponseEntity.status(200).body(this.userService.getClosestMonopatins(posx, posy));
+        return this.userService.getClosestMonopatins(posx, posy);
     }
 
     @GetMapping("/role/{role}") //Andando

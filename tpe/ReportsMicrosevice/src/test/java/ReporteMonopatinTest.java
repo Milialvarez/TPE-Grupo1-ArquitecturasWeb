@@ -1,4 +1,5 @@
 
+import jdk.jfr.Description;
 import org.example.reportsmicroservice.dtos.MonopatinKmDTO;
 import org.example.reportsmicroservice.entities.ReporteMonopatinesSinPausa;
 import org.example.reportsmicroservice.entities.ReporteMonopatinesUso;
@@ -39,12 +40,14 @@ public class ReporteMonopatinTest {
     }
 
     @Test
+    @Description("Corrobora que la respuesta del feign client sea la correcta")
     public void testCorrectResponse() {
         when(monopatinFeignClient.getMonopatinesPorKM(true)).thenReturn(monopatines);
         assertEquals(Objects.requireNonNull(monopatinFeignClient.getMonopatinesPorKM(true).getBody()).getFirst().getClass(), mons.getFirst().getClass());
     }
 
     @Test
+    @Description("Corrobora que si se pide un reporte con pausas se devuelve un array de objetos reportes monopatines uso")
     public void testServiceCorrectObject() {
         when(monopatinFeignClient.getMonopatinesPorKM(true)).thenReturn(monopatines);
         ArrayList<Object> objs = repService.getReporteUsoMonopatinKm(true);
