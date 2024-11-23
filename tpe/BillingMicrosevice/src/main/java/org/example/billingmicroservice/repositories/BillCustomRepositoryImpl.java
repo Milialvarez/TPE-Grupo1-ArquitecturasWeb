@@ -34,9 +34,9 @@ public class BillCustomRepositoryImpl implements BillCustomRepository {
     }
 
     @Override
-    public LocalDate getLastOne() {
+    public Bill getLastOne() {
         Query query = new Query().with(Sort.by(Sort.Direction.DESC, "fecha")).limit(1);
         Bill latestBill = mongoTemplate.findOne(query, Bill.class);
-        return latestBill != null ? latestBill.getFecha() : null;
+        return latestBill != null ? latestBill : null;
     }
 }

@@ -55,9 +55,9 @@ public class BillService {
     }
 
     public Bill getCostos(){ //
-
-        List<Bill> tarifas = this.billRepository.findAll();
-        return tarifas.getFirst();
+        Bill lastTarifa = this.billRepository.getLastOne();
+        System.out.println(lastTarifa.getFecha());
+        return lastTarifa;
     }
 
     //El credito comienza a consumirse cuando se activa el viaje (es decir en t == 0)
@@ -98,8 +98,8 @@ public class BillService {
 
 
     public Bill setNewBill(LocalDate f, float pFijo, float pEx) {
-        LocalDate lastBillDate = this.billRepository.getLastOne();
-        if (lastBillDate == null || f.isBefore(lastBillDate)){
+        Bill lastBill = this.billRepository.getLastOne();
+        if (lastBill.getFecha() == null || f.isBefore(lastBill.getFecha())){
             return null;
         }
         Bill b = new Bill();
