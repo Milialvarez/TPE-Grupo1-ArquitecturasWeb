@@ -29,16 +29,9 @@ public class ReportsService {
 
     public ReporteFacturacion getTotalBilled(String origin, String end){
         try {
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//            String originFormatted = origin.format(formatter);
-//            String endFormatted = end.format(formatter);
-            LocalDate inicio = LocalDate.parse(origin);
-            LocalDate fin = LocalDate.parse(end);
-            System.out.println("hola???");
             ResponseEntity<?> response = this.billingFeignClient.getTotalBilled(origin, end);
             Double totalBilled = (Double) response.getBody();
-            System.out.println("hola?? sobrevivimos?");
-            return new ReporteFacturacion("Reporte de facturacion", "Ganancias hechas en los viajes entre fechas.", totalBilled, inicio, fin);
+            return new ReporteFacturacion("Reporte de facturacion", "Ganancias hechas en los viajes entre fechas.", totalBilled, origin, end);
         } catch (Exception e) {
             return null;
         }

@@ -47,7 +47,7 @@ public class AdminController {
     public ResponseEntity<?> getTotalBilled(@PathVariable("fechaOrigen") String o, @PathVariable("fechaFin") String e) {
         try {
             System.out.println("holu?");
-            return this.adminService.getTotalBilled(o, e);
+            return ResponseEntity.status(HttpStatus.OK).body(this.adminService.getTotalBilled(o, e));
         } catch (Exception exception) {
             return ResponseEntity.internalServerError().body("Disculpe, estamos trabajando para solucionarlo ;)");
         }

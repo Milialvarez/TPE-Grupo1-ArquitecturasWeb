@@ -39,7 +39,7 @@ public class AdminTest {
     public void Test_Total_Billed(){
         String origin = "2024-11-11";
         String end = "2020-10-12";
-        ResponseEntity<?> response = this.adminService.getTotalBilled(origin, end);
-        assertEquals(response.getBody(), "wrong dates");
+        Object response = this.adminService.getTotalBilled(origin, end);
+        assertEquals(response, "wrong dates");
     }
 }

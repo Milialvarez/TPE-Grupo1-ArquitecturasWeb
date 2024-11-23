@@ -35,14 +35,14 @@ public class AdminService {
         return this.accountsFeignClient.anullateAccount(id);
     }
 
-    public ResponseEntity<?> getTotalBilled(String o, String e){
-        LocalDate origin = LocalDate.parse(o);
-        LocalDate end = LocalDate.parse(e);
-        if (origin.isAfter(end)) {
-            return ResponseEntity.badRequest().body("wrong dates");
-        }
+    public Object getTotalBilled(String o, String e){
+//        LocalDate origin = LocalDate.parse(o);
+//        LocalDate end = LocalDate.parse(e);
+//        if (origin.isAfter(end)) { //pasar al controller
+//            return ResponseEntity.badRequest().body("wrong dates");
+//        }
         System.out.println("hola??");
-        return this.reportsFeignClient.getTotalBilled(o, e);
+        return this.reportsFeignClient.getTotalBilled(o, e).getBody();
     }
 
     public ResponseEntity<?> getUsersByRole(String r){

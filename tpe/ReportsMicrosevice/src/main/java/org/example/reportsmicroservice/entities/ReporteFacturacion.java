@@ -8,10 +8,10 @@ public class ReporteFacturacion{
     private String nombre;
     private String descripcion;
     private double totalFacturado;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
 
-    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, LocalDate fechaInicio, LocalDate fechaFin) {
+    public ReporteFacturacion(String nombre, String descripcion, double totalFacturado, String fechaInicio, String fechaFin) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.totalFacturado = totalFacturado;
@@ -29,11 +29,11 @@ public class ReporteFacturacion{
         return totalFacturado;
     }
 
-    public LocalDate getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public LocalDate getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 }
