@@ -30,7 +30,7 @@ public class Viaje {
     @CsvBindByName
     private Long id_usuario;
 
-    @OneToOne
+    @ManyToOne
     @CsvBindByName
     private Monopatin monopatin;
 

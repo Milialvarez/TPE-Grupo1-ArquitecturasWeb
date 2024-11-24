@@ -40,13 +40,11 @@ public class MantenimientoService {
     }
 
     public Mantenimiento findByMonopatinId(Long idMonopatin) {
-        Mantenimiento m = this.mantenimientoRepository.findByMonopatinId(idMonopatin);
-        return m;
+        return this.mantenimientoRepository.findByMonopatinId(idMonopatin);
     }
 
     public ArrayList<Mantenimiento> getAllManteinances() {
-        ArrayList<Mantenimiento> m = (ArrayList<Mantenimiento>) this.mantenimientoRepository.findAll();
-        return m;
+        return (ArrayList<Mantenimiento>) this.mantenimientoRepository.findAll();
     }
 
     public ResponseEntity<?> getMonopatinesPorKm(boolean pausa) {
