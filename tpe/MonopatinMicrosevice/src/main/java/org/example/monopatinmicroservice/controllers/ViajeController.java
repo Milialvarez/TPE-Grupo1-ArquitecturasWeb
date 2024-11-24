@@ -7,6 +7,7 @@ import org.example.monopatinmicroservice.services.MonopatinService;
 import org.example.monopatinmicroservice.services.ViajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

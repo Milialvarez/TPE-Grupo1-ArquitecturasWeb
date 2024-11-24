@@ -1,6 +1,7 @@
 package org.example.monopatinmicroservice.services;
 
 import org.example.monopatinmicroservice.entities.Viaje;
+import org.example.monopatinmicroservice.repositories.PausaRepository;
 import org.example.monopatinmicroservice.repositories.ViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
@@ -16,6 +17,9 @@ public class ViajeService {
     @Autowired
     private ViajeRepository viajeRepository;
 
+    @Autowired
+    private PausaRepository pausaRepository;
+
     public List<Viaje> getAll() {
         return viajeRepository.findAll();
     }
@@ -30,6 +34,8 @@ public class ViajeService {
 
     public Viaje delete(Long id) {
         Viaje viaje = viajeRepository.findById(id).orElse(null);
+
+        pausaRepository.deleteByViaje(viaje);
 
         if (viaje != null) {
             viajeRepository.deleteById(id);
