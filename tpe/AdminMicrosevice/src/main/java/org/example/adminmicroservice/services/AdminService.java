@@ -36,11 +36,11 @@ public class AdminService {
     }
 
     public Object getTotalBilled(String o, String e){
-//        LocalDate origin = LocalDate.parse(o);
-//        LocalDate end = LocalDate.parse(e);
-//        if (origin.isAfter(end)) { //pasar al controller
-//            return ResponseEntity.badRequest().body("wrong dates");
-//        }
+        LocalDate origin = LocalDate.parse(o);
+        LocalDate end = LocalDate.parse(e);
+        if (origin.isAfter(end)) { //pasar al controller
+            return null;
+        }
         System.out.println("hola??");
         return this.reportsFeignClient.getTotalBilled(o, e).getBody();
     }

@@ -40,6 +40,6 @@ public class AdminTest {
         String origin = "2024-11-11";
         String end = "2020-10-12";
         Object response = this.adminService.getTotalBilled(origin, end);
-        assertEquals(response, "wrong dates");
+        assertEquals(response, null);
     }
 }

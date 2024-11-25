@@ -27,38 +27,22 @@ import static org.springframework.mock.http.server.reactive.MockServerHttpReques
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = MaintenanceMicroserviceApplication.class)
-@AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
 public class MaintenanceTest {
-
     @InjectMocks
     private MantenimientoService mantenimientoService;
     @Mock
     private MantenimientoRepository mantenimientoRepository;
 
-    ArrayList<Mantenimiento> mantenimientos;
-
-    Monopatin monopatin;
-    Mantenimiento mantenimiento;
-
-    @BeforeEach
-    void setUp() {
-        monopatin = new Monopatin();
-        monopatin.setId(1L);
-        mantenimiento = new Mantenimiento();
-        mantenimiento.setId(mantenimiento.getId());
-    }
-
     @Test
     public void testIdMonopatin(){
+        Monopatin monopatin = new Monopatin();
+        monopatin.setId(1L);
+        Mantenimiento mantenimiento = new Mantenimiento();
+        mantenimiento.setId_monopatin(monopatin.getId());
+
         when(mantenimientoService.findByMonopatinId(monopatin.getId())).thenReturn(mantenimiento);
         Mantenimiento m = mantenimientoService.findByMonopatinId(monopatin.getId());
         assertEquals(m.getId_monopatin(), monopatin.getId(), "el mantenimiento no se creó corectamente");
     }
-
-
-
-
-
 }
